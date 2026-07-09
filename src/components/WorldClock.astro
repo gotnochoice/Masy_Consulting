@@ -1,0 +1,79 @@
+---
+const cities = [
+  { label: 'Lagos', tz: 'Africa/Lagos', note: 'Your team' },
+  { label: 'London', tz: 'Europe/London', note: '' },
+  { label: 'New York', tz: 'America/New_York', note: '' },
+  { label: 'Toronto', tz: 'America/Toronto', note: '' },
+];
+---
+<div
+  class="world-clock rounded-2xl border border-white/10 bg-indigo-deep text-white p-6 sm:p-7 relative overflow-hidden"
+  data-cities={JSON.stringify(cities)}
+>
+  <div class="absolute inset-0 grain-overlay"></div>
+  <div class="relative flex items-center justify-between mb-5">
+    <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-orange">Live, right now</p>
+    <span class="relative flex h-2 w-2">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange opacity-60"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-orange"></span>
+    </span>
+  </div>
+  <ul class="relative divide-y divide-white/10">
+    {cities.map((c) => (
+      <li class="flex items-center justify-between py-3 first:pt-0 last:pb-0" data-tz={c.tz}>
+        <div>
+          <p class="text-[15px] font-medium">{c.label}</p>
+          {c.note && <p class="text-[12px] text-white/45">{c.note}</p>}
+        </div>
+        <div class="text-right">
+          <p class="clock-time font-mono text-lg sm:text-xl tabular-nums text-orange">--:--</p>
+          <p class="clock-diff text-[12px] text-white/45">&nbsp;</p>
+        </div>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<script>
+  function updateClocks(root: HTMLElement) {
+    const items = root.querySelectorAll<HTMLElement>('[data-tz]');
+    const now = new Date();
+    let baseOffset: number | null = null;
+
+    items.forEach((item, i) => {
+      const tz = item.dataset.tz!;
+      const timeStr = new Intl.DateTimeFormat('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: tz,
+        hour12: false,
+      }).format(now);
+
+      const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: tz,
+        hour: 'numeric',
+        hour12: false,
+      }).formatToParts(now);
+      const hour = Number(parts.find((p) => p.type === 'hour')?.value ?? 0);
+
+      const timeEl = item.querySelector('.clock-time');
+      const diffEl = item.querySelector('.clock-diff');
+      if (timeEl) timeEl.textContent = timeStr;
+
+      if (i === 0) {
+        baseOffset = hour;
+        if (diffEl) diffEl.textContent = 'anchor';
+      } else if (diffEl && baseOffset !== null) {
+        let diff = hour - baseOffset;
+        if (diff > 12) diff -= 24;
+        if (diff < -12) diff += 24;
+        diffEl.textContent = diff === 0 ? 'same hour' : `${diff > 0 ? '+' : ''}${diff}h`;
+      }
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('.world-clock').forEach((root) => {
+    updateClocks(root);
+    setInterval(() => updateClocks(root), 15000);
+  });
+</script>

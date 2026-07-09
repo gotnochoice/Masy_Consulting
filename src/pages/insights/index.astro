@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Eyebrow from '../../components/Eyebrow.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('insights')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+<BaseLayout
+  title="Insights"
+  description="Sharp, insight-first thinking on fractional HR, business writing, and market intelligence for African businesses and diaspora entrepreneurs. Real lessons, never a sales pitch."
+>
+  <section class="max-w-content mx-auto px-5 sm:px-8 pt-14 sm:pt-20 pb-16 sm:pb-20">
+    <Eyebrow>Insights</Eyebrow>
+    <h1 class="mt-6 font-display font-medium text-[clamp(2.25rem,5.5vw,3.75rem)] leading-[1.06] tracking-tight text-indigo-deep max-w-3xl text-balance">
+      Things worth knowing before you call us.
+    </h1>
+    <p class="mt-7 text-[17px] text-slate leading-relaxed max-w-2xl text-pretty">
+      Every piece here has to clear one bar: would it teach a business owner something real, even
+      if they never book a call? If it doesn't, we don't publish it.
+    </p>
+  </section>
+
+  <section class="max-w-content mx-auto px-5 sm:px-8 pb-24 sm:pb-28">
+    <div class="grid sm:grid-cols-2 gap-5">
+      {posts.map((post, i) => (
+        <ArticleCard
+          href={`/insights/${post.slug}/`}
+          title={post.data.title}
+          dek={post.data.dek}
+          pillar={post.data.pillar}
+          date={post.data.date}
+          readMinutes={post.data.readMinutes}
+          featured={i === 0}
+        />
+      ))}
+    </div>
+  </section>
+
+  <CTASection
+    heading="Read something useful. Then, if it's relevant, let's talk."
+    body="No pressure, no funnel. Insight first, always. The door's open when you're ready."
+    primaryLabel="Book a consultation"
+  />
+</BaseLayout>

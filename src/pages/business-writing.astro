@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PillarHero from '../components/PillarHero.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import ServiceGrid from '../components/ServiceGrid.astro';
+import Qualifier from '../components/Qualifier.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import PricingNote from '../components/PricingNote.astro';
+import CTASection from '../components/CTASection.astro';
+
+const included = [
+  {
+    title: 'Business proposals & grant applications',
+    body: 'Tender-ready documents built to make it past the first read and onto the shortlist, not just look tidy.',
+  },
+  {
+    title: 'Pitch decks & investor documents',
+    body: 'The story and the numbers, structured the way someone deciding whether to write a check actually reads.',
+  },
+  {
+    title: 'Company profiles & executive reports',
+    body: 'The document that represents your business when you’re not in the room to explain it yourself.',
+  },
+  {
+    title: 'Corporate communications',
+    body: 'Board updates, internal announcements, and comms that hold the same voice as everything else you send.',
+  },
+];
+
+const steps = [
+  { title: 'Brief & source material', body: 'Send what you have, even rough notes or an old deck. We work from what’s real, not a blank page.' },
+  { title: 'Structure & argument', body: 'Before we touch a sentence, we fix the argument: what the reader needs to believe, in what order.' },
+  { title: 'Draft & review round', body: 'One structured round of revisions, so the document gets sharper without turning into an open-ended thread.' },
+  { title: 'Final delivery', body: 'Formatted, proofed, and ready for the specific reader who has to say yes.' },
+];
+---
+<BaseLayout
+  title="Business Writing — Proposals, Pitch Decks & Corporate Reports"
+  description="Masy Consulting writes the business proposals, pitch decks, company profiles, and corporate reports that open doors for African-founded and diaspora-owned businesses. Not academic writing."
+>
+  <PillarHero
+    number="02"
+    label="Business Writing"
+    title="The document that gets read past the first page."
+    lead="Your work is good. The proposal that describes it isn’t always. Masy writes the business proposals, pitch decks, company profiles, and reports that carry the same quality as the business behind them, so a good deal doesn’t die on paper."
+  />
+
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+    <Eyebrow>What this covers</Eyebrow>
+    <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-indigo-deep max-w-2xl text-balance">
+      Documents built to be read by someone deciding whether to trust you.
+    </h2>
+    <div class="mt-11">
+      <ServiceGrid items={included} />
+    </div>
+    <p class="mt-8 text-[14px] text-slate/70 max-w-xl leading-relaxed">
+      Masy Consulting does not offer academic writing, essays, or tutoring of any kind. That work
+      belongs entirely to <a href="https://masyacademy.com" target="_blank" rel="noopener noreferrer" class="link-underline text-indigo-deep font-medium">Masy Academy</a>, a separate company.
+    </p>
+  </section>
+
+  <section class="bg-sand border-y border-indigo-deep/5">
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+      <div class="max-w-2xl">
+        <Eyebrow>Why this isn’t a template job</Eyebrow>
+        <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.18] text-indigo-deep text-balance">
+          Most business-writing shops compete on speed and price. We compete on whether it works.
+        </h2>
+        <p class="mt-6 text-[16px] text-slate leading-relaxed text-pretty">
+          Fast and cheap is fine for a document you'll use once and forget. It's not fine for the
+          proposal that has to convince someone with the power to fund you, hire you, or sign a
+          five-year contract. Where useful, your document draws on Masy's own market research, so
+          the claims in your pitch are backed by more than confidence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+    <Eyebrow>Fit check</Eyebrow>
+    <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-indigo-deep max-w-2xl text-balance">
+      Built for a specific document. Worth checking before you send a brief.
+    </h2>
+    <div class="mt-11">
+      <Qualifier
+        fit={[
+          'You have a real proposal, pitch, or report due, and the deadline is closer than you’d like.',
+          'People are impressed by your business in person, and the paperwork hasn’t caught up yet.',
+          'You want a document that holds up under real scrutiny, not just one that looks clean.',
+        ]}
+        notFit={[
+          'You need academic writing, essays, or tutoring. That’s Masy Academy, a separate company.',
+          'You want the lowest possible price with no review round. We build one in because it protects the outcome.',
+          'You need a high volume of near-identical documents on a factory timeline. We work on a smaller number, properly.',
+        ]}
+      />
+    </div>
+  </section>
+
+  <section class="bg-indigo-deep text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay"></div>
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24 relative">
+      <Eyebrow light>How it works</Eyebrow>
+      <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-balance max-w-2xl">
+        From a messy brief to a document you'd send to anyone.
+      </h2>
+      <div class="mt-12">
+        <ProcessSteps steps={steps} />
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+    <PricingNote
+      model="Business writing is priced per document, scoped to length and complexity once we've seen your brief."
+      points={[
+        'Fixed price agreed before we start writing',
+        'One structured revision round included',
+        'Rush turnaround available for tight deadlines',
+        'Retainer pricing available for recurring reporting',
+      ]}
+    />
+  </section>
+
+  <CTASection
+    heading="Send us the deadline you’re dreading."
+    body="Tell us what the document needs to do and who has to read it. We’ll tell you honestly what it takes to get it right."
+    primaryLabel="Book a consultation"
+    secondaryLabel="See all services"
+    secondaryHref="/#pillars"
+  />
+</BaseLayout>

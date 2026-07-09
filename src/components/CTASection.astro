@@ -1,0 +1,46 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  body?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+const {
+  eyebrow = 'Start a conversation',
+  heading,
+  body,
+  primaryLabel = 'Book a consultation',
+  primaryHref = '/contact/',
+  secondaryLabel,
+  secondaryHref,
+} = Astro.props;
+---
+<section class="relative bg-indigo-deep text-white overflow-hidden">
+  <div class="absolute inset-0 grain-overlay"></div>
+  <div
+    class="absolute -right-24 -top-24 w-[420px] h-[420px] rounded-full opacity-[0.07]"
+    style="background: radial-gradient(circle, #FB961F 0%, transparent 70%)"
+  ></div>
+  <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28 relative">
+    <div class="max-w-2xl">
+      <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-orange mb-5">{eyebrow}</p>
+      <h2 class="font-display text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.08] tracking-tight text-balance">
+        {heading}
+      </h2>
+      {body && <p class="mt-5 text-white/70 text-[16.5px] leading-relaxed max-w-xl text-pretty">{body}</p>}
+      <div class="mt-9 flex flex-wrap items-center gap-4">
+        <Button href={primaryHref} variant="primary" size="lg">{primaryLabel}</Button>
+        {secondaryHref && secondaryLabel && (
+          <Button href={secondaryHref} variant="onDark" size="lg" class="!bg-transparent !text-white border border-white/25 hover:!bg-white hover:!text-indigo-deep">
+            {secondaryLabel}
+          </Button>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

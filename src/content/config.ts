@@ -1,0 +1,14 @@
+import { defineCollection, z } from 'astro:content';
+
+const insights = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    dek: z.string(),
+    pillar: z.enum(['Fractional HR', 'Business Writing', 'Industry Analysis']),
+    date: z.date(),
+    readMinutes: z.number(),
+  }),
+});
+
+export const collections = { insights };

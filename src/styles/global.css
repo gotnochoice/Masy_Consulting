@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FFFFFF;
+  color: #1C0E6B;
+  font-feature-settings: 'ss01' 1, 'cv01' 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: #FB961F;
+  color: #1C0E6B;
+}
+
+.grain-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image: theme('backgroundImage.grain');
+  mix-blend-mode: multiply;
+}
+
+.balance {
+  text-wrap: balance;
+}
+
+.pretty {
+  text-wrap: pretty;
+}
+
+/* Underline stroke accent used across headings/links per brand guide */
+.stroke-accent {
+  position: relative;
+  display: inline-block;
+}
+.stroke-accent::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.06em;
+  height: 0.09em;
+  background-color: #FB961F;
+  transform-origin: left;
+}
+
+a.link-underline {
+  background-image: linear-gradient(#FB961F, #FB961F);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.3s var(--ease-out-quart);
+}
+a.link-underline:hover {
+  background-size: 100% 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

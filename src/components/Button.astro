@@ -1,0 +1,51 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'ghost' | 'onDark';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  type?: 'button' | 'submit';
+}
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  class: className = '',
+  type = 'button',
+} = Astro.props;
+
+const base =
+  'inline-flex items-center gap-2 font-medium transition-all duration-200 ease-out group/btn whitespace-nowrap';
+
+const variants: Record<string, string> = {
+  primary: 'bg-orange text-indigo-deep hover:bg-orange-deep',
+  secondary: 'bg-indigo-deep text-white hover:bg-indigo-light',
+  ghost: 'bg-transparent text-indigo-deep border border-indigo-deep/25 hover:border-indigo-deep',
+  onDark: 'bg-white text-indigo-deep hover:bg-orange',
+};
+
+const sizes: Record<string, string> = {
+  sm: 'text-[13.5px] px-4 py-2.5 rounded-full',
+  md: 'text-[15px] px-6 py-3.5 rounded-full',
+  lg: 'text-[16px] px-8 py-4 rounded-full',
+};
+
+const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
+const Tag = href ? 'a' : 'button';
+---
+<Tag href={href} type={href ? undefined : type} class={classes}>
+  <slot />
+  <svg
+    class="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5"
+    viewBox="0 0 16 16"
+    fill="none"
+  >
+    <path
+      d="M3.5 8H12.5M12.5 8L8.5 4M12.5 8L8.5 12"
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+</Tag>

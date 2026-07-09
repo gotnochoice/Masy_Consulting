@@ -1,0 +1,44 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  dek: string;
+  pillar: string;
+  date: Date;
+  readMinutes: number;
+  featured?: boolean;
+}
+const { href, title, dek, pillar, date, readMinutes, featured = false } = Astro.props;
+const dateStr = date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+---
+<a
+  href={href}
+  class:list={[
+    'group flex flex-col justify-between rounded-2xl border border-indigo-deep/10 hover:border-indigo-deep/25 transition-colors duration-300 p-7 sm:p-8',
+    featured ? 'bg-indigo-deep text-white sm:col-span-2' : 'bg-white text-indigo-deep',
+  ]}
+>
+  <div>
+    <div class="flex items-center gap-3">
+      <span class:list={['font-mono text-[11px] uppercase tracking-[0.14em]', featured ? 'text-orange' : 'text-orange-deep']}>
+        {pillar}
+      </span>
+      <span class:list={['text-[12px]', featured ? 'text-white/40' : 'text-slate/50']}>{readMinutes} min read</span>
+    </div>
+    <h3 class:list={['mt-4 font-display leading-[1.2] text-balance', featured ? 'text-[26px] sm:text-[30px]' : 'text-[21px]']}>
+      {title}
+    </h3>
+    <p class:list={['mt-3 leading-relaxed text-pretty', featured ? 'text-white/70 text-[15px]' : 'text-slate text-[14.5px]']}>
+      {dek}
+    </p>
+  </div>
+  <div class="mt-6 flex items-center justify-between">
+    <span class:list={['text-[12.5px]', featured ? 'text-white/40' : 'text-slate/50']}>{dateStr}</span>
+    <span class:list={['inline-flex items-center gap-1.5 text-[13.5px] font-medium', featured ? 'text-orange' : 'text-indigo-deep']}>
+      Read
+      <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 16 16" fill="none">
+        <path d="M3.5 8H12.5M12.5 8L8.5 4M12.5 8L8.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </span>
+  </div>
+</a>

@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PillarHero from '../components/PillarHero.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import ServiceGrid from '../components/ServiceGrid.astro';
+import Qualifier from '../components/Qualifier.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import PricingNote from '../components/PricingNote.astro';
+import CTASection from '../components/CTASection.astro';
+
+const included = [
+  {
+    title: 'Market entry & expansion research',
+    body: 'A grounded answer to whether a market, city, or segment is actually worth entering, before you commit capital to finding out.',
+  },
+  {
+    title: 'Industry reports for investment decisions',
+    body: 'The report that gets attached to the funding application or sits in front of your board when a real decision is on the table.',
+  },
+  {
+    title: 'Custom market surveys',
+    body: 'A survey built around your specific question, fielded properly, not a recycled generic template with your logo on it.',
+  },
+  {
+    title: 'Competitive landscape mapping',
+    body: 'A clear view of who is already fighting for the customer you want, and where the gap actually is.',
+  },
+];
+
+const steps = [
+  { title: 'Define the question', body: 'A market study is only as useful as the question it answers, so that’s where every project starts, in writing.' },
+  { title: 'Fieldwork & sourcing', body: 'Primary interviews, on-the-ground sourcing, and desk research, combined honestly instead of padded with filler.' },
+  { title: 'Analysis', body: 'We separate what the data actually shows from what would be convenient for it to show.' },
+  { title: 'Report & briefing', body: 'A written report plus a live walkthrough, so you can push back, ask questions, and stress-test the findings.' },
+];
+---
+<BaseLayout
+  title="Industry Analysis & Market Surveys for African Markets"
+  description="Masy Consulting delivers market entry research, industry reports, and custom surveys for businesses making a real decision about an African market, sized and priced for SMEs, not multinationals."
+>
+  <PillarHero
+    number="03"
+    label="Industry Analysis & Market Surveys"
+    title="Research built for the decision you're actually making."
+    lead="You're entering a market, backing a call, or answering to an investor who wants evidence, not confidence. Masy delivers the market entry research, industry reports, and custom surveys that inform a real decision, grounded in how the market actually behaves, not a desk report written from another continent."
+  />
+
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+    <Eyebrow>What this covers</Eyebrow>
+    <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-indigo-deep max-w-2xl text-balance">
+      Answers you can put in front of an investor, lender, or your own board.
+    </h2>
+    <div class="mt-11">
+      <ServiceGrid items={included} />
+    </div>
+  </section>
+
+  <section class="bg-sand border-y border-indigo-deep/5">
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+      <div class="max-w-2xl">
+        <Eyebrow>The gap between two extremes</Eyebrow>
+        <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.18] text-indigo-deep text-balance">
+          Market research in Africa tends to split two ways. Neither fits an SME.
+        </h2>
+        <p class="mt-6 text-[16px] text-slate leading-relaxed text-pretty">
+          On one side, institutional research houses built for multinationals, priced for
+          multinational budgets. On the other, generic geopolitical or macro reports that never
+          quite answer your actual question. Masy sits in between: rigorous enough to support a
+          real decision, sized and priced for a business that isn't a multinational, and written
+          by people who understand the specific market you're asking about.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+    <Eyebrow>Fit check</Eyebrow>
+    <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-indigo-deep max-w-2xl text-balance">
+      Built for a specific question. Worth checking before you scope a project.
+    </h2>
+    <div class="mt-11">
+      <Qualifier
+        fit={[
+          'You’re about to enter a new country, city, or customer segment and don’t want to guess.',
+          'An investor, lender, or board is going to ask for your evidence on a market, and you don’t have a strong answer yet.',
+          'You want a straight answer, even if that answer is “don’t enter this market yet.”',
+        ]}
+        notFit={[
+          'You need a continent-wide, syndicated panel study. That’s a larger scope than we run at SME pace.',
+          'You want research that confirms a decision you’ve already made, regardless of what the data shows.',
+          'You need live financial market data feeds. That’s a different category of provider entirely.',
+        ]}
+      />
+    </div>
+  </section>
+
+  <section class="bg-indigo-deep text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay"></div>
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24 relative">
+      <Eyebrow light>How it works</Eyebrow>
+      <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-balance max-w-2xl">
+        From a vague hunch to a report that holds up.
+      </h2>
+      <div class="mt-12">
+        <ProcessSteps steps={steps} />
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+    <PricingNote
+      model="Industry analysis is scoped and priced per project, based on the market, the question, and how much primary fieldwork is required."
+      points={[
+        'Scope and price agreed before fieldwork starts',
+        'Desk and primary research priced separately when useful',
+        'Custom surveys sized to your budget and question',
+        'Ongoing market-tracking retainers available',
+      ]}
+    />
+  </section>
+
+  <CTASection
+    heading="Bring us the question a search engine can’t answer."
+    body="Tell us the market and the decision riding on it. We’ll tell you what it would take to get you a real answer."
+    primaryLabel="Book a consultation"
+    secondaryLabel="See all services"
+    secondaryHref="/#pillars"
+  />
+</BaseLayout>

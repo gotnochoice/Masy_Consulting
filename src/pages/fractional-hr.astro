@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PillarHero from '../components/PillarHero.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import ServiceGrid from '../components/ServiceGrid.astro';
+import Qualifier from '../components/Qualifier.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import PricingNote from '../components/PricingNote.astro';
+import CTASection from '../components/CTASection.astro';
+
+const included = [
+  {
+    title: 'Day-to-day people operations',
+    body: 'Staff management, performance follow-up, and employee relations, handled on your behalf so problems get resolved before they reach you.',
+  },
+  {
+    title: 'HR policy & documentation',
+    body: 'Contracts, employee handbooks, and onboarding materials built for your business specifically, not a downloaded template.',
+  },
+  {
+    title: 'Recruitment for growing teams',
+    body: 'Sourcing, screening, and placing staff as your African team grows, so hiring doesn’t fall on whoever has time that week.',
+  },
+  {
+    title: 'Timezone-aligned support',
+    body: 'Available across UK, US, and Canada working hours, not just African office hours, so you’re never waiting overnight for an answer.',
+  },
+];
+
+const steps = [
+  { title: 'Discovery call', body: 'We map your current team, structure, and where the people side of the business is actually breaking down.' },
+  { title: 'People audit', body: 'A clear-eyed review of contracts, policy, and gaps, measured against what your business actually needs, not a generic checklist.' },
+  { title: 'Embedded management', body: 'We take on day-to-day people operations for your African team, aligned to your working hours, not theirs alone.' },
+  { title: 'Monthly reporting', body: 'A straight readout of what happened with your team that month, and what actually needs your decision.' },
+];
+---
+<BaseLayout
+  title="Fractional HR & People Management for African Teams"
+  description="Masy Consulting is a fractional HR partner for diaspora business owners. We manage the African team you can't physically oversee, from staff management to HR policy to recruitment."
+>
+  <PillarHero
+    number="01"
+    label="Fractional HR & People Management · Anchor service"
+    title="A fractional HR partner for the team you can’t physically manage."
+    lead="You run your business from the UK, US, or Canada. Your staff are on the ground in Nigeria or wherever your operations sit. Masy becomes your people function there: policy, performance, and the day-to-day management that keeps a distributed team accountable, without you micromanaging from another continent."
+  />
+
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+    <Eyebrow>What this covers</Eyebrow>
+    <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-indigo-deep max-w-2xl text-balance">
+      Everything between "we hired someone" and "someone is actually managing them."
+    </h2>
+    <div class="mt-11">
+      <ServiceGrid items={included} />
+    </div>
+  </section>
+
+  <section class="bg-sand border-y border-indigo-deep/5">
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+      <div class="max-w-2xl">
+        <Eyebrow>The gap no one else fills</Eyebrow>
+        <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.18] text-indigo-deep text-balance">
+          HR outsourcing firms sell compliance. UK fractional-HR firms sell boardroom strategy.
+        </h2>
+        <p class="mt-6 text-[16px] text-slate leading-relaxed text-pretty">
+          Almost no one sits in between: managing the people who work for a diaspora-owned
+          business, in the country where they actually work, on the schedule of the person who
+          owns the business. That's the specific, unglamorous gap Masy operates in. Not payroll
+          compliance. Not board-level people strategy. The actual, daily work of running a team
+          you can't walk over and check on.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+    <Eyebrow>Fit check</Eyebrow>
+    <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-indigo-deep max-w-2xl text-balance">
+      Built for a specific person. Worth checking before you book a call.
+    </h2>
+    <div class="mt-11">
+      <Qualifier
+        fit={[
+          'You own or run a business based in Africa, but you personally live in the UK, US, or Canada.',
+          'You have, or are actively hiring, a team on the ground with no one formally responsible for managing them.',
+          'You want an ongoing relationship, not a one-off HR document you have to maintain yourself.',
+        ]}
+        notFit={[
+          'You need a single HR document with no ongoing relationship. That sits closer to our Business Writing pillar.',
+          'Your whole team is already based in the UK, US, or Canada. Our specialism is African-based teams managed from the diaspora.',
+          'You’re shopping purely on lowest price. We’re built for rigor and accountability, not the cheapest line item.',
+        ]}
+      />
+    </div>
+  </section>
+
+  <section class="bg-indigo-deep text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay"></div>
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24 relative">
+      <Eyebrow light>How it works</Eyebrow>
+      <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-balance max-w-2xl">
+        From first call to a running retainer.
+      </h2>
+      <div class="mt-12">
+        <ProcessSteps steps={steps} />
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+    <PricingNote
+      model="Fractional HR runs as a monthly retainer, scoped to the size of your team after a discovery call. Not a flat rate pulled from a card."
+      points={[
+        'Scoped after a discovery call, not a generic rate card',
+        'Structured as a retainer, not one-off invoices',
+        'Pricing confirmed in writing before work begins',
+        'Scales as your team grows',
+      ]}
+    />
+  </section>
+
+  <CTASection
+    heading="Stop managing your team through voice notes and time-zone guesswork."
+    body="Book a discovery call. We’ll map where your people operations are breaking down and tell you plainly whether a retainer makes sense."
+    primaryLabel="Book a discovery call"
+    secondaryLabel="See all services"
+    secondaryHref="/#pillars"
+  />
+</BaseLayout>

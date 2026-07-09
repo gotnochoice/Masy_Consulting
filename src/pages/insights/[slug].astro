@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Eyebrow from '../../components/Eyebrow.astro';
+import CTASection from '../../components/CTASection.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('insights');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'insights'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const dateStr = post.data.date.toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const pillarHref: Record<string, string> = {
+  'Fractional HR': '/fractional-hr/',
+  'Business Writing': '/business-writing/',
+  'Industry Analysis': '/industry-analysis/',
+};
+---
+<BaseLayout title={post.data.title} description={post.data.dek}>
+  <article class="max-w-content mx-auto px-5 sm:px-8 pt-14 sm:pt-20 pb-20 sm:pb-28">
+    <a href="/insights/" class="inline-flex items-center gap-2 text-[13.5px] text-slate hover:text-indigo-deep transition-colors">
+      <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none">
+        <path d="M12.5 8H3.5M3.5 8L7.5 4M3.5 8L7.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      All insights
+    </a>
+
+    <div class="mt-8 max-w-3xl">
+      <div class="flex items-center gap-3">
+        <a href={pillarHref[post.data.pillar]} class="font-mono text-[11px] uppercase tracking-[0.16em] text-orange-deep hover:text-indigo-deep transition-colors">
+          {post.data.pillar}
+        </a>
+        <span class="text-slate/40">•</span>
+        <span class="text-[13px] text-slate/60">{dateStr}</span>
+        <span class="text-slate/40">•</span>
+        <span class="text-[13px] text-slate/60">{post.data.readMinutes} min read</span>
+      </div>
+      <h1 class="mt-6 font-display font-medium text-[clamp(2rem,5vw,3.25rem)] leading-[1.1] tracking-tight text-indigo-deep text-balance">
+        {post.data.title}
+      </h1>
+      <p class="mt-6 text-[18px] text-slate leading-relaxed text-pretty border-l-2 border-orange pl-5">
+        {post.data.dek}
+      </p>
+    </div>
+
+    <div
+      class="prose prose-lg mt-14 max-w-2xl
+        prose-headings:font-display prose-headings:font-medium prose-headings:text-indigo-deep prose-headings:tracking-tight
+        prose-h2:text-[26px] prose-h2:mt-14 prose-h2:mb-4
+        prose-p:text-slate prose-p:leading-relaxed
+        prose-strong:text-indigo-deep prose-strong:font-semibold
+        prose-a:text-indigo-deep prose-a:underline prose-a:decoration-orange prose-a:decoration-2 prose-a:underline-offset-2 hover:prose-a:text-orange-deep"
+    >
+      <Content />
+    </div>
+  </article>
+
+  <CTASection
+    heading="If this is the kind of thinking you want on your side, let's talk."
+    body="Thirty minutes, no obligation. We'll tell you plainly whether Masy is the right fit."
+    primaryLabel="Book a consultation"
+    secondaryLabel="More insights"
+    secondaryHref="/insights/"
+  />
+</BaseLayout>

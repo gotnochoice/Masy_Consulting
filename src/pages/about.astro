@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import CTASection from '../components/CTASection.astro';
+import Logomark from '../components/Logomark.astro';
+
+const principles = [
+  {
+    title: 'Lead with your problem, not our pitch',
+    body: 'Every conversation starts with what’s actually slowing your business down, not a list of things we’d like to sell you.',
+  },
+  {
+    title: 'Teach something real, every time',
+    body: 'If a piece of writing or a call wouldn’t teach you something true, even if you never hire us, we don’t publish it.',
+  },
+  {
+    title: 'Confident, never arrogant',
+    body: 'We’ll tell you plainly when something won’t work. We won’t dress up uncertainty as expertise.',
+  },
+  {
+    title: 'Specific, never generic',
+    body: 'No borrowed frameworks, no “synergy,” no consulting clichés. If a claim can’t be backed by real capability, we don’t make it.',
+  },
+];
+---
+<BaseLayout
+  title="About Masy Consulting"
+  description="Masy Consulting exists to give African-founded and diaspora-owned businesses the writing, people operations, and market intelligence of a world-class consultancy, grounded in real operational understanding."
+>
+  <section class="relative overflow-hidden bg-white border-b border-indigo-deep/5">
+    <div
+      class="absolute -left-24 -top-24 w-[420px] h-[420px] rounded-full opacity-[0.05] pointer-events-none"
+      style="background: radial-gradient(circle, #FB961F 0%, transparent 70%)"
+    ></div>
+    <div class="max-w-content mx-auto px-5 sm:px-8 pt-14 sm:pt-20 pb-16 sm:pb-20 relative">
+      <Eyebrow>About Masy</Eyebrow>
+      <h1 class="mt-6 font-display font-medium text-[clamp(2.25rem,5.5vw,3.75rem)] leading-[1.06] tracking-tight text-indigo-deep max-w-3xl text-balance">
+        Built on operational understanding, not borrowed theory.
+      </h1>
+      <p class="mt-7 text-[17px] sm:text-[18.5px] text-slate leading-relaxed max-w-2xl text-pretty">
+        Masy Consulting exists to give African-founded and diaspora-owned businesses the writing,
+        the people operations, and the market intelligence of a world-class consultancy, grounded
+        in real understanding of how African businesses actually operate, not generic frameworks
+        borrowed from elsewhere.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+    <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-14">
+      <div>
+        <Eyebrow>Why we exist</Eyebrow>
+        <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-indigo-deep text-balance">
+          Three problems that usually get handled by three different people, badly.
+        </h2>
+      </div>
+      <div class="space-y-6 text-[16px] text-slate leading-relaxed text-pretty">
+        <p>
+          Most businesses we talk to are already solving these problems, just inefficiently. A
+          cousin drafts the proposal. A friend "handles HR" between their own job and yours. Market
+          research means a few hours on Google before a decision that deserves more.
+        </p>
+        <p>
+          None of that is a criticism. It's what happens when a business is growing faster than
+          its support structure, and when the professional services built for it were designed
+          for a different market entirely, expensive institutional consultancies on one end,
+          transactional freelancers on the other.
+        </p>
+        <p>
+          Masy exists in the space between: three connected capabilities, handled by one partner
+          who understands your operating context because we've built our practice specifically
+          around it, not adapted someone else's.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-indigo-deep text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay"></div>
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24 relative">
+      <div class="grid md:grid-cols-2 gap-10">
+        <div>
+          <Logomark class="w-9 h-9 mb-6" />
+          <Eyebrow light>Our positioning</Eyebrow>
+          <p class="mt-5 font-display text-[clamp(1.6rem,3vw,2.1rem)] leading-[1.3] text-balance">
+            For the business owner who needs their documents, their people, and their market
+            intelligence handled with the same rigor as their business idea.
+          </p>
+        </div>
+        <div class="md:pt-1">
+          <p class="text-white/70 text-[16px] leading-relaxed text-pretty">
+            Masy Consulting is the professional services partner built on real operational
+            understanding of African markets.
+          </p>
+          <p class="mt-5 font-display italic text-[24px] sm:text-[28px] text-orange">
+            Most consultants theorise. Masy delivers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+    <Eyebrow>How we work</Eyebrow>
+    <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-indigo-deep max-w-2xl text-balance">
+      A handful of rules we don't break, even when it would be easier to.
+    </h2>
+    <div class="mt-11 grid sm:grid-cols-2 gap-5">
+      {principles.map((p) => (
+        <div class="p-7 sm:p-8 rounded-xl bg-sand">
+          <h3 class="font-display text-[19px] text-indigo-deep leading-snug">{p.title}</h3>
+          <p class="mt-2.5 text-[14.5px] text-slate leading-relaxed text-pretty">{p.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-sand border-y border-indigo-deep/5">
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+      <div class="max-w-2xl">
+        <Eyebrow>Who's behind the work</Eyebrow>
+        <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.18] text-indigo-deep text-balance">
+          A small, senior team, not a rotating bench of juniors.
+        </h2>
+        <p class="mt-6 text-[16px] text-slate leading-relaxed text-pretty">
+          Masy is run by people who have sat inside African businesses and diaspora-owned
+          companies, not just consulted for them from a distance. Every engagement, from a single
+          proposal to an ongoing HR retainer, is handled by someone senior enough to make a call
+          without escalating it three times first.
+        </p>
+        <p class="mt-6 text-[15px] text-slate/70 leading-relaxed">
+          Want to know exactly who you'd be working with before you commit to anything?
+          Ask on your consultation call, we'll tell you plainly.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    heading="If this sounds like how you'd want a firm to operate, let's talk."
+    body="Thirty minutes. No obligation. We'll tell you honestly whether Masy is the right fit for what you need."
+    primaryLabel="Book a consultation"
+    secondaryLabel="Read our insights"
+    secondaryHref="/insights/"
+  />
+</BaseLayout>

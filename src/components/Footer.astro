@@ -1,0 +1,75 @@
+---
+import Logo from './Logo.astro';
+import { navLinks, siteMeta } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+<footer class="bg-indigo-deep text-white/80 relative overflow-hidden">
+  <div class="absolute inset-0 grain-overlay"></div>
+  <div class="max-w-content mx-auto px-5 sm:px-8 pt-16 pb-8 relative">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-14 border-b border-white/10">
+      <div class="lg:col-span-5">
+        <Logo on="dark" size="md" />
+        <p class="mt-6 font-display text-2xl sm:text-[26px] leading-[1.25] text-white max-w-md text-balance">
+          The professional partner for African businesses and diaspora entrepreneurs.
+        </p>
+        <a
+          href={siteMeta.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 mt-7 text-sm font-medium text-white hover:text-orange transition-colors"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z" />
+          </svg>
+          Follow on LinkedIn
+        </a>
+      </div>
+
+      <div class="lg:col-span-3">
+        <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-orange mb-4">Services</p>
+        <ul class="space-y-3 text-[14.5px]">
+          {navLinks.slice(0, 3).map((l) => (
+            <li><a href={l.href} class="hover:text-white transition-colors">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-orange mb-4">Firm</p>
+        <ul class="space-y-3 text-[14.5px]">
+          <li><a href="/about/" class="hover:text-white transition-colors">About</a></li>
+          <li><a href="/insights/" class="hover:text-white transition-colors">Insights</a></li>
+          <li><a href="/contact/" class="hover:text-white transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-orange mb-4">Reach us</p>
+        <ul class="space-y-3 text-[14.5px]">
+          <li>
+            <a href={`mailto:${siteMeta.email}`} class="hover:text-white transition-colors break-all">
+              {siteMeta.email}
+            </a>
+          </li>
+          <li class="text-white/50 text-[13.5px] leading-relaxed">
+            Serving clients across the UK, US, Canada and Nigeria.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[13px] text-white/45">
+      <p>&copy; {year} Masy Consulting. All rights reserved.</p>
+      <p>
+        Looking for academic writing or tutoring? That's
+        <a
+          href="https://masyacademy.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-white/70 hover:text-orange transition-colors underline underline-offset-2 decoration-white/20"
+        >Masy Academy</a>, our sister company.
+      </p>
+    </div>
+  </div>
+</footer>

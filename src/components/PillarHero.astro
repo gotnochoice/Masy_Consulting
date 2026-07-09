@@ -1,0 +1,51 @@
+---
+import Eyebrow from './Eyebrow.astro';
+import Button from './Button.astro';
+
+interface Props {
+  number: string;
+  label: string;
+  title: string;
+  lead: string;
+  primaryHref?: string;
+  primaryLabel?: string;
+}
+const {
+  number,
+  label,
+  title,
+  lead,
+  primaryHref = '/contact/',
+  primaryLabel = 'Book a consultation',
+} = Astro.props;
+---
+<section class="relative overflow-hidden bg-white border-b border-indigo-deep/5">
+  <div
+    class="absolute -right-32 -top-24 w-[480px] h-[480px] rounded-full opacity-[0.05] pointer-events-none"
+    style="background: radial-gradient(circle, #FB961F 0%, transparent 70%)"
+  ></div>
+  <div class="max-w-content mx-auto px-5 sm:px-8 pt-10 sm:pt-14 pb-16 sm:pb-20 relative">
+    <a href="/#pillars" class="inline-flex items-center gap-2 text-[13.5px] text-slate hover:text-indigo-deep transition-colors">
+      <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none">
+        <path d="M12.5 8H3.5M3.5 8L7.5 4M3.5 8L7.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      All services
+    </a>
+
+    <div class="mt-8 flex items-start gap-4">
+      <span class="font-mono text-orange-deep text-sm mt-2">{number}</span>
+      <div class="max-w-3xl">
+        <Eyebrow>{label}</Eyebrow>
+        <h1 class="mt-5 font-display font-medium text-[clamp(2.25rem,5.5vw,3.75rem)] leading-[1.06] tracking-tight text-indigo-deep text-balance">
+          {title}
+        </h1>
+        <p class="mt-6 text-[17px] sm:text-[18px] text-slate leading-relaxed max-w-2xl text-pretty">
+          {lead}
+        </p>
+        <div class="mt-8">
+          <Button href={primaryHref} variant="primary" size="lg">{primaryLabel}</Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

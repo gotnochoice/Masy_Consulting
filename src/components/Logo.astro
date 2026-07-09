@@ -1,0 +1,20 @@
+---
+import Logomark from './Logomark.astro';
+interface Props {
+  class?: string;
+  on?: 'light' | 'dark';
+  size?: 'sm' | 'md';
+}
+const { class: className = '', on = 'light', size = 'md' } = Astro.props;
+const wordColorPrimary = on === 'dark' ? 'text-white' : 'text-indigo-deep';
+const wordColorSecondary = on === 'dark' ? 'text-white/70' : 'text-slate';
+const markSize = size === 'sm' ? 'h-6 w-6' : 'h-8 w-8';
+const textSize = size === 'sm' ? 'text-sm' : 'text-base';
+---
+<a href="/" class={`inline-flex items-center gap-2.5 group ${className}`} aria-label="Masy Consulting, home">
+  <Logomark class={`${markSize} shrink-0 transition-transform duration-300 group-hover:-rotate-3`} />
+  <span class={`font-display ${textSize} tracking-[0.08em] leading-none whitespace-nowrap`}>
+    <span class={`font-semibold ${wordColorPrimary}`}>MASY</span>
+    <span class={`font-normal ${wordColorSecondary}`}> CONSULTING</span>
+  </span>
+</a>
