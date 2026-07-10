@@ -2,16 +2,18 @@
 interface Props {
   class?: string;
   light?: boolean;
+  num?: string;
 }
-const { class: className = '', light = false } = Astro.props;
+const { class: className = '', light = false, num } = Astro.props;
 ---
 <p
   class:list={[
-    'font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.18em] flex items-center gap-2.5',
+    'font-mono text-[11px] sm:text-[12px] uppercase tracking-[0.22em] flex items-center gap-3',
     light ? 'text-orange' : 'text-orange-deep',
     className,
   ]}
 >
-  <span class="w-6 h-px bg-current inline-block"></span>
+  {num && <span class:list={[light ? 'text-white/40' : 'text-ink/35']}>{num}</span>}
+  <span class="w-8 h-px bg-current inline-block"></span>
   <slot />
 </p>

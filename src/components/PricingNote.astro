@@ -5,13 +5,15 @@ interface Props {
 }
 const { model, points } = Astro.props;
 ---
-<div class="rounded-2xl border border-orange/30 bg-orange/5 p-7 sm:p-9">
-  <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-orange-deep mb-4">How pricing works</p>
-  <p class="font-display text-[21px] sm:text-[23px] text-indigo-deep leading-snug max-w-xl text-pretty">{model}</p>
-  <ul class="mt-5 grid sm:grid-cols-2 gap-x-8 gap-y-2.5">
+<div class="relative border-l-[6px] border-orange bg-white rounded-r-[1.5rem] p-8 sm:p-11 shadow-[0_30px_60px_-45px_rgba(20,10,69,0.4)]" data-reveal>
+  <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-orange-deep mb-5">How pricing works</p>
+  <p class="font-display font-medium text-[clamp(1.35rem,2.6vw,1.9rem)] text-ink leading-[1.25] max-w-2xl text-balance">
+    {model}
+  </p>
+  <ul class="mt-7 grid sm:grid-cols-2 gap-x-10 gap-y-3">
     {points.map((p) => (
-      <li class="flex items-start gap-2.5 text-[14px] text-slate leading-relaxed">
-        <span class="mt-[7px] w-1 h-1 rounded-full bg-orange-deep shrink-0"></span>
+      <li class="flex items-start gap-3 text-[14.5px] text-slate leading-relaxed">
+        <span class="mt-[9px] w-1.5 h-1.5 rounded-full bg-orange shrink-0"></span>
         {p}
       </li>
     ))}

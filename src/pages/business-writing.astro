@@ -30,7 +30,7 @@ const included = [
 const steps = [
   { title: 'Brief & source material', body: 'Send what you have, even rough notes or an old deck. We work from what’s real, not a blank page.' },
   { title: 'Structure & argument', body: 'Before we touch a sentence, we fix the argument: what the reader needs to believe, in what order.' },
-  { title: 'Draft & review round', body: 'One structured round of revisions, so the document gets sharper without turning into an open-ended thread.' },
+  { title: 'Draft & review round', body: 'One structured round of revisions, so the document gets sharper without becoming an open-ended thread.' },
   { title: 'Final delivery', body: 'Formatted, proofed, and ready for the specific reader who has to say yes.' },
 ];
 ---
@@ -41,47 +41,64 @@ const steps = [
   <PillarHero
     number="02"
     label="Business Writing"
-    title="The document that gets read past the first page."
-    lead="Your work is good. The proposal that describes it isn’t always. Masy writes the business proposals, pitch decks, company profiles, and reports that carry the same quality as the business behind them, so a good deal doesn’t die on paper."
+    title="The document that gets read"
+    titleAccent="past the first page."
+    lead="Your work is good. The proposal that describes it isn't always. Masy writes the business proposals, pitch decks, company profiles, and reports that carry the same quality as the business behind them, so a good deal doesn't die on paper."
+    facts={[
+      ['Engagement', 'Per document'],
+      ['Pricing', 'Fixed, agreed upfront'],
+      ['Revisions', 'One structured round'],
+      ['Rush work', 'Available'],
+      ['Not offered', 'Academic writing'],
+    ]}
   />
 
-  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
-    <Eyebrow>What this covers</Eyebrow>
-    <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-indigo-deep max-w-2xl text-balance">
-      Documents built to be read by someone deciding whether to trust you.
-    </h2>
-    <div class="mt-11">
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
+    <div data-reveal>
+      <Eyebrow num="01">What this covers</Eyebrow>
+      <h2 class="mt-6 font-display font-medium text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
+        Documents built to be read by someone deciding whether to trust you.
+      </h2>
+    </div>
+    <div class="mt-12">
       <ServiceGrid items={included} />
     </div>
-    <p class="mt-8 text-[14px] text-slate/70 max-w-xl leading-relaxed">
-      Masy Consulting does not offer academic writing, essays, or tutoring of any kind. That work
-      belongs entirely to <a href="https://masyacademy.com" target="_blank" rel="noopener noreferrer" class="link-underline text-indigo-deep font-medium">Masy Academy</a>, a separate company.
+    <p class="mt-10 text-[14px] text-slate/80 max-w-xl leading-relaxed" data-reveal>
+      Masy Consulting does not offer academic writing, essays, or tutoring of
+      any kind. That work belongs entirely to
+      <a href="https://masyacademy.com" target="_blank" rel="noopener noreferrer" class="link-underline text-ink font-medium">Masy Academy</a>,
+      a separate company.
     </p>
   </section>
 
-  <section class="bg-sand border-y border-indigo-deep/5">
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
-      <div class="max-w-2xl">
-        <Eyebrow>Why this isn’t a template job</Eyebrow>
-        <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.18] text-indigo-deep text-balance">
-          Most business-writing shops compete on speed and price. We compete on whether it works.
-        </h2>
-        <p class="mt-6 text-[16px] text-slate leading-relaxed text-pretty">
-          Fast and cheap is fine for a document you'll use once and forget. It's not fine for the
-          proposal that has to convince someone with the power to fund you, hire you, or sign a
-          five-year contract. Where useful, your document draws on Masy's own market research, so
-          the claims in your pitch are backed by more than confidence.
+  <section class="relative bg-ink text-white overflow-hidden dark-section">
+    <div class="absolute inset-0 grain-overlay"></div>
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28 relative">
+      <div class="max-w-3xl" data-reveal>
+        <Eyebrow light num="02">Why this isn't a template job</Eyebrow>
+        <p class="mt-7 font-display text-[clamp(1.7rem,3.8vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-balance">
+          Most writing shops compete on speed and price.
+          <span class="italic font-display-soft text-orange">We compete on whether it works.</span>
+        </p>
+        <p class="mt-7 text-white/65 text-[16px] leading-relaxed max-w-2xl text-pretty">
+          Fast and cheap is fine for a document you'll use once and forget.
+          It's not fine for the proposal that has to convince someone with the
+          power to fund you, hire you, or sign a five-year contract. Where
+          useful, your document draws on Masy's own market research, so the
+          claims in your pitch are backed by more than confidence.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
-    <Eyebrow>Fit check</Eyebrow>
-    <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-indigo-deep max-w-2xl text-balance">
-      Built for a specific document. Worth checking before you send a brief.
-    </h2>
-    <div class="mt-11">
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
+    <div data-reveal>
+      <Eyebrow num="03">Fit check</Eyebrow>
+      <h2 class="mt-6 font-display font-medium text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
+        Built for a specific document. Worth checking before you send a brief.
+      </h2>
+    </div>
+    <div class="mt-12">
       <Qualifier
         fit={[
           'You have a real proposal, pitch, or report due, and the deadline is closer than you’d like.',
@@ -97,20 +114,21 @@ const steps = [
     </div>
   </section>
 
-  <section class="bg-indigo-deep text-white relative overflow-hidden">
-    <div class="absolute inset-0 grain-overlay"></div>
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24 relative">
-      <Eyebrow light>How it works</Eyebrow>
-      <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-balance max-w-2xl">
-        From a messy brief to a document you'd send to anyone.
-      </h2>
-      <div class="mt-12">
+  <section class="bg-white border-y border-ink/10">
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
+      <div data-reveal>
+        <Eyebrow num="04">How it works</Eyebrow>
+        <h2 class="mt-6 font-display font-medium text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
+          From a messy brief to a document you'd send to anyone.
+        </h2>
+      </div>
+      <div class="mt-14">
         <ProcessSteps steps={steps} />
       </div>
     </div>
   </section>
 
-  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
     <PricingNote
       model="Business writing is priced per document, scoped to length and complexity once we've seen your brief."
       points={[
@@ -123,8 +141,8 @@ const steps = [
   </section>
 
   <CTASection
-    heading="Send us the deadline you’re dreading."
-    body="Tell us what the document needs to do and who has to read it. We’ll tell you honestly what it takes to get it right."
+    heading="Send us the deadline you're dreading."
+    body="Tell us what the document needs to do and who has to read it. We'll tell you honestly what it takes to get it right."
     primaryLabel="Book a consultation"
     secondaryLabel="See all services"
     secondaryHref="/#pillars"

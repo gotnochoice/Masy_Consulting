@@ -20,27 +20,37 @@ const {
   secondaryHref,
 } = Astro.props;
 ---
-<section class="relative bg-indigo-deep text-white overflow-hidden">
+<section class="relative bg-ink text-white overflow-hidden dark-section">
   <div class="absolute inset-0 grain-overlay"></div>
   <div
-    class="absolute -right-24 -top-24 w-[420px] h-[420px] rounded-full opacity-[0.07]"
-    style="background: radial-gradient(circle, #FB961F 0%, transparent 70%)"
+    class="absolute -right-32 top-1/2 -translate-y-1/2 w-[560px] h-[560px] rounded-full opacity-[0.1] pointer-events-none"
+    style="background: radial-gradient(circle, #FB961F 0%, transparent 68%)"
   ></div>
-  <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28 relative">
-    <div class="max-w-2xl">
-      <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-orange mb-5">{eyebrow}</p>
-      <h2 class="font-display text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.08] tracking-tight text-balance">
-        {heading}
-      </h2>
-      {body && <p class="mt-5 text-white/70 text-[16.5px] leading-relaxed max-w-xl text-pretty">{body}</p>}
-      <div class="mt-9 flex flex-wrap items-center gap-4">
-        <Button href={primaryHref} variant="primary" size="lg">{primaryLabel}</Button>
-        {secondaryHref && secondaryLabel && (
-          <Button href={secondaryHref} variant="onDark" size="lg" class="!bg-transparent !text-white border border-white/25 hover:!bg-white hover:!text-indigo-deep">
-            {secondaryLabel}
-          </Button>
-        )}
-      </div>
+  <img
+    src="/logo-mark.png"
+    alt=""
+    class="absolute -left-16 -bottom-24 w-[340px] opacity-[0.05] pointer-events-none select-none"
+    aria-hidden="true"
+  />
+
+  <div class="max-w-content mx-auto px-5 sm:px-8 py-24 sm:py-32 relative" data-reveal>
+    <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-orange mb-7 flex items-center gap-3">
+      <span class="w-8 h-px bg-current inline-block"></span>
+      {eyebrow}
+    </p>
+    <h2 class="font-display font-medium text-[clamp(2.25rem,5.5vw,4.25rem)] leading-[1.03] tracking-[-0.02em] max-w-3xl text-balance">
+      {heading}
+    </h2>
+    {body && (
+      <p class="mt-7 text-white/65 text-[16.5px] sm:text-[17.5px] leading-relaxed max-w-xl text-pretty">
+        {body}
+      </p>
+    )}
+    <div class="mt-10 flex flex-wrap items-center gap-4">
+      <Button href={primaryHref} variant="primary" size="lg" magnetic>{primaryLabel}</Button>
+      {secondaryHref && secondaryLabel && (
+        <Button href={secondaryHref} variant="outlineDark" size="lg">{secondaryLabel}</Button>
+      )}
     </div>
   </div>
 </section>

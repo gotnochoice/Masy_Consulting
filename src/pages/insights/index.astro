@@ -1,41 +1,59 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Eyebrow from '../../components/Eyebrow.astro';
-import ArticleCard from '../../components/ArticleCard.astro';
 import CTASection from '../../components/CTASection.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('insights')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 ---
 <BaseLayout
   title="Insights"
   description="Sharp, insight-first thinking on fractional HR, business writing, and market intelligence for African businesses and diaspora entrepreneurs. Real lessons, never a sales pitch."
 >
-  <section class="max-w-content mx-auto px-5 sm:px-8 pt-14 sm:pt-20 pb-16 sm:pb-20">
+  <section class="max-w-content mx-auto px-5 sm:px-8 pt-12 sm:pt-20 pb-14 sm:pb-20">
     <Eyebrow>Insights</Eyebrow>
-    <h1 class="mt-6 font-display font-medium text-[clamp(2.25rem,5.5vw,3.75rem)] leading-[1.06] tracking-tight text-indigo-deep max-w-3xl text-balance">
-      Things worth knowing before you call us.
+    <h1 class="mt-7 font-display font-medium text-[clamp(2.4rem,5.8vw,4.5rem)] leading-[1.02] tracking-[-0.02em] text-ink max-w-4xl text-balance">
+      Things worth knowing
+      <span class="italic font-display-soft text-indigo">before you call us.</span>
     </h1>
-    <p class="mt-7 text-[17px] text-slate leading-relaxed max-w-2xl text-pretty">
-      Every piece here has to clear one bar: would it teach a business owner something real, even
-      if they never book a call? If it doesn't, we don't publish it.
+    <p class="mt-8 text-[16.5px] text-slate leading-relaxed max-w-2xl text-pretty" data-reveal>
+      Every piece here has to clear one bar: would it teach a business owner
+      something real, even if they never book a call? If it doesn't, we don't
+      publish it.
     </p>
   </section>
 
-  <section class="max-w-content mx-auto px-5 sm:px-8 pb-24 sm:pb-28">
-    <div class="grid sm:grid-cols-2 gap-5">
+  <section class="max-w-content mx-auto px-5 sm:px-8 pb-24 sm:pb-32">
+    <div class="border-t border-ink/12" data-reveal-stagger>
       {posts.map((post, i) => (
-        <ArticleCard
+        <a
           href={`/insights/${post.slug}/`}
-          title={post.data.title}
-          dek={post.data.dek}
-          pillar={post.data.pillar}
-          date={post.data.date}
-          readMinutes={post.data.readMinutes}
-          featured={i === 0}
-        />
+          class="group grid lg:grid-cols-[130px_minmax(0,1fr)_minmax(0,380px)_60px] items-baseline lg:items-center gap-x-8 gap-y-3 py-9 sm:py-11 border-b border-ink/12"
+        >
+          <div class="font-mono text-[11.5px] uppercase tracking-[0.14em] text-slate/60 leading-relaxed">
+            <p class="text-orange-deep">{post.data.pillar}</p>
+            <p class="mt-1">{fmt(post.data.date)}</p>
+            <p>{post.data.readMinutes} min read</p>
+          </div>
+          <h2 class:list={[
+            'font-display font-medium leading-[1.12] tracking-[-0.015em] text-ink group-hover:text-indigo transition-colors duration-300 text-balance',
+            i === 0 ? 'text-[clamp(1.7rem,3.6vw,2.7rem)]' : 'text-[clamp(1.4rem,2.8vw,2rem)]',
+          ]}>
+            {post.data.title}
+          </h2>
+          <p class="text-[14.5px] text-slate leading-relaxed text-pretty">
+            {post.data.dek}
+          </p>
+          <span class="hidden lg:flex justify-end text-ink">
+            <svg class="w-6 h-6 -rotate-45 group-hover:rotate-0 transition-transform duration-500 ease-out-quart" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 12H20M20 12L13.5 5.5M20 12L13.5 18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </a>
       ))}
     </div>
   </section>

@@ -19,11 +19,11 @@ const included = [
   },
   {
     title: 'Custom market surveys',
-    body: 'A survey built around your specific question, fielded properly, not a recycled generic template with your logo on it.',
+    body: 'A survey built around your specific question, fielded properly, not a recycled template with your logo on it.',
   },
   {
     title: 'Competitive landscape mapping',
-    body: 'A clear view of who is already fighting for the customer you want, and where the gap actually is.',
+    body: 'A clear view of who is already fighting for the customer you want, including the informal players no database lists.',
   },
 ];
 
@@ -41,48 +41,61 @@ const steps = [
   <PillarHero
     number="03"
     label="Industry Analysis & Market Surveys"
-    title="Research built for the decision you're actually making."
-    lead="You're entering a market, backing a call, or answering to an investor who wants evidence, not confidence. Masy delivers the market entry research, industry reports, and custom surveys that inform a real decision, grounded in how the market actually behaves, not a desk report written from another continent."
+    title="Research built for the decision"
+    titleAccent="you're actually making."
+    lead="You're entering a market, backing a call, or answering to an investor who wants evidence, not confidence. Masy delivers the market entry research, industry reports, and custom surveys that inform a real decision, grounded in how the market actually behaves."
+    facts={[
+      ['Engagement', 'Per project'],
+      ['Scope', 'Agreed before fieldwork'],
+      ['Methods', 'Primary + desk research'],
+      ['Delivery', 'Report + live briefing'],
+      ['Sized for', 'SMEs & investors'],
+    ]}
   />
 
-  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
-    <Eyebrow>What this covers</Eyebrow>
-    <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-indigo-deep max-w-2xl text-balance">
-      Answers you can put in front of an investor, lender, or your own board.
-    </h2>
-    <div class="mt-11">
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
+    <div data-reveal>
+      <Eyebrow num="01">What this covers</Eyebrow>
+      <h2 class="mt-6 font-display font-medium text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
+        Answers you can put in front of an investor, lender, or your own board.
+      </h2>
+    </div>
+    <div class="mt-12">
       <ServiceGrid items={included} />
     </div>
   </section>
 
-  <section class="bg-sand border-y border-indigo-deep/5">
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
-      <div class="max-w-2xl">
-        <Eyebrow>The gap between two extremes</Eyebrow>
-        <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.18] text-indigo-deep text-balance">
-          Market research in Africa tends to split two ways. Neither fits an SME.
-        </h2>
-        <p class="mt-6 text-[16px] text-slate leading-relaxed text-pretty">
-          On one side, institutional research houses built for multinationals, priced for
-          multinational budgets. On the other, generic geopolitical or macro reports that never
-          quite answer your actual question. Masy sits in between: rigorous enough to support a
-          real decision, sized and priced for a business that isn't a multinational, and written
-          by people who understand the specific market you're asking about.
+  <section class="relative bg-ink text-white overflow-hidden dark-section">
+    <div class="absolute inset-0 grain-overlay"></div>
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28 relative">
+      <div class="max-w-3xl" data-reveal>
+        <Eyebrow light num="02">The gap between two extremes</Eyebrow>
+        <p class="mt-7 font-display text-[clamp(1.7rem,3.8vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-balance">
+          Institutional research is priced for multinationals. Macro reports never answer your question.
+          <span class="italic font-display-soft text-orange">Masy sits in between.</span>
+        </p>
+        <p class="mt-7 text-white/65 text-[16px] leading-relaxed max-w-2xl text-pretty">
+          Rigorous enough to support a real decision. Sized and priced for a
+          business that isn't a multinational. Written by people who understand
+          the specific market you're asking about, not the continent in
+          general.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
-    <Eyebrow>Fit check</Eyebrow>
-    <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-indigo-deep max-w-2xl text-balance">
-      Built for a specific question. Worth checking before you scope a project.
-    </h2>
-    <div class="mt-11">
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
+    <div data-reveal>
+      <Eyebrow num="03">Fit check</Eyebrow>
+      <h2 class="mt-6 font-display font-medium text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
+        Built for a specific question. Worth checking before you scope a project.
+      </h2>
+    </div>
+    <div class="mt-12">
       <Qualifier
         fit={[
           'You’re about to enter a new country, city, or customer segment and don’t want to guess.',
-          'An investor, lender, or board is going to ask for your evidence on a market, and you don’t have a strong answer yet.',
+          'An investor, lender, or board will ask for your evidence on a market, and you don’t have a strong answer yet.',
           'You want a straight answer, even if that answer is “don’t enter this market yet.”',
         ]}
         notFit={[
@@ -94,20 +107,21 @@ const steps = [
     </div>
   </section>
 
-  <section class="bg-indigo-deep text-white relative overflow-hidden">
-    <div class="absolute inset-0 grain-overlay"></div>
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24 relative">
-      <Eyebrow light>How it works</Eyebrow>
-      <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-balance max-w-2xl">
-        From a vague hunch to a report that holds up.
-      </h2>
-      <div class="mt-12">
+  <section class="bg-white border-y border-ink/10">
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
+      <div data-reveal>
+        <Eyebrow num="04">How it works</Eyebrow>
+        <h2 class="mt-6 font-display font-medium text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
+          From a vague hunch to a report that holds up.
+        </h2>
+      </div>
+      <div class="mt-14">
         <ProcessSteps steps={steps} />
       </div>
     </div>
   </section>
 
-  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
     <PricingNote
       model="Industry analysis is scoped and priced per project, based on the market, the question, and how much primary fieldwork is required."
       points={[
@@ -120,8 +134,8 @@ const steps = [
   </section>
 
   <CTASection
-    heading="Bring us the question a search engine can’t answer."
-    body="Tell us the market and the decision riding on it. We’ll tell you what it would take to get you a real answer."
+    heading="Bring us the question a search engine can't answer."
+    body="Tell us the market and the decision riding on it. We'll tell you what it would take to get you a real answer."
     primaryLabel="Book a consultation"
     secondaryLabel="See all services"
     secondaryHref="/#pillars"

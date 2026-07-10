@@ -29,8 +29,8 @@ const included = [
 
 const steps = [
   { title: 'Discovery call', body: 'We map your current team, structure, and where the people side of the business is actually breaking down.' },
-  { title: 'People audit', body: 'A clear-eyed review of contracts, policy, and gaps, measured against what your business actually needs, not a generic checklist.' },
-  { title: 'Embedded management', body: 'We take on day-to-day people operations for your African team, aligned to your working hours, not theirs alone.' },
+  { title: 'People audit', body: 'A clear-eyed review of contracts, policy, and gaps, measured against what your business actually needs.' },
+  { title: 'Embedded management', body: 'We take on day-to-day people operations for your African team, aligned to your working hours.' },
   { title: 'Monthly reporting', body: 'A straight readout of what happened with your team that month, and what actually needs your decision.' },
 ];
 ---
@@ -41,44 +41,58 @@ const steps = [
   <PillarHero
     number="01"
     label="Fractional HR & People Management · Anchor service"
-    title="A fractional HR partner for the team you can’t physically manage."
+    title="A fractional HR partner for the team you can't"
+    titleAccent="physically manage."
     lead="You run your business from the UK, US, or Canada. Your staff are on the ground in Nigeria or wherever your operations sit. Masy becomes your people function there: policy, performance, and the day-to-day management that keeps a distributed team accountable, without you micromanaging from another continent."
+    facts={[
+      ['Engagement', 'Monthly retainer'],
+      ['Scoped by', 'Team size & needs'],
+      ['Working hours', 'Aligned to yours'],
+      ['Reporting', 'Monthly, in writing'],
+      ['Best for', 'Diaspora-owned SMEs'],
+    ]}
   />
 
-  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
-    <Eyebrow>What this covers</Eyebrow>
-    <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-indigo-deep max-w-2xl text-balance">
-      Everything between "we hired someone" and "someone is actually managing them."
-    </h2>
-    <div class="mt-11">
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
+    <div data-reveal>
+      <Eyebrow num="01">What this covers</Eyebrow>
+      <h2 class="mt-6 font-display font-medium text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
+        Everything between "we hired someone" and "someone is actually managing them."
+      </h2>
+    </div>
+    <div class="mt-12">
       <ServiceGrid items={included} />
     </div>
   </section>
 
-  <section class="bg-sand border-y border-indigo-deep/5">
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
-      <div class="max-w-2xl">
-        <Eyebrow>The gap no one else fills</Eyebrow>
-        <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.18] text-indigo-deep text-balance">
+  <section class="relative bg-ink text-white overflow-hidden dark-section">
+    <div class="absolute inset-0 grain-overlay"></div>
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28 relative">
+      <div class="max-w-3xl" data-reveal>
+        <Eyebrow light num="02">The gap no one else fills</Eyebrow>
+        <p class="mt-7 font-display text-[clamp(1.7rem,3.8vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-balance">
           HR outsourcing firms sell compliance. UK fractional-HR firms sell boardroom strategy.
-        </h2>
-        <p class="mt-6 text-[16px] text-slate leading-relaxed text-pretty">
-          Almost no one sits in between: managing the people who work for a diaspora-owned
-          business, in the country where they actually work, on the schedule of the person who
-          owns the business. That's the specific, unglamorous gap Masy operates in. Not payroll
-          compliance. Not board-level people strategy. The actual, daily work of running a team
-          you can't walk over and check on.
+          <span class="italic font-display-soft text-orange">Nobody manages the actual team.</span>
+        </p>
+        <p class="mt-7 text-white/65 text-[16px] leading-relaxed max-w-2xl text-pretty">
+          Almost no one sits in between: managing the people who work for a
+          diaspora-owned business, in the country where they actually work, on
+          the schedule of the person who owns the business. That's the
+          specific, unglamorous gap Masy operates in. The daily work of running
+          a team you can't walk over and check on.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
-    <Eyebrow>Fit check</Eyebrow>
-    <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-indigo-deep max-w-2xl text-balance">
-      Built for a specific person. Worth checking before you book a call.
-    </h2>
-    <div class="mt-11">
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
+    <div data-reveal>
+      <Eyebrow num="03">Fit check</Eyebrow>
+      <h2 class="mt-6 font-display font-medium text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
+        Built for a specific person. Worth checking before you book a call.
+      </h2>
+    </div>
+    <div class="mt-12">
       <Qualifier
         fit={[
           'You own or run a business based in Africa, but you personally live in the UK, US, or Canada.',
@@ -94,20 +108,21 @@ const steps = [
     </div>
   </section>
 
-  <section class="bg-indigo-deep text-white relative overflow-hidden">
-    <div class="absolute inset-0 grain-overlay"></div>
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24 relative">
-      <Eyebrow light>How it works</Eyebrow>
-      <h2 class="mt-5 font-display text-[clamp(1.9rem,4vw,2.5rem)] leading-[1.15] text-balance max-w-2xl">
-        From first call to a running retainer.
-      </h2>
-      <div class="mt-12">
+  <section class="bg-white border-y border-ink/10">
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
+      <div data-reveal>
+        <Eyebrow num="04">How it works</Eyebrow>
+        <h2 class="mt-6 font-display font-medium text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
+          From first call to a running retainer.
+        </h2>
+      </div>
+      <div class="mt-14">
         <ProcessSteps steps={steps} />
       </div>
     </div>
   </section>
 
-  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-24">
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
     <PricingNote
       model="Fractional HR runs as a monthly retainer, scoped to the size of your team after a discovery call. Not a flat rate pulled from a card."
       points={[
@@ -120,8 +135,8 @@ const steps = [
   </section>
 
   <CTASection
-    heading="Stop managing your team through voice notes and time-zone guesswork."
-    body="Book a discovery call. We’ll map where your people operations are breaking down and tell you plainly whether a retainer makes sense."
+    heading="Stop managing your team through voice notes and timezone guesswork."
+    body="Book a discovery call. We'll map where your people operations are breaking down and tell you plainly whether a retainer makes sense."
     primaryLabel="Book a discovery call"
     secondaryLabel="See all services"
     secondaryHref="/#pillars"

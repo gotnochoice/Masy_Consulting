@@ -5,19 +5,19 @@ import { navLinks } from '../data/site';
 
 const currentPath = Astro.url.pathname;
 ---
-<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-indigo-deep/10">
-  <div class="max-w-content mx-auto px-5 sm:px-8 flex items-center justify-between h-[76px]">
+<header id="site-header" class="fixed top-0 inset-x-0 z-50">
+  <div class="max-w-content mx-auto px-5 sm:px-8 flex items-center justify-between h-[84px]">
     <Logo size="md" />
 
-    <nav class="hidden lg:flex items-center gap-8" aria-label="Primary">
+    <nav class="hidden lg:flex items-center gap-9" aria-label="Primary">
       {navLinks.map((link) => {
         const active = currentPath === link.href;
         return (
           <a
             href={link.href}
             class:list={[
-              'text-[14.5px] font-medium tracking-wide transition-colors duration-200 py-2',
-              active ? 'text-indigo-deep' : 'text-slate hover:text-indigo-deep',
+              'link-underline text-[14px] font-medium tracking-wide py-1.5 transition-colors duration-200',
+              active ? 'text-ink' : 'text-slate hover:text-ink',
             ]}
             aria-current={active ? 'page' : undefined}
           >
@@ -28,41 +28,48 @@ const currentPath = Astro.url.pathname;
     </nav>
 
     <div class="hidden lg:block">
-      <Button href="/contact/" variant="primary" size="sm">Book a consultation</Button>
+      <Button href="/contact/" variant="ink" size="sm">Book a consultation</Button>
     </div>
 
     <button
       id="menu-toggle"
       type="button"
-      class="lg:hidden inline-flex flex-col justify-center items-center gap-[5px] w-10 h-10 -mr-2"
+      class="lg:hidden inline-flex flex-col justify-center items-center gap-[6px] w-11 h-11 -mr-2"
       aria-expanded="false"
       aria-controls="mobile-menu"
       aria-label="Toggle menu"
     >
-      <span class="menu-bar block w-6 h-[2px] bg-indigo-deep transition-transform duration-300"></span>
-      <span class="menu-bar block w-6 h-[2px] bg-indigo-deep transition-opacity duration-200"></span>
-      <span class="menu-bar block w-6 h-[2px] bg-indigo-deep transition-transform duration-300"></span>
+      <span class="menu-bar block w-[26px] h-[2px] bg-ink transition-transform duration-300"></span>
+      <span class="menu-bar block w-[26px] h-[2px] bg-ink transition-opacity duration-200"></span>
+      <span class="menu-bar block w-[26px] h-[2px] bg-ink transition-transform duration-300"></span>
     </button>
   </div>
 
-  <div id="mobile-menu" class="hidden lg:hidden border-t border-indigo-deep/10 bg-white">
-    <nav class="flex flex-col px-5 py-4 gap-1" aria-label="Mobile">
-      {navLinks.map((link) => (
+  <div
+    id="mobile-menu"
+    class="lg:hidden fixed inset-x-0 top-[84px] bottom-0 bg-ink text-paper px-6 pt-8 pb-10 flex-col justify-between hidden"
+  >
+    <nav class="flex flex-col" aria-label="Mobile">
+      {navLinks.map((link, i) => (
         <a
           href={link.href}
-          class="text-[15px] font-medium text-indigo-deep py-3 border-b border-indigo-deep/5 last:border-none"
+          class="menu-item font-display text-[32px] leading-none py-4 border-b border-white/10 flex items-baseline gap-4"
+          style={`--i:${i}`}
         >
+          <span class="font-mono text-[12px] text-orange">0{i + 1}</span>
           {link.label}
         </a>
       ))}
-      <div class="pt-4">
-        <Button href="/contact/" variant="primary" size="sm" class="w-full justify-center">
-          Book a consultation
-        </Button>
-      </div>
     </nav>
+    <div class="pt-8">
+      <Button href="/contact/" variant="primary" size="lg" class="w-full">
+        Book a consultation
+      </Button>
+    </div>
   </div>
 </header>
+<!-- Spacer for fixed header -->
+<div class="h-[84px]" aria-hidden="true"></div>
 
 <script>
   const toggle = document.getElementById('menu-toggle');
@@ -71,6 +78,9 @@ const currentPath = Astro.url.pathname;
   toggle?.addEventListener('click', () => {
     open = !open;
     menu?.classList.toggle('hidden', !open);
+    menu?.classList.toggle('flex', open);
+    menu?.classList.toggle('menu-open', open);
+    document.body.classList.toggle('overflow-hidden', open);
     toggle.setAttribute('aria-expanded', String(open));
     toggle.classList.toggle('is-open', open);
   });
@@ -78,12 +88,26 @@ const currentPath = Astro.url.pathname;
 
 <style>
   #menu-toggle.is-open .menu-bar:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
   }
   #menu-toggle.is-open .menu-bar:nth-child(2) {
     opacity: 0;
   }
   #menu-toggle.is-open .menu-bar:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  #mobile-menu.menu-open .menu-item {
+    animation: menu-in 0.5s var(--ease-out-quart) both;
+    animation-delay: calc(var(--i) * 60ms + 80ms);
+  }
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 </style>

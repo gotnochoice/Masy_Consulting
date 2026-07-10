@@ -1,20 +1,25 @@
 ---
-import Logomark from './Logomark.astro';
 interface Props {
   class?: string;
   on?: 'light' | 'dark';
-  size?: 'sm' | 'md';
+  size?: 'sm' | 'md' | 'lg';
 }
 const { class: className = '', on = 'light', size = 'md' } = Astro.props;
-const wordColorPrimary = on === 'dark' ? 'text-white' : 'text-indigo-deep';
-const wordColorSecondary = on === 'dark' ? 'text-white/70' : 'text-slate';
-const markSize = size === 'sm' ? 'h-6 w-6' : 'h-8 w-8';
-const textSize = size === 'sm' ? 'text-sm' : 'text-base';
+const wordPrimary = on === 'dark' ? 'text-white' : 'text-ink';
+const wordSecondary = on === 'dark' ? 'text-white/60' : 'text-slate';
+const markSize = size === 'sm' ? 'h-7 w-7' : size === 'lg' ? 'h-11 w-11' : 'h-9 w-9';
+const textSize = size === 'sm' ? 'text-[13px]' : size === 'lg' ? 'text-lg' : 'text-[15px]';
 ---
 <a href="/" class={`inline-flex items-center gap-2.5 group ${className}`} aria-label="Masy Consulting, home">
-  <Logomark class={`${markSize} shrink-0 transition-transform duration-300 group-hover:-rotate-3`} />
-  <span class={`font-display ${textSize} tracking-[0.08em] leading-none whitespace-nowrap`}>
-    <span class={`font-semibold ${wordColorPrimary}`}>MASY</span>
-    <span class={`font-normal ${wordColorSecondary}`}> CONSULTING</span>
+  <img
+    src="/logo-mark.png"
+    alt=""
+    class={`${markSize} shrink-0 object-contain transition-transform duration-500 ease-out-quart group-hover:rotate-[-8deg]`}
+    width="705"
+    height="710"
+  />
+  <span class={`font-display ${textSize} tracking-[0.02em] leading-none whitespace-nowrap`}>
+    <span class={`font-semibold ${wordPrimary}`}>Masy</span>
+    <span class={`font-normal italic ${wordSecondary}`}> Consulting</span>
   </span>
 </a>

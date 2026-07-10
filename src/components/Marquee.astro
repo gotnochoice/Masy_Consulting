@@ -1,0 +1,25 @@
+---
+interface Props {
+  items?: string[];
+  class?: string;
+}
+const {
+  items = ['Fractional HR', 'Business Writing', 'Market Intelligence', 'Built for the diaspora'],
+  class: className = '',
+} = Astro.props;
+// Duplicate the sequence so the -50% translate loops seamlessly
+const sequence = [...items, ...items];
+---
+<div class={`marquee relative overflow-hidden bg-ink text-paper py-5 sm:py-6 dark-section ${className}`} aria-hidden="true">
+  <div class="absolute inset-0 grain-overlay"></div>
+  <div class="marquee-track items-center gap-10 sm:gap-14 pr-10 sm:pr-14">
+    {sequence.map((item) => (
+      <>
+        <span class="font-display italic text-[clamp(1.15rem,2.4vw,1.75rem)] whitespace-nowrap text-white/90">
+          {item}
+        </span>
+        <img src="/logo-mark.png" alt="" class="w-6 h-6 sm:w-7 sm:h-7 shrink-0 opacity-80" />
+      </>
+    ))}
+  </div>
+</div>

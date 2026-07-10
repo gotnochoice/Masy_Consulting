@@ -3,122 +3,130 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import { siteMeta } from '../data/site';
 
-const services = ['Fractional HR & People Management', 'Business Writing', 'Industry Analysis & Market Surveys', 'Not sure yet'];
+const services = [
+  'Fractional HR & People Management',
+  'Business Writing',
+  'Industry Analysis & Market Surveys',
+  'Not sure yet',
+];
+
+const inputClasses =
+  'peer w-full bg-transparent border-0 border-b border-ink/20 px-0 py-3 text-[15.5px] text-ink placeholder:text-slate/40 focus:outline-none focus:ring-0 focus:border-orange transition-colors duration-300';
+const labelClasses = 'block font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate/70 mb-1';
 ---
 <BaseLayout
   title="Book a Consultation"
   description="Book a free consultation with Masy Consulting. Tell us about your business and we'll tell you plainly how we'd help, or if we're not the right fit."
 >
-  <section class="max-w-content mx-auto px-5 sm:px-8 pt-14 sm:pt-20 pb-20 sm:pb-28">
-    <div class="grid lg:grid-cols-[0.95fr_1.05fr] gap-14">
-      <div>
+  <section class="max-w-content mx-auto px-5 sm:px-8 pt-12 sm:pt-20 pb-20 sm:pb-32">
+    <div class="grid lg:grid-cols-12 gap-14">
+      <div class="lg:col-span-5">
         <Eyebrow>Start a conversation</Eyebrow>
-        <h1 class="mt-6 font-display font-medium text-[clamp(2.1rem,5vw,3.25rem)] leading-[1.08] tracking-tight text-indigo-deep text-balance">
-          Book a free consultation.
+        <h1 class="mt-7 font-display font-medium text-[clamp(2.3rem,5.2vw,3.9rem)] leading-[1.02] tracking-[-0.02em] text-ink text-balance">
+          Book a free
+          <span class="italic font-display-soft text-indigo">consultation.</span>
         </h1>
-        <p class="mt-6 text-[16.5px] text-slate leading-relaxed max-w-md text-pretty">
-          Thirty minutes, no obligation. Tell us what's going on and we'll tell you plainly how we'd
-          approach it, including if we're not the right fit for it.
+        <p class="mt-7 text-[16px] text-slate leading-relaxed max-w-md text-pretty">
+          Thirty minutes, no obligation. Tell us what's going on and we'll tell
+          you plainly how we'd approach it, including if we're not the right
+          fit for it.
         </p>
 
-        <div class="mt-10 space-y-6">
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-full bg-sand flex items-center justify-center shrink-0">
-              <svg class="w-5 h-5 text-indigo-deep" viewBox="0 0 20 20" fill="none">
-                <path d="M3 5.5L10 11L17 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                <rect x="3" y="4" width="14" height="12" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
-              </svg>
-            </div>
-            <div>
-              <p class="text-[14px] text-slate/60">Email</p>
-              <a href={`mailto:${siteMeta.email}`} class="text-[15.5px] font-medium text-indigo-deep hover:text-orange-deep transition-colors">
+        <dl class="mt-12 space-y-7 border-l border-ink/12 pl-7" data-reveal-stagger>
+          <div>
+            <dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate/60">Email</dt>
+            <dd class="mt-1">
+              <a href={`mailto:${siteMeta.email}`} class="link-underline text-[16px] font-medium text-ink">
                 {siteMeta.email}
               </a>
-            </div>
+            </dd>
           </div>
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-full bg-sand flex items-center justify-center shrink-0">
-              <svg class="w-5 h-5 text-indigo-deep" viewBox="0 0 20 20" fill="none">
-                <path d="M10 18s6-5.2 6-10a6 6 0 10-12 0c0 4.8 6 10 6 10z" stroke="currentColor" stroke-width="1.4"/>
-                <circle cx="10" cy="8" r="2" stroke="currentColor" stroke-width="1.4"/>
-              </svg>
-            </div>
-            <div>
-              <p class="text-[14px] text-slate/60">Serving</p>
-              <p class="text-[15.5px] font-medium text-indigo-deep">UK, US, Canada &amp; Nigeria</p>
-            </div>
+          <div>
+            <dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate/60">Serving</dt>
+            <dd class="mt-1 text-[16px] font-medium text-ink">UK · US · Canada · Nigeria</dd>
           </div>
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-full bg-sand flex items-center justify-center shrink-0">
-              <svg class="w-5 h-5 text-indigo-deep" viewBox="0 0 20 20" fill="none">
-                <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.4"/>
-                <path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div>
-              <p class="text-[14px] text-slate/60">Response time</p>
-              <p class="text-[15.5px] font-medium text-indigo-deep">We aim to reply within two business days</p>
-            </div>
+          <div>
+            <dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate/60">Response time</dt>
+            <dd class="mt-1 text-[16px] font-medium text-ink">Within two business days</dd>
           </div>
-        </div>
-
-        <a
-          href={siteMeta.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 mt-10 text-[14px] font-medium text-indigo-deep hover:text-orange-deep transition-colors"
-        >
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z" />
-          </svg>
-          Connect on LinkedIn
-        </a>
+          <div>
+            <dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate/60">Elsewhere</dt>
+            <dd class="mt-1">
+              <a
+                href={siteMeta.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link-underline inline-flex items-center gap-2 text-[16px] font-medium text-ink"
+              >
+                <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z" />
+                </svg>
+                LinkedIn
+              </a>
+            </dd>
+          </div>
+        </dl>
       </div>
 
-      <div class="bg-sand rounded-2xl p-7 sm:p-9">
-        <form id="contact-form" class="space-y-5">
-          <div class="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label for="name" class="block text-[13.5px] font-medium text-indigo-deep mb-1.5">Full name</label>
-              <input required type="text" id="name" name="name" class="w-full rounded-lg border border-indigo-deep/15 bg-white px-4 py-3 text-[14.5px] text-indigo-deep placeholder:text-slate/40 focus:outline-none focus:ring-2 focus:ring-orange/50 focus:border-orange" placeholder="Amaka Obi" />
+      <div class="lg:col-span-6 lg:col-start-7" data-reveal="right">
+        <div class="relative overflow-hidden rounded-[1.75rem] bg-white border border-ink/10 p-8 sm:p-11 shadow-[0_40px_80px_-50px_rgba(20,10,69,0.4)]">
+          <form id="contact-form" class="space-y-8">
+            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-8">
+              <div>
+                <label for="name" class={labelClasses}>Full name</label>
+                <input required type="text" id="name" name="name" class={inputClasses} placeholder="Your name" />
+              </div>
+              <div>
+                <label for="email" class={labelClasses}>Email</label>
+                <input required type="email" id="email" name="email" class={inputClasses} placeholder="you@company.com" />
+              </div>
             </div>
-            <div>
-              <label for="email" class="block text-[13.5px] font-medium text-indigo-deep mb-1.5">Email</label>
-              <input required type="email" id="email" name="email" class="w-full rounded-lg border border-indigo-deep/15 bg-white px-4 py-3 text-[14.5px] text-indigo-deep placeholder:text-slate/40 focus:outline-none focus:ring-2 focus:ring-orange/50 focus:border-orange" placeholder="you@company.com" />
+
+            <div class="grid sm:grid-cols-2 gap-x-8 gap-y-8">
+              <div>
+                <label for="company" class={labelClasses}>Business name</label>
+                <input type="text" id="company" name="company" class={inputClasses} placeholder="Company Ltd" />
+              </div>
+              <div>
+                <label for="location" class={labelClasses}>Where are you based?</label>
+                <input type="text" id="location" name="location" class={inputClasses} placeholder="London, UK" />
+              </div>
             </div>
-          </div>
 
-          <div class="grid sm:grid-cols-2 gap-5">
             <div>
-              <label for="company" class="block text-[13.5px] font-medium text-indigo-deep mb-1.5">Business name</label>
-              <input type="text" id="company" name="company" class="w-full rounded-lg border border-indigo-deep/15 bg-white px-4 py-3 text-[14.5px] text-indigo-deep placeholder:text-slate/40 focus:outline-none focus:ring-2 focus:ring-orange/50 focus:border-orange" placeholder="Company Ltd" />
+              <label for="service" class={labelClasses}>What do you need?</label>
+              <select id="service" name="service" class={`${inputClasses} cursor-pointer`}>
+                {services.map((s) => <option value={s}>{s}</option>)}
+              </select>
             </div>
+
             <div>
-              <label for="location" class="block text-[13.5px] font-medium text-indigo-deep mb-1.5">Where are you based?</label>
-              <input type="text" id="location" name="location" class="w-full rounded-lg border border-indigo-deep/15 bg-white px-4 py-3 text-[14.5px] text-indigo-deep placeholder:text-slate/40 focus:outline-none focus:ring-2 focus:ring-orange/50 focus:border-orange" placeholder="London, UK" />
+              <label for="message" class={labelClasses}>What's going on?</label>
+              <textarea
+                required
+                id="message"
+                name="message"
+                rows="4"
+                class={`${inputClasses} resize-none`}
+                placeholder="A sentence or two is fine. We'll ask follow-up questions on the call."
+              ></textarea>
             </div>
-          </div>
 
-          <div>
-            <label for="service" class="block text-[13.5px] font-medium text-indigo-deep mb-1.5">What do you need?</label>
-            <select id="service" name="service" class="w-full rounded-lg border border-indigo-deep/15 bg-white px-4 py-3 text-[14.5px] text-indigo-deep focus:outline-none focus:ring-2 focus:ring-orange/50 focus:border-orange">
-              {services.map((s) => <option value={s}>{s}</option>)}
-            </select>
-          </div>
-
-          <div>
-            <label for="message" class="block text-[13.5px] font-medium text-indigo-deep mb-1.5">What's going on?</label>
-            <textarea required id="message" name="message" rows="4" class="w-full rounded-lg border border-indigo-deep/15 bg-white px-4 py-3 text-[14.5px] text-indigo-deep placeholder:text-slate/40 focus:outline-none focus:ring-2 focus:ring-orange/50 focus:border-orange resize-none" placeholder="A sentence or two is fine. We'll ask follow-up questions on the call."></textarea>
-          </div>
-
-          <button
-            type="submit"
-            class="w-full inline-flex items-center justify-center gap-2 bg-orange text-indigo-deep font-medium text-[15px] px-6 py-3.5 rounded-full hover:bg-orange-deep transition-colors duration-200"
-          >
-            Send &amp; request a call
-          </button>
-          <p id="form-status" class="text-[13px] text-slate/60 text-center" role="status"></p>
-        </form>
+            <button
+              type="submit"
+              class="group/btn relative w-full overflow-hidden inline-flex items-center justify-center gap-2.5 bg-orange text-ink hover:text-paper font-medium text-[15.5px] px-7 py-4 rounded-full transition-colors duration-300"
+            >
+              <span class="absolute inset-0 bg-ink rounded-full translate-y-[101%] transition-transform duration-[450ms] ease-out-quart group-hover/btn:translate-y-0" aria-hidden="true"></span>
+              <span class="relative z-10 inline-flex items-center gap-2.5">
+                Send &amp; request a call
+                <svg class="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8H13M13 8L8.8 3.8M13 8L8.8 12.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </button>
+            <p id="form-status" class="text-[13px] text-slate/70 text-center" role="status"></p>
+          </form>
+        </div>
       </div>
     </div>
   </section>

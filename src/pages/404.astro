@@ -1,20 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Eyebrow from '../components/Eyebrow.astro';
 import Button from '../components/Button.astro';
 ---
 <BaseLayout title="Page not found" noIndex>
-  <section class="max-w-content mx-auto px-5 sm:px-8 py-28 sm:py-36 text-center">
-    <Eyebrow class="justify-center">404</Eyebrow>
-    <h1 class="mt-6 font-display font-medium text-[clamp(2rem,5vw,3.25rem)] leading-[1.1] text-indigo-deep text-balance">
-      This page doesn't exist. The business case for it apparently didn't either.
+  <section class="max-w-content mx-auto px-5 sm:px-8 py-28 sm:py-40 text-center">
+    <p class="font-mono text-[12px] uppercase tracking-[0.22em] text-orange-deep">404</p>
+    <h1 class="mt-7 font-display font-medium text-[clamp(2rem,5vw,3.6rem)] leading-[1.06] tracking-[-0.02em] text-ink max-w-2xl mx-auto text-balance">
+      This page doesn't exist. The business case for it
+      <span class="italic font-display-soft text-indigo">apparently didn't either.</span>
     </h1>
     <p class="mt-6 text-[16px] text-slate max-w-md mx-auto leading-relaxed">
       Let's get you back to somewhere useful.
     </p>
-    <div class="mt-9 flex justify-center gap-4">
-      <Button href="/" variant="primary" size="md">Back to homepage</Button>
-      <Button href="/contact/" variant="ghost" size="md">Book a consultation</Button>
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <Button href="/" variant="primary" size="md" magnetic>Back to homepage</Button>
+      <Button href="/contact/" variant="outline" size="md">Book a consultation</Button>
     </div>
   </section>
 </BaseLayout>

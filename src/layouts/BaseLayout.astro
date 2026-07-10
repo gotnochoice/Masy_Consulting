@@ -1,6 +1,6 @@
 ---
-import '@fontsource-variable/fraunces';
-import '@fontsource-variable/fraunces/wght-italic.css';
+import '@fontsource-variable/fraunces/opsz.css';
+import '@fontsource-variable/fraunces/opsz-italic.css';
 import '@fontsource-variable/plus-jakarta-sans';
 import '@fontsource/ibm-plex-mono/500.css';
 import '@fontsource/ibm-plex-mono/600.css';
@@ -31,8 +31,8 @@ const fullTitle = title.includes('Masy Consulting') ? title : `${title} — Masy
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="canonical" href={canonicalURL} />
@@ -53,7 +53,7 @@ const fullTitle = title.includes('Masy Consulting') ? title : `${title} — Masy
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(ogImage, siteMeta.url)} />
 
-    <meta name="theme-color" content="#281398" />
+    <meta name="theme-color" content="#140A45" />
 
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
@@ -65,7 +65,7 @@ const fullTitle = title.includes('Masy Consulting') ? title : `${title} — Masy
       sameAs: [siteMeta.linkedin],
     })} />
   </head>
-  <body class="min-h-screen flex flex-col font-sans text-indigo-deep bg-white antialiased">
+  <body class="min-h-screen flex flex-col font-sans text-ink bg-paper antialiased">
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-3 focus:left-3 focus:bg-indigo focus:text-white focus:px-4 focus:py-2 focus:rounded"
@@ -77,5 +77,67 @@ const fullTitle = title.includes('Masy Consulting') ? title : `${title} — Masy
       <slot />
     </main>
     <Footer />
+
+    <script>
+      // ---------- Scroll reveal ----------
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-inview');
+              observer.unobserve(entry.target);
+            }
+          }
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+      );
+      document
+        .querySelectorAll('[data-reveal], [data-reveal-stagger]')
+        .forEach((el) => observer.observe(el));
+
+      // ---------- Header hide on scroll down / show on up ----------
+      const header = document.getElementById('site-header');
+      let lastY = window.scrollY;
+      let ticking = false;
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            const y = window.scrollY;
+            if (header) {
+              header.classList.toggle('header-scrolled', y > 24);
+              const menuOpen = document
+                .getElementById('mobile-menu')
+                ?.classList.contains('menu-open');
+              header.classList.toggle(
+                'header-hidden',
+                y > 320 && y > lastY && !menuOpen
+              );
+            }
+            lastY = y;
+            ticking = false;
+          });
+        },
+        { passive: true }
+      );
+
+      // ---------- Magnetic buttons (pointer devices only) ----------
+      if (window.matchMedia('(pointer: fine)').matches) {
+        document.querySelectorAll<HTMLElement>('.magnetic').forEach((el) => {
+          const strength = 0.28;
+          el.addEventListener('pointermove', (e) => {
+            const r = el.getBoundingClientRect();
+            el.style.setProperty('--mx', String((e.clientX - r.left - r.width / 2) * strength));
+            el.style.setProperty('--my', String((e.clientY - r.top - r.height / 2) * strength));
+          });
+          el.addEventListener('pointerleave', () => {
+            el.style.setProperty('--mx', '0');
+            el.style.setProperty('--my', '0');
+          });
+        });
+      }
+    </script>
   </body>
 </html>

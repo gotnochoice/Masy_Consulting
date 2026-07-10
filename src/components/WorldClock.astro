@@ -1,44 +1,78 @@
 ---
 const cities = [
-  { label: 'Lagos', tz: 'Africa/Lagos', note: 'Your team' },
-  { label: 'London', tz: 'Europe/London', note: '' },
+  { label: 'Lagos', tz: 'Africa/Lagos', note: 'Where your team works' },
+  { label: 'London', tz: 'Europe/London', note: 'Where you might live' },
   { label: 'New York', tz: 'America/New_York', note: '' },
   { label: 'Toronto', tz: 'America/Toronto', note: '' },
 ];
 ---
 <div
-  class="world-clock rounded-2xl border border-white/10 bg-indigo-deep text-white p-6 sm:p-7 relative overflow-hidden"
-  data-cities={JSON.stringify(cities)}
+  class="world-clock relative overflow-hidden rounded-[1.75rem] bg-ink text-white p-7 sm:p-8 dark-section shadow-[0_40px_80px_-40px_rgba(20,10,69,0.55)]"
 >
   <div class="absolute inset-0 grain-overlay"></div>
-  <div class="relative flex items-center justify-between mb-5">
-    <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-orange">Live, right now</p>
-    <span class="relative flex h-2 w-2">
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange opacity-60"></span>
-      <span class="relative inline-flex rounded-full h-2 w-2 bg-orange"></span>
+  <div
+    class="absolute -right-20 -top-20 w-72 h-72 rounded-full opacity-[0.12] pointer-events-none"
+    style="background: radial-gradient(circle, #FB961F 0%, transparent 68%)"
+  ></div>
+
+  <div class="relative flex items-center justify-between mb-6">
+    <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-orange">One working day</p>
+    <span class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-white/45">
+      <span class="w-1.5 h-1.5 rounded-full bg-orange animate-breathe"></span>
+      Live
     </span>
   </div>
-  <ul class="relative divide-y divide-white/10">
-    {cities.map((c) => (
-      <li class="flex items-center justify-between py-3 first:pt-0 last:pb-0" data-tz={c.tz}>
-        <div>
-          <p class="text-[15px] font-medium">{c.label}</p>
-          {c.note && <p class="text-[12px] text-white/45">{c.note}</p>}
+
+  <ul class="relative divide-y divide-white/[0.08]">
+    {cities.map((c, i) => (
+      <li class="flex items-center justify-between py-[15px] first:pt-0 last:pb-0" data-tz={c.tz}>
+        <div class="flex items-center gap-3.5">
+          <span class="w-5 flex justify-center text-orange/90" aria-hidden="true">
+            <svg class="icon-day w-[15px] h-[15px] hidden" viewBox="0 0 20 20" fill="none">
+              <circle cx="10" cy="10" r="3.5" stroke="currentColor" stroke-width="1.4" />
+              <path d="M10 1.5v2.2M10 16.3v2.2M18.5 10h-2.2M3.7 10H1.5M16 4l-1.55 1.55M5.55 14.45L4 16M16 16l-1.55-1.55M5.55 5.55L4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+            </svg>
+            <svg class="icon-night w-[14px] h-[14px] hidden" viewBox="0 0 20 20" fill="none">
+              <path d="M16.5 12.2A7 7 0 0 1 7.8 3.5a7 7 0 1 0 8.7 8.7z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <div>
+            <p class="text-[15.5px] font-medium tracking-wide">{c.label}</p>
+            {c.note && <p class="text-[11.5px] text-white/40 mt-0.5">{c.note}</p>}
+          </div>
         </div>
         <div class="text-right">
-          <p class="clock-time font-mono text-lg sm:text-xl tabular-nums text-orange">--:--</p>
-          <p class="clock-diff text-[12px] text-white/45">&nbsp;</p>
+          <p class="clock-time font-mono text-[19px] sm:text-[21px] tabular-nums text-white">--:--</p>
+          {i > 0 ? (
+            <p class="clock-diff font-mono text-[11px] text-white/40">&nbsp;</p>
+          ) : (
+            <p class="font-mono text-[11px] text-orange/80">your team's clock</p>
+          )}
         </div>
       </li>
     ))}
   </ul>
+
+  <p class="relative mt-6 pt-5 border-t border-white/[0.08] text-[13px] leading-relaxed text-white/55">
+    Lagos and London sit an hour apart. Your people operations shouldn't feel
+    like they run on the other side of the world, because they don't have to.
+  </p>
 </div>
 
 <script>
+  function hourIn(tz: string, now: Date): number {
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: tz,
+      hour: 'numeric',
+      hour12: false,
+    }).formatToParts(now);
+    return Number(parts.find((p) => p.type === 'hour')?.value ?? 0) % 24;
+  }
+
   function updateClocks(root: HTMLElement) {
     const items = root.querySelectorAll<HTMLElement>('[data-tz]');
     const now = new Date();
-    let baseOffset: number | null = null;
+    let baseHour: number | null = null;
 
     items.forEach((item, i) => {
       const tz = item.dataset.tz!;
@@ -48,26 +82,22 @@ const cities = [
         timeZone: tz,
         hour12: false,
       }).format(now);
-
-      const parts = new Intl.DateTimeFormat('en-US', {
-        timeZone: tz,
-        hour: 'numeric',
-        hour12: false,
-      }).formatToParts(now);
-      const hour = Number(parts.find((p) => p.type === 'hour')?.value ?? 0);
+      const hour = hourIn(tz, now);
 
       const timeEl = item.querySelector('.clock-time');
       const diffEl = item.querySelector('.clock-diff');
       if (timeEl) timeEl.textContent = timeStr;
+      const isDay = hour >= 7 && hour < 19;
+      item.querySelector('.icon-day')?.classList.toggle('hidden', !isDay);
+      item.querySelector('.icon-night')?.classList.toggle('hidden', isDay);
 
       if (i === 0) {
-        baseOffset = hour;
-        if (diffEl) diffEl.textContent = 'anchor';
-      } else if (diffEl && baseOffset !== null) {
-        let diff = hour - baseOffset;
+        baseHour = hour;
+      } else if (diffEl && baseHour !== null) {
+        let diff = hour - baseHour;
         if (diff > 12) diff -= 24;
         if (diff < -12) diff += 24;
-        diffEl.textContent = diff === 0 ? 'same hour' : `${diff > 0 ? '+' : ''}${diff}h`;
+        diffEl.textContent = diff === 0 ? 'same hour' : `${diff > 0 ? '+' : ''}${diff}h from Lagos`;
       }
     });
   }

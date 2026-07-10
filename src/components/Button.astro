@@ -1,10 +1,11 @@
 ---
 interface Props {
   href?: string;
-  variant?: 'primary' | 'secondary' | 'ghost' | 'onDark';
+  variant?: 'primary' | 'outline' | 'outlineDark' | 'ink';
   size?: 'sm' | 'md' | 'lg';
   class?: string;
   type?: 'button' | 'submit';
+  magnetic?: boolean;
 }
 const {
   href,
@@ -12,40 +13,56 @@ const {
   size = 'md',
   class: className = '',
   type = 'button',
+  magnetic = false,
 } = Astro.props;
 
 const base =
-  'inline-flex items-center gap-2 font-medium transition-all duration-200 ease-out group/btn whitespace-nowrap';
+  'group/btn relative inline-flex items-center justify-center gap-2.5 font-medium whitespace-nowrap overflow-hidden transition-colors duration-300 ease-out-quart';
 
 const variants: Record<string, string> = {
-  primary: 'bg-orange text-indigo-deep hover:bg-orange-deep',
-  secondary: 'bg-indigo-deep text-white hover:bg-indigo-light',
-  ghost: 'bg-transparent text-indigo-deep border border-indigo-deep/25 hover:border-indigo-deep',
-  onDark: 'bg-white text-indigo-deep hover:bg-orange',
+  primary: 'bg-orange text-ink hover:text-paper',
+  ink: 'bg-ink text-paper hover:text-ink',
+  outline: 'bg-transparent text-ink border border-ink/30 hover:border-ink hover:text-paper',
+  outlineDark: 'bg-transparent text-white border border-white/30 hover:border-white hover:text-ink',
+};
+
+/* Sweep fill color per variant */
+const sweeps: Record<string, string> = {
+  primary: 'bg-ink',
+  ink: 'bg-orange',
+  outline: 'bg-ink',
+  outlineDark: 'bg-white',
 };
 
 const sizes: Record<string, string> = {
-  sm: 'text-[13.5px] px-4 py-2.5 rounded-full',
-  md: 'text-[15px] px-6 py-3.5 rounded-full',
-  lg: 'text-[16px] px-8 py-4 rounded-full',
+  sm: 'text-[13.5px] px-5 py-2.5 rounded-full',
+  md: 'text-[15px] px-7 py-3.5 rounded-full',
+  lg: 'text-[16px] px-9 py-[18px] rounded-full',
 };
 
-const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
+const classes = `${base} ${variants[variant]} ${sizes[size]} ${magnetic ? 'magnetic' : ''} ${className}`;
 const Tag = href ? 'a' : 'button';
 ---
 <Tag href={href} type={href ? undefined : type} class={classes}>
-  <slot />
-  <svg
-    class="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5"
-    viewBox="0 0 16 16"
-    fill="none"
-  >
-    <path
-      d="M3.5 8H12.5M12.5 8L8.5 4M12.5 8L8.5 12"
-      stroke="currentColor"
-      stroke-width="1.6"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
-  </svg>
+  <span
+    class={`absolute inset-0 ${sweeps[variant]} rounded-full translate-y-[101%] transition-transform duration-[450ms] ease-out-quart group-hover/btn:translate-y-0`}
+    aria-hidden="true"
+  ></span>
+  <span class="relative z-10 inline-flex items-center gap-2.5">
+    <slot />
+    <svg
+      class="w-4 h-4 transition-transform duration-300 ease-out-quart group-hover/btn:translate-x-1"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M3 8H13M13 8L8.8 3.8M13 8L8.8 12.2"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </span>
 </Tag>
