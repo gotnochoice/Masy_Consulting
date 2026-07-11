@@ -64,7 +64,7 @@ const steps = [
       <div class="grid lg:grid-cols-12 gap-10">
         <div class="lg:col-span-5" data-reveal>
           <Eyebrow num="01">The problem, plainly</Eyebrow>
-          <h2 class="mt-6 font-display font-medium text-[clamp(2rem,4.2vw,3.1rem)] leading-[1.06] tracking-[-0.02em] text-ink text-balance">
+          <h2 class="mt-6 font-display font-bold text-[clamp(2rem,4.2vw,3.1rem)] leading-[1.06] tracking-[-0.02em] text-ink text-balance">
             Scaling across borders creates three very specific problems.
           </h2>
           <p class="mt-6 text-[15.5px] text-slate leading-relaxed max-w-md text-pretty">
@@ -80,7 +80,7 @@ const steps = [
               <article class="py-9 first:pt-0 last:pb-0 grid grid-cols-[auto_1fr] gap-x-6">
                 <span class="ghost-num font-display text-[clamp(2.6rem,5vw,4rem)] select-none" aria-hidden="true">{p.num}</span>
                 <div>
-                  <h3 class="font-display font-medium text-[22px] sm:text-[24px] text-ink leading-snug">{p.title}</h3>
+                  <h3 class="font-display font-bold text-[22px] sm:text-[24px] text-ink leading-snug">{p.title}</h3>
                   <p class="mt-2.5 text-[15px] text-slate leading-relaxed text-pretty max-w-lg">{p.body}</p>
                 </div>
               </article>
@@ -97,7 +97,7 @@ const steps = [
       <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14" data-reveal>
         <div>
           <Eyebrow num="02">What we do</Eyebrow>
-          <h2 class="mt-6 font-display font-medium text-[clamp(2rem,4.2vw,3.1rem)] leading-[1.06] tracking-[-0.02em] text-ink max-w-2xl text-balance">
+          <h2 class="mt-6 font-display font-bold text-[clamp(2rem,4.2vw,3.1rem)] leading-[1.06] tracking-[-0.02em] text-ink max-w-2xl text-balance">
             Three pillars. One partner. Zero hand-offs between vendors.
           </h2>
         </div>
@@ -157,7 +157,7 @@ const steps = [
     <div class="max-w-content mx-auto px-5 sm:px-8 py-24 sm:py-32">
       <div class="lg:pl-[16%]" data-reveal>
         <Eyebrow num="04">How an engagement starts</Eyebrow>
-        <h2 class="mt-6 font-display font-medium text-[clamp(2rem,4.2vw,3.1rem)] leading-[1.06] tracking-[-0.02em] text-ink max-w-xl text-balance">
+        <h2 class="mt-6 font-display font-bold text-[clamp(2rem,4.2vw,3.1rem)] leading-[1.06] tracking-[-0.02em] text-ink max-w-xl text-balance">
           No black box. No jargon. A process you can follow.
         </h2>
       </div>
@@ -167,7 +167,7 @@ const steps = [
           <div class="relative pt-8 border-t-2 border-ink/12">
             <span class="absolute -top-[7px] left-0 w-3 h-3 rounded-full bg-orange"></span>
             <span class="font-mono text-[12px] text-orange-deep">{String(i + 1).padStart(2, '0')}</span>
-            <h3 class="mt-3 font-display font-medium text-[20px] text-ink leading-snug">{step.title}</h3>
+            <h3 class="mt-3 font-display font-bold text-[20px] text-ink leading-snug">{step.title}</h3>
             <p class="mt-2.5 text-[14px] text-slate leading-relaxed text-pretty">{step.body}</p>
           </div>
         ))}
@@ -181,7 +181,7 @@ const steps = [
       <div class="flex items-end justify-between gap-6 mb-12" data-reveal>
         <div>
           <Eyebrow num="05">Insights</Eyebrow>
-          <h2 class="mt-6 font-display font-medium text-[clamp(1.9rem,3.8vw,2.8rem)] leading-[1.08] tracking-[-0.02em] text-ink text-balance">
+          <h2 class="mt-6 font-display font-bold text-[clamp(1.9rem,3.8vw,2.8rem)] leading-[1.08] tracking-[-0.02em] text-ink text-balance">
             Things worth knowing, whether you hire us or not.
           </h2>
         </div>
@@ -203,7 +203,7 @@ const steps = [
               <p class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-orange-deep mb-2.5">
                 {post.data.pillar} · {post.data.readMinutes} min
               </p>
-              <h3 class="font-display font-medium text-[clamp(1.25rem,2.6vw,1.75rem)] leading-[1.2] text-ink group-hover:text-indigo transition-colors duration-300 text-balance">
+              <h3 class="font-display font-bold text-[clamp(1.25rem,2.6vw,1.75rem)] leading-[1.2] text-ink group-hover:text-indigo transition-colors duration-300 text-balance">
                 {post.data.title}
               </h3>
             </div>

@@ -16,7 +16,7 @@ const fmt = (d: Date) =>
 >
   <section class="max-w-content mx-auto px-5 sm:px-8 pt-12 sm:pt-20 pb-14 sm:pb-20">
     <Eyebrow>Insights</Eyebrow>
-    <h1 class="mt-7 font-display font-medium text-[clamp(2.4rem,5.8vw,4.5rem)] leading-[1.02] tracking-[-0.02em] text-ink max-w-4xl text-balance">
+    <h1 class="mt-7 font-display font-bold text-[clamp(2.4rem,5.8vw,4.5rem)] leading-[1.02] tracking-[-0.02em] text-ink max-w-4xl text-balance">
       Things worth knowing
       <span class="italic font-display-soft text-indigo">before you call us.</span>
     </h1>
@@ -40,7 +40,7 @@ const fmt = (d: Date) =>
             <p>{post.data.readMinutes} min read</p>
           </div>
           <h2 class:list={[
-            'font-display font-medium leading-[1.12] tracking-[-0.015em] text-ink group-hover:text-indigo transition-colors duration-300 text-balance',
+            'font-display font-bold leading-[1.12] tracking-[-0.015em] text-ink group-hover:text-indigo transition-colors duration-300 text-balance',
             i === 0 ? 'text-[clamp(1.7rem,3.6vw,2.7rem)]' : 'text-[clamp(1.4rem,2.8vw,2rem)]',
           ]}>
             {post.data.title}

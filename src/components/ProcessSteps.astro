@@ -16,7 +16,7 @@ const { steps, dark = false } = Astro.props;
       <span class:list={['font-mono text-[12px]', dark ? 'text-orange' : 'text-orange-deep']}>
         {String(i + 1).padStart(2, '0')}
       </span>
-      <h3 class:list={['mt-3 font-display font-medium text-[20px] leading-snug', dark ? 'text-white' : 'text-ink']}>
+      <h3 class:list={['mt-3 font-display font-bold text-[20px] leading-snug', dark ? 'text-white' : 'text-ink']}>
         {step.title}
       </h3>
       <p class:list={['mt-2.5 text-[14px] leading-relaxed text-pretty', dark ? 'text-white/60' : 'text-slate']}>

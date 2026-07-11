@@ -23,12 +23,16 @@ body {
   color: #140a45;
 }
 
-/* ---------- Display type: Fraunces at full optical size ---------- */
-.font-display {
-  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
-}
-.font-display-soft {
-  font-variation-settings: 'opsz' 144, 'SOFT' 60, 'WONK' 0;
+/* ---------- Display type: Plus Jakarta Sans, bold by default ----------
+   Weight utilities (font-medium, font-semibold, …) still win where set,
+   because this lives in the components layer. */
+@layer components {
+  .font-display {
+    font-weight: 700;
+  }
+  .font-display-soft {
+    font-style: italic;
+  }
 }
 
 .balance { text-wrap: balance; }
