@@ -1,0 +1,161 @@
+---
+import Button from './Button.astro';
+
+interface Slide {
+  img: string;
+  alt: string;
+  eyebrow: string;
+  heading: string;
+  body: string;
+}
+
+const slides: Slide[] = [
+  {
+    img: '/one.jpg',
+    alt: 'A team of five working through a plan together around a laptop in a bright meeting room',
+    eyebrow: 'HR, writing, and research for African businesses',
+    heading: 'One team for your people, your writing, and your research.',
+    body: 'From managing your team on the ground to writing your documents and researching your market, we handle it, every week, wherever you are.',
+  },
+  {
+    img: '/two.jpg',
+    alt: 'Two colleagues reviewing work together on a tablet at an office desk',
+    eyebrow: 'Fractional HR',
+    heading: 'We’re on the ground, so you don’t have to be.',
+    body: 'Masy hires, pays, and manages your African team on the ground, so you never have to wonder what’s happening while you’re not there.',
+  },
+  {
+    img: '/three.jpg',
+    alt: 'A consultant reviewing and stamping documents at a conference table',
+    eyebrow: 'Market Research',
+    heading: 'Raising capital and need real market data behind the pitch?',
+    body: 'Surveys and industry analysis on any sector in Africa, so your next decision is backed by real data, not guesswork.',
+  },
+  {
+    img: '/four.jpg',
+    alt: 'A writer drafting notes by hand next to her laptop',
+    eyebrow: 'Business Writing',
+    heading: 'Need documents that hold up in front of investors or partners?',
+    body: 'Whatever you need written, proposals, reports, or documents, we make sure it holds up in front of investors, partners, or clients.',
+  },
+];
+---
+<section class="hero-slides relative overflow-hidden" id="heroSlides" aria-label="What Masy Consulting does">
+  {slides.map((slide, i) => (
+    <div class:list={['hero-slide absolute inset-0', { active: i === 0 }]} data-slide={i}>
+      <img
+        src={slide.img}
+        alt={slide.alt}
+        class="absolute inset-0 w-full h-full object-cover"
+        loading={i === 0 ? 'eager' : 'lazy'}
+        fetchpriority={i === 0 ? 'high' : 'auto'}
+        decoding="async"
+      />
+      <div class="hero-overlay absolute inset-0" aria-hidden="true"></div>
+
+      <div class="relative z-[2] h-full max-w-content mx-auto px-5 sm:px-8 flex flex-col items-center justify-center text-center">
+        <p class="hero-eyebrow font-mono text-[12px] sm:text-[12.5px] font-semibold uppercase tracking-[0.06em] text-[#FFC876] flex items-center justify-center gap-2 mb-5">
+          {slide.eyebrow}
+        </p>
+        <h1 class="text-white font-sans font-extrabold text-[clamp(1.7rem,4vw,3rem)] leading-[1.15] tracking-[-0.025em] max-w-[min(760px,90%)] mb-5 text-balance">
+          {slide.heading}
+        </h1>
+        <p class="text-[#E4E1F0] text-[16px] sm:text-[17px] leading-[1.55] max-w-[min(560px,90%)] mb-8 sm:mb-9 text-pretty">
+          {slide.body}
+        </p>
+        <div class="flex flex-wrap justify-center items-center gap-4">
+          <Button href="/contact/" variant="primary">Book a discovery call</Button>
+          <Button href="/contact/" variant="outlineDark">WhatsApp us</Button>
+        </div>
+      </div>
+    </div>
+  ))}
+
+  <div class="hero-dots absolute bottom-7 left-1/2 -translate-x-1/2 z-[3] flex gap-2.5" id="heroDots"></div>
+</section>
+
+<style>
+  .hero-slides {
+    height: 640px;
+  }
+  @media (max-width: 640px) {
+    .hero-slides {
+      height: 560px;
+    }
+  }
+  .hero-slide {
+    opacity: 0;
+    transition: opacity 0.7s var(--ease-out-expo);
+  }
+  .hero-slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+  .hero-overlay {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(26, 19, 48, 0.38) 0%,
+      rgba(26, 19, 48, 0.74) 100%
+    );
+  }
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    content: '';
+    width: 20px;
+    height: 1.5px;
+    background: #ffc876;
+    flex: none;
+  }
+  .hero-dots :global(button) {
+    width: 28px;
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.35);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s;
+  }
+  .hero-dots :global(button.active) {
+    background: #ffffff;
+  }
+</style>
+
+<script>
+  const root = document.getElementById('heroSlides');
+  if (root) {
+    const slides = root.querySelectorAll<HTMLElement>('.hero-slide');
+    const dotsWrap = document.getElementById('heroDots')!;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let current = 0;
+    let timer: ReturnType<typeof setInterval> | undefined;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+    const dots = dotsWrap.querySelectorAll('button');
+
+    function goTo(i: number) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = i;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      resetTimer();
+    }
+    function next() {
+      goTo((current + 1) % slides.length);
+    }
+    function resetTimer() {
+      if (reduceMotion) return;
+      clearInterval(timer);
+      timer = setInterval(next, 6000);
+    }
+    resetTimer();
+  }
+</script>
