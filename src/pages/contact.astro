@@ -12,7 +12,7 @@ const services = [
 
 const inputClasses =
   'peer w-full bg-transparent border-0 border-b border-ink/20 px-0 py-3 text-[15.5px] text-ink placeholder:text-slate/40 focus:outline-none focus:ring-0 focus:border-orange transition-colors duration-300';
-const labelClasses = 'block font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate/70 mb-1';
+const labelClasses = 'block font-sans font-semibold text-[10.5px] uppercase tracking-[0.18em] text-slate/70 mb-1';
 ---
 <BaseLayout
   title="Book a Consultation"
@@ -24,7 +24,7 @@ const labelClasses = 'block font-mono text-[10.5px] uppercase tracking-[0.18em] 
         <Eyebrow>Start a conversation</Eyebrow>
         <h1 class="mt-7 font-display font-bold text-[clamp(2.3rem,5.2vw,3.9rem)] leading-[1.02] tracking-[-0.02em] text-ink text-balance">
           Book a free
-          <span class="italic font-display-soft text-indigo">consultation.</span>
+          <span class="text-indigo">consultation.</span>
         </h1>
         <p class="mt-7 text-[16px] text-slate leading-relaxed max-w-md text-pretty">
           Thirty minutes, no obligation. Tell us what's going on and we'll tell
@@ -34,7 +34,7 @@ const labelClasses = 'block font-mono text-[10.5px] uppercase tracking-[0.18em] 
 
         <dl class="mt-12 space-y-7 border-l border-ink/12 pl-7" data-reveal-stagger>
           <div>
-            <dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate/60">Email</dt>
+            <dt class="font-sans font-semibold text-[10.5px] uppercase tracking-[0.18em] text-slate/60">Email</dt>
             <dd class="mt-1">
               <a href={`mailto:${siteMeta.email}`} class="link-underline text-[16px] font-medium text-ink">
                 {siteMeta.email}
@@ -42,15 +42,15 @@ const labelClasses = 'block font-mono text-[10.5px] uppercase tracking-[0.18em] 
             </dd>
           </div>
           <div>
-            <dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate/60">Serving</dt>
+            <dt class="font-sans font-semibold text-[10.5px] uppercase tracking-[0.18em] text-slate/60">Serving</dt>
             <dd class="mt-1 text-[16px] font-medium text-ink">UK · US · Canada · Nigeria</dd>
           </div>
           <div>
-            <dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate/60">Response time</dt>
+            <dt class="font-sans font-semibold text-[10.5px] uppercase tracking-[0.18em] text-slate/60">Response time</dt>
             <dd class="mt-1 text-[16px] font-medium text-ink">Within two business days</dd>
           </div>
           <div>
-            <dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate/60">Elsewhere</dt>
+            <dt class="font-sans font-semibold text-[10.5px] uppercase tracking-[0.18em] text-slate/60">Elsewhere</dt>
             <dd class="mt-1">
               <a
                 href={siteMeta.linkedin}

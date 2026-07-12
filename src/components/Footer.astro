@@ -9,7 +9,7 @@ const year = new Date().getFullYear();
   <div class="max-w-content mx-auto px-5 sm:px-8 pt-20 pb-10 relative">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-16">
       <div class="lg:col-span-6">
-        <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-orange mb-6">Masy Consulting</p>
+        <p class="font-sans font-semibold text-[11px] uppercase tracking-[0.2em] text-orange mb-6">Masy Consulting</p>
         <p class="font-display text-[clamp(1.75rem,3.4vw,2.6rem)] leading-[1.15] text-white max-w-md text-balance">
           The professional partner for African businesses and diaspora entrepreneurs.
         </p>
@@ -27,7 +27,7 @@ const year = new Date().getFullYear();
       </div>
 
       <div class="lg:col-span-2">
-        <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-white/40 mb-5">Services</p>
+        <p class="font-sans font-semibold text-[11px] uppercase tracking-[0.2em] text-white/40 mb-5">Services</p>
         <ul class="space-y-3.5 text-[14.5px]">
           {navLinks.slice(0, 3).map((l) => (
             <li><a href={l.href} class="hover:text-orange transition-colors">{l.label}</a></li>
@@ -36,7 +36,7 @@ const year = new Date().getFullYear();
       </div>
 
       <div class="lg:col-span-2">
-        <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-white/40 mb-5">Firm</p>
+        <p class="font-sans font-semibold text-[11px] uppercase tracking-[0.2em] text-white/40 mb-5">Firm</p>
         <ul class="space-y-3.5 text-[14.5px]">
           <li><a href="/about/" class="hover:text-orange transition-colors">About</a></li>
           <li><a href="/insights/" class="hover:text-orange transition-colors">Insights</a></li>
@@ -45,7 +45,7 @@ const year = new Date().getFullYear();
       </div>
 
       <div class="lg:col-span-2">
-        <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-white/40 mb-5">Reach us</p>
+        <p class="font-sans font-semibold text-[11px] uppercase tracking-[0.2em] text-white/40 mb-5">Reach us</p>
         <ul class="space-y-3.5 text-[14.5px]">
           <li>
             <a href={`mailto:${siteMeta.email}`} class="hover:text-orange transition-colors text-[13px] whitespace-nowrap">

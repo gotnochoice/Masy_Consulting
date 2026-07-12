@@ -30,9 +30,6 @@ body {
   .font-display {
     font-weight: 700;
   }
-  .font-display-soft {
-    font-style: italic;
-  }
 }
 
 .balance { text-wrap: balance; }
