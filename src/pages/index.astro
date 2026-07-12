@@ -59,33 +59,41 @@ const steps = [
   <Marquee />
 
   <!-- ============ THE PROBLEM ============ -->
-  <section class="bg-white">
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-24 sm:py-32">
-      <div class="grid lg:grid-cols-12 gap-10">
-        <div class="lg:col-span-5" data-reveal>
-          <Eyebrow num="01">The problem, plainly</Eyebrow>
-          <h2 class="mt-6 font-display font-bold text-[clamp(2rem,4.2vw,3.1rem)] leading-[1.06] tracking-[-0.02em] text-ink text-balance">
-            Scaling across borders creates three very specific problems.
+  <section class="bg-paper">
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-24">
+      <div class="flex items-baseline justify-between gap-4 pb-5 mb-12 border-b border-ink/10" data-reveal>
+        <span class="flex items-baseline gap-2.5 text-[13px] font-semibold uppercase tracking-[0.05em] text-orange-deep">
+          <span class="font-mono font-semibold text-slate/50">01</span>
+          The problem, plainly
+        </span>
+        <span class="font-mono text-[12px] tracking-[0.05em] text-slate/50">01 / 06</span>
+      </div>
+
+      <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-start">
+        <div data-reveal>
+          <h2 class="font-display font-extrabold text-[clamp(2rem,3.6vw,2.9rem)] leading-[1.12] tracking-[-0.025em] text-ink mb-5">
+            Scaling across borders creates three
+            <span class="whitespace-nowrap"><span class="sig">very specific problems<svg viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8c50-7 220-7 296 4"/></svg></span>.</span>
           </h2>
-          <p class="mt-6 text-[15.5px] text-slate leading-relaxed max-w-md text-pretty">
+          <p class="text-[16.5px] text-slate leading-relaxed max-w-[440px] text-pretty">
             They usually get patched by a cousin who writes well, a friend who
             "does HR," and a few late nights on Google. That works, until the
             business gets serious.
           </p>
         </div>
 
-        <div class="lg:col-span-6 lg:col-start-7">
-          <div class="space-y-0 divide-y divide-ink/10" data-reveal-stagger>
-            {problems.map((p) => (
-              <article class="py-9 first:pt-0 last:pb-0 grid grid-cols-[auto_1fr] gap-x-6">
-                <span class="ghost-num font-display text-[clamp(2.6rem,5vw,4rem)] select-none" aria-hidden="true">{p.num}</span>
+        <div class="flex flex-col" data-reveal-stagger>
+          {problems.map((p) => (
+            <article class="py-7 first:pt-1 border-t border-ink/10">
+              <div class="flex items-start gap-[22px]">
+                <span class="font-mono font-semibold text-[40px] leading-none tracking-[-0.01em] text-indigo/15 flex-none w-14 select-none" aria-hidden="true">{p.num}</span>
                 <div>
-                  <h3 class="font-display font-bold text-[22px] sm:text-[24px] text-ink leading-snug">{p.title}</h3>
-                  <p class="mt-2.5 text-[15px] text-slate leading-relaxed text-pretty max-w-lg">{p.body}</p>
+                  <h3 class="font-display font-extrabold text-[1.28rem] tracking-[-0.02em] text-ink mb-2">{p.title}</h3>
+                  <p class="text-[14.5px] text-slate leading-relaxed max-w-[420px] text-pretty">{p.body}</p>
                 </div>
-              </article>
-            ))}
-          </div>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </div>
@@ -228,3 +236,43 @@ const steps = [
     secondaryHref="/insights/"
   />
 </BaseLayout>
+
+<style>
+  /* Hand-drawn underline on the problem headline; the stroke draws
+     itself when the reveal engine marks the column in view. */
+  .sig {
+    position: relative;
+    display: inline-block;
+    color: theme('colors.indigo.DEFAULT');
+  }
+  .sig svg {
+    position: absolute;
+    left: -2%;
+    bottom: -6px;
+    width: 104%;
+    height: 16px;
+    overflow: visible;
+  }
+  .sig path {
+    stroke: theme('colors.orange.DEFAULT');
+    stroke-width: 3.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-dasharray: 320;
+    stroke-dashoffset: 320;
+  }
+  .is-inview .sig path {
+    animation: sig-draw 1s var(--ease-out-expo) 0.3s forwards;
+  }
+  @keyframes sig-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sig path {
+      stroke-dashoffset: 0;
+      animation: none;
+    }
+  }
+</style>
