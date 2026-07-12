@@ -1,85 +1,64 @@
 ---
-import { navLinks, siteMeta } from '../data/site';
+import Logo from './Logo.astro';
+import Marker from './Marker.astro';
+import { siteMeta } from '../data/site';
+
+interface Props {
+  marker?: { idx: string; label: string; count: string };
+}
+const { marker } = Astro.props;
 
 const year = new Date().getFullYear();
 ---
-<footer class="bg-ink text-white/75 relative overflow-hidden dark-section">
-  <div class="absolute inset-0 grain-overlay"></div>
+<footer class="bg-white border-t border-[#E7E4DC]">
+  <div class="max-w-content mx-auto px-5 sm:px-8 pt-[52px] pb-9">
+    {marker && <Marker idx={marker.idx} label={marker.label} count={marker.count} class="mb-8" />}
 
-  <div class="max-w-content mx-auto px-5 sm:px-8 pt-20 pb-10 relative">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-16">
-      <div class="lg:col-span-6">
-        <p class="font-sans font-semibold text-[11px] uppercase tracking-[0.2em] text-orange mb-6">Masy Consulting</p>
-        <p class="font-display text-[clamp(1.75rem,3.4vw,2.6rem)] leading-[1.15] text-white max-w-md text-balance">
-          The professional partner for African businesses and diaspora entrepreneurs.
+    <div class="grid grid-cols-2 md:grid-cols-[1.3fr_1fr_1fr_1.2fr] gap-8 mb-8">
+      <div class="col-span-2 md:col-span-1">
+        <Logo size="sm" class="mb-3" />
+        <p class="text-[13px] text-slate/80 leading-relaxed max-w-[280px]">
+          One team for your people, your writing, and your research, wherever
+          you are.
         </p>
-        <a
-          href={siteMeta.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2.5 mt-8 text-sm font-medium text-white hover:text-orange transition-colors"
-        >
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z" />
-          </svg>
-          Follow on LinkedIn
-        </a>
       </div>
 
-      <div class="lg:col-span-2">
-        <p class="font-sans font-semibold text-[11px] uppercase tracking-[0.2em] text-white/40 mb-5">Services</p>
-        <ul class="space-y-3.5 text-[14.5px]">
-          {navLinks.slice(0, 3).map((l) => (
-            <li><a href={l.href} class="hover:text-orange transition-colors">{l.label}</a></li>
-          ))}
+      <div>
+        <h5 class="text-[12px] font-bold uppercase tracking-[0.06em] text-indigo mb-3">What we do</h5>
+        <ul class="space-y-2 text-[13.5px] text-slate">
+          <li><a href="/fractional-hr/" class="hover:text-indigo transition-colors">Fractional HR</a></li>
+          <li><a href="/industry-analysis/" class="hover:text-indigo transition-colors">Market Research</a></li>
+          <li><a href="/business-writing/" class="hover:text-indigo transition-colors">Business Writing</a></li>
         </ul>
       </div>
 
-      <div class="lg:col-span-2">
-        <p class="font-sans font-semibold text-[11px] uppercase tracking-[0.2em] text-white/40 mb-5">Firm</p>
-        <ul class="space-y-3.5 text-[14.5px]">
-          <li><a href="/about/" class="hover:text-orange transition-colors">About</a></li>
-          <li><a href="/insights/" class="hover:text-orange transition-colors">Insights</a></li>
-          <li><a href="/contact/" class="hover:text-orange transition-colors">Contact</a></li>
+      <div>
+        <h5 class="text-[12px] font-bold uppercase tracking-[0.06em] text-indigo mb-3">Company</h5>
+        <ul class="space-y-2 text-[13.5px] text-slate">
+          <li><a href="/#how" class="hover:text-indigo transition-colors">How it works</a></li>
+          <li><a href="/about/" class="hover:text-indigo transition-colors">About</a></li>
+          <li><a href="/insights/" class="hover:text-indigo transition-colors">Insights</a></li>
+          <li><a href="/contact/" class="hover:text-indigo transition-colors">Book a call</a></li>
         </ul>
       </div>
 
-      <div class="lg:col-span-2">
-        <p class="font-sans font-semibold text-[11px] uppercase tracking-[0.2em] text-white/40 mb-5">Reach us</p>
-        <ul class="space-y-3.5 text-[14.5px]">
+      <div>
+        <h5 class="text-[12px] font-bold uppercase tracking-[0.06em] text-indigo mb-3">Contact</h5>
+        <ul class="space-y-2 text-[13.5px] text-slate">
+          <li><a href={`mailto:${siteMeta.email}`} class="hover:text-indigo transition-colors">{siteMeta.email}</a></li>
+          <li><a href="/contact/" class="hover:text-indigo transition-colors">WhatsApp</a></li>
           <li>
-            <a href={`mailto:${siteMeta.email}`} class="hover:text-orange transition-colors text-[13px] whitespace-nowrap">
-              {siteMeta.email}
+            <a href={siteMeta.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-indigo transition-colors">
+              LinkedIn
             </a>
           </li>
-          <li class="text-white/45 text-[13.5px] leading-relaxed">
-            UK · US · Canada · Nigeria
-          </li>
         </ul>
       </div>
     </div>
 
-    <!-- Oversized wordmark -->
-    <div class="border-t border-white/10 pt-10 select-none" aria-hidden="true">
-      <div class="flex items-end gap-5">
-        <img src="/logo-mark.png" alt="" class="hidden sm:block w-[clamp(3rem,7vw,6rem)] mb-[1.2vw] opacity-90" />
-        <p class="font-display font-semibold text-[clamp(4rem,14vw,13rem)] leading-[0.85] tracking-[-0.03em] text-white/[0.07] whitespace-nowrap">
-          Masy
-        </p>
-      </div>
-    </div>
-
-    <div class="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[13px] text-white/40">
-      <p>&copy; {year} Masy Consulting. All rights reserved.</p>
-      <p>
-        Looking for academic writing or tutoring? That's
-        <a
-          href="https://masyacademy.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-white/65 hover:text-orange transition-colors underline underline-offset-2 decoration-white/25"
-        >Masy Academy</a>, our sister company.
-      </p>
+    <div class="flex flex-wrap justify-between gap-2.5 pt-[22px] border-t border-[#E7E4DC] text-[12.5px] text-slate/60">
+      <span>Masy Consulting Limited · RC No. 8189749, incorporated in Nigeria</span>
+      <span>&copy; {year} Masy Consulting</span>
     </div>
   </div>
 </footer>

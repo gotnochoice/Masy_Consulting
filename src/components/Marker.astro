@@ -1,0 +1,20 @@
+---
+interface Props {
+  idx: string;
+  label: string;
+  count: string;
+  tone?: 'light' | 'dark';
+  class?: string;
+}
+const { idx, label, count, tone = 'light', class: className = '' } = Astro.props;
+const border = tone === 'dark' ? 'border-white/15' : 'border-ink/10';
+const labelColor = tone === 'dark' ? 'text-[#FFC876]' : 'text-orange-deep';
+const dimColor = tone === 'dark' ? 'text-white/40' : 'text-slate/50';
+---
+<div class:list={['flex items-baseline justify-between gap-4 pb-5 mb-11 border-b', border, className]} data-reveal>
+  <span class:list={['flex items-baseline gap-2.5 text-[13px] font-semibold uppercase tracking-[0.05em]', labelColor]}>
+    <span class:list={['font-mono font-semibold tracking-[0.02em]', dimColor]}>{idx}</span>
+    {label}
+  </span>
+  <span class:list={['font-mono text-[12px] tracking-[0.05em]', dimColor]}>{count}</span>
+</div>
