@@ -1,0 +1,21 @@
+---
+interface Step {
+  title: string;
+  body: string;
+}
+interface Props {
+  steps: Step[];
+}
+const { steps } = Astro.props;
+---
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" data-reveal-stagger>
+  {steps.map((step, i) => (
+    <div class="group bg-white border border-ink/12 rounded-[1rem] p-6 transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:shadow-[0_24px_44px_-28px_rgba(26,19,48,0.28)] hover:border-indigo-light">
+      <span class="w-[34px] h-[34px] rounded-full bg-indigo text-white font-mono font-bold text-[13px] flex items-center justify-center mb-4 transition-colors duration-300 ease-out-quart group-hover:bg-orange group-hover:text-ink">
+        {String(i + 1).padStart(2, '0')}
+      </span>
+      <h4 class="font-display font-bold text-[1rem] text-ink tracking-[-0.01em] mb-1.5">{step.title}</h4>
+      <p class="text-[13px] text-slate leading-relaxed">{step.body}</p>
+    </div>
+  ))}
+</div>

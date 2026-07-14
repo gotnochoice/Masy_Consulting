@@ -1,0 +1,29 @@
+---
+interface Item {
+  icon: string;
+  title: string;
+  body: string;
+  badge?: string;
+}
+interface Props {
+  items: Item[];
+  columns?: 2 | 3;
+}
+const { items, columns = 2 } = Astro.props;
+const colClass = columns === 3 ? 'md:grid-cols-3' : 'sm:grid-cols-2';
+---
+<div class:list={['grid gap-5', colClass]} data-reveal-stagger>
+  {items.map((item) => (
+    <div class="group bg-white border border-ink/12 rounded-[1rem] p-7 flex flex-col gap-3 transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:shadow-[0_24px_44px_-28px_rgba(26,19,48,0.28)] hover:border-indigo-light">
+      <div
+        class="w-[42px] h-[42px] rounded-[9px] bg-[#EEEAFB] text-indigo flex items-center justify-center shrink-0 transition-all duration-300 ease-out-quart group-hover:scale-110 group-hover:-rotate-[4deg] group-hover:bg-indigo group-hover:text-white"
+        set:html={item.icon}
+      />
+      {item.badge && (
+        <span class="font-mono text-[10.5px] font-semibold uppercase tracking-[0.05em] text-orange -mb-1">{item.badge}</span>
+      )}
+      <h3 class="font-display font-bold text-[1.1rem] text-ink">{item.title}</h3>
+      <p class="text-[14px] text-slate leading-relaxed max-w-[400px]">{item.body}</p>
+    </div>
+  ))}
+</div>

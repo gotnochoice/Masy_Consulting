@@ -1,0 +1,19 @@
+---
+interface Item {
+  title: string;
+  body: string;
+}
+interface Props {
+  items: Item[];
+}
+const { items } = Astro.props;
+---
+<div class="grid sm:grid-cols-2 gap-5" data-reveal-stagger>
+  {items.map((item, i) => (
+    <div class="bg-white border border-ink/12 rounded-[1rem] p-7 flex flex-col gap-2.5 transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:shadow-[0_24px_48px_-30px_rgba(40,19,152,0.28)] hover:border-indigo-light">
+      <span class="font-mono text-[12.5px] font-semibold text-slate/50">{String(i + 1).padStart(2, '0')}</span>
+      <h3 class="font-display font-bold text-[1.15rem] text-ink">{item.title}</h3>
+      <p class="text-[14px] text-slate leading-relaxed">{item.body}</p>
+    </div>
+  ))}
+</div>
