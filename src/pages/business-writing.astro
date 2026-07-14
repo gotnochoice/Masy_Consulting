@@ -1,23 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PillarHero from '../components/PillarHero.astro';
-import Eyebrow from '../components/Eyebrow.astro';
-import Qualifier from '../components/Qualifier.astro';
-import ProcessSteps from '../components/ProcessSteps.astro';
-import PricingNote from '../components/PricingNote.astro';
-import CTASection from '../components/CTASection.astro';
+import Button from '../components/Button.astro';
 
 const startupItems = [
-  'Pitch decks',
-  'Business proposals',
-  'Financial model projects, built with our own financial modelling tool',
+  { label: 'Pitch decks' },
+  { label: 'Business proposals' },
+  { label: 'Financial model projects', note: 'Built with FounderDeck, Masy’s own modelling tool' },
 ];
 
 const smeItems = [
-  'Business proposals',
-  'Ghostwriting of articles and blogs',
-  'Market research write-ups',
-  'Grant and proposal review',
+  { label: 'Business proposals' },
+  { label: 'Ghostwriting, articles and blogs' },
+  { label: 'Market research write-ups' },
+  { label: 'Grant and proposal review' },
+];
+
+const steps = [
+  { title: 'Book a discovery call', body: 'Tell us what you need, a pitch deck, a proposal, or ongoing writing support.' },
+  { title: 'We scope it', body: 'Startup or SME track, a clear deliverable list, and what it costs, no long contracts.' },
+  { title: 'We write it', body: 'Drafted, reviewed, and refined until it’s ready to send.' },
+  { title: 'You send it', body: 'Confident it holds up wherever it lands.' },
 ];
 
 const faqs = [
@@ -31,225 +33,189 @@ const faqs = [
   },
   {
     q: 'What’s a financial model project?',
-    a: 'A financial model built using our own modelling tool, so the numbers behind your pitch deck hold up to real scrutiny.',
+    a: 'A financial model built using FounderDeck, Masy’s own modelling tool, so the numbers behind your pitch deck hold up to real scrutiny.',
   },
-];
-
-const steps = [
-  { title: 'Brief & source material', body: 'Send what you have, even rough notes or an old deck. We work from what’s real, not a blank page.' },
-  { title: 'Structure & argument', body: 'Before we touch a sentence, we fix the argument: what the reader needs to believe, in what order.' },
-  { title: 'Draft & review round', body: 'One structured round of revisions, so the document gets sharper without becoming an open-ended thread.' },
-  { title: 'Final delivery', body: 'Formatted, proofed, and ready for the specific reader who has to say yes.' },
 ];
 ---
 <BaseLayout
   title="Business Writing — Proposals, Pitch Decks & Corporate Reports"
-  description="Masy Consulting writes the business proposals, pitch decks, company profiles, and corporate reports that open doors for African-founded and diaspora-owned businesses. Not academic writing."
+  description="Masy Consulting writes the business proposals, pitch decks, and financial models that carry the same quality as the business behind them. For founders raising capital and SMEs alike."
 >
-  <PillarHero
-    number="02"
-    label="Business Writing"
-    title="The document that gets read"
-    titleAccent="past the first page."
-    lead="Your work is good. The proposal that describes it isn't always. Whether you're raising a round or running an SME day to day, Masy writes the documents that carry the same quality as the business behind them, so a good deal doesn't die on paper."
-    facts={[
-      ['Tracks', 'Startup & SME'],
-      ['Engagement', 'Per document'],
-      ['Pricing', 'Fixed, agreed upfront'],
-      ['Revisions', 'One structured round'],
-      ['Rush work', 'Available'],
-    ]}
-  />
-
-  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
-    <div data-reveal>
-      <Eyebrow num="01">What's included</Eyebrow>
-      <h2 class="mt-6 font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
-        Two tracks, one standard.
-      </h2>
-      <p class="mt-4 text-[15.5px] text-slate max-w-xl leading-relaxed text-pretty">
-        What you need depends on where your business is right now. Tell us on
-        the discovery call, and we'll scope the right one, or a mix of both.
+  <section class="pt-16 sm:pt-20 pb-16 sm:pb-[70px]">
+    <div class="max-w-content mx-auto px-5 sm:px-8">
+      <p class="font-mono text-[13px] font-bold uppercase tracking-[0.08em] text-orange mb-5">Business Writing</p>
+      <h1 class="font-display font-extrabold text-[clamp(2.6rem,6vw,4.8rem)] leading-[0.98] tracking-[-0.03em] text-ink max-w-[900px] mb-7">
+        Your paperwork should read as sharp as your <span class="sig">business<svg viewBox="0 0 260 18" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9c45-8 190-8 256 5"/></svg></span>.
+      </h1>
+      <p class="text-[19px] max-w-[520px] mb-9 text-slate">
+        Whether you're raising a round or running an SME, we write it, model it, and make sure it's ready before it needs to be.
       </p>
-    </div>
-    <div class="mt-12 grid md:grid-cols-2 gap-6" data-reveal-stagger>
-      <div class="relative overflow-hidden rounded-[1.5rem] bg-ink text-white p-8 sm:p-9 flex flex-col gap-4 dark-section">
-        <div class="absolute inset-0 grain-overlay"></div>
-        <div class="relative flex flex-col gap-4 flex-1">
-          <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-orange">For founders raising capital</p>
-          <h3 class="font-display font-bold text-[26px] text-white -mt-1">Startup</h3>
-          <p class="text-[14.5px] text-white/65 leading-relaxed">Documents that need to survive a pitch meeting, not just look good in a folder.</p>
-          <ul class="mt-1 space-y-2.5">
-            {startupItems.map((item) => (
-              <li class="flex items-start gap-3 text-[14.5px] text-white/80 leading-relaxed">
-                <span class="mt-[9px] w-1.5 h-1.5 rounded-full bg-orange shrink-0"></span>
-                {item}
-              </li>
-            ))}
-          </ul>
-          <p class="mt-auto pt-4 border-t border-white/15 text-[12.5px] text-white/45">Best for a founder scoping a raise in the next few months.</p>
-        </div>
-      </div>
-      <div class="rounded-[1.5rem] bg-white border border-ink/12 p-8 sm:p-9 flex flex-col gap-4">
-        <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-orange-deep">For businesses that need it ongoing</p>
-        <h3 class="font-display font-bold text-[26px] text-ink -mt-1">SME</h3>
-        <p class="text-[14.5px] text-slate leading-relaxed">Recurring written work for a business that doesn't stop needing it after the first proposal.</p>
-        <ul class="mt-1 space-y-2.5">
-          {smeItems.map((item) => (
-            <li class="flex items-start gap-3 text-[14.5px] text-slate leading-relaxed">
-              <span class="mt-[9px] w-1.5 h-1.5 rounded-full bg-orange shrink-0"></span>
-              {item}
-            </li>
-          ))}
-        </ul>
-        <p class="mt-auto pt-4 border-t border-ink/10 text-[12.5px] text-slate/70">Best for a business that needs a steady stream of sharp written material.</p>
-      </div>
-    </div>
-    <p class="mt-10 text-[14px] text-slate/80 max-w-xl leading-relaxed" data-reveal>
-      Masy Consulting does not offer academic writing, essays, or tutoring of
-      any kind. That work belongs entirely to
-      <a href="https://masyacademy.com" target="_blank" rel="noopener noreferrer" class="link-underline text-ink font-medium">Masy Academy</a>,
-      a separate company.
-    </p>
-  </section>
-
-  <section class="relative bg-ink text-white overflow-hidden dark-section">
-    <div class="absolute inset-0 grain-overlay"></div>
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28 relative">
-      <div class="max-w-3xl" data-reveal>
-        <Eyebrow light num="02">Why this isn't a template job</Eyebrow>
-        <p class="mt-7 font-display text-[clamp(1.7rem,3.8vw,2.9rem)] leading-[1.15] tracking-[-0.015em] text-balance">
-          Most writing shops compete on speed and price.
-          <span class="text-orange">We compete on whether it works.</span>
-        </p>
-        <p class="mt-7 text-white/65 text-[16px] leading-relaxed max-w-2xl text-pretty">
-          Fast and cheap is fine for a document you'll use once and forget.
-          It's not fine for the proposal that has to convince someone with the
-          power to fund you, hire you, or sign a five-year contract. Where
-          useful, your document draws on Masy's own market research, so the
-          claims in your pitch are backed by more than confidence.
-        </p>
+      <div class="flex flex-wrap gap-4">
+        <Button href="/contact/" variant="primary" size="lg">Book a discovery call</Button>
+        <Button href="/contact/" variant="outline" size="lg">WhatsApp us</Button>
       </div>
     </div>
   </section>
 
-  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
-    <div data-reveal>
-      <Eyebrow num="03">Fit check</Eyebrow>
-      <h2 class="mt-6 font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
-        Built for a specific document. Worth checking before you send a brief.
-      </h2>
-    </div>
-    <div class="mt-12">
-      <Qualifier
-        fit={[
-          'You have a real proposal, pitch, or report due, and the deadline is closer than you’d like.',
-          'People are impressed by your business in person, and the paperwork hasn’t caught up yet.',
-          'You want a document that holds up under real scrutiny, not just one that looks clean.',
-        ]}
-        notFit={[
-          'You need academic writing, essays, or tutoring. That’s Masy Academy, a separate company.',
-          'You want the lowest possible price with no review round. We build one in because it protects the outcome.',
-          'You need a high volume of near-identical documents on a factory timeline. We work on a smaller number, properly.',
-        ]}
-      />
-    </div>
-  </section>
-
-  <section class="bg-white border-y border-ink/10">
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
-      <div data-reveal>
-        <Eyebrow num="04">How it works</Eyebrow>
-        <h2 class="mt-6 font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
-          From a messy brief to a document you'd send to anyone.
-        </h2>
-      </div>
-      <div class="mt-14">
-        <ProcessSteps steps={steps} />
-      </div>
-    </div>
-  </section>
-
-  <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
-    <PricingNote
-      model="Business writing is priced per document, scoped to length and complexity once we've seen your brief."
-      points={[
-        'Fixed price agreed before we start writing',
-        'One structured revision round included',
-        'Rush turnaround available for tight deadlines',
-        'Retainer pricing available for recurring reporting',
-      ]}
+  <div class="relative h-[240px] sm:h-[360px]">
+    <img
+      src="/four.jpg"
+      alt="A consultant writing in a notebook beside her laptop and financial charts"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
     />
+  </div>
+
+  <section class="grid md:grid-cols-2" data-reveal-stagger>
+    <div class="bg-indigo text-white py-14 sm:py-[72px] px-6 sm:px-14">
+      <span class="block font-mono text-[12.5px] font-bold uppercase tracking-[0.06em] opacity-70 mb-[18px]">For founders raising capital</span>
+      <h2 class="font-display font-bold text-[clamp(1.9rem,3vw,2.6rem)] text-white mb-4">Startup</h2>
+      <p class="text-[16px] max-w-[380px] mb-7 text-[#D9D3F2]">Documents that need to survive a pitch meeting, not just look good in a folder.</p>
+      <ul class="flex flex-col gap-4">
+        {startupItems.map((item, i) => (
+          <li class:list={['text-[1.15rem] font-bold tracking-[-0.01em] pb-4', i < startupItems.length - 1 && 'border-b-[1.5px] border-white/20']}>
+            {item.label}
+            {item.note && <span class="block text-[13px] font-normal mt-1 text-[#B9AEE0]">{item.note}</span>}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="bg-orange text-ink py-14 sm:py-[72px] px-6 sm:px-14">
+      <span class="block font-mono text-[12.5px] font-bold uppercase tracking-[0.06em] opacity-70 mb-[18px]">For businesses that need it ongoing</span>
+      <h2 class="font-display font-bold text-[clamp(1.9rem,3vw,2.6rem)] text-ink mb-4">SME</h2>
+      <p class="text-[16px] max-w-[380px] mb-7 text-ink/80">Recurring written work for a business that doesn't stop needing it after the first proposal.</p>
+      <ul class="flex flex-col gap-4">
+        {smeItems.map((item, i) => (
+          <li class:list={['text-[1.15rem] font-bold tracking-[-0.01em] pb-4', i < smeItems.length - 1 && 'border-b-[1.5px] border-ink/20']}>
+            {item.label}
+          </li>
+        ))}
+      </ul>
+    </div>
   </section>
 
-  <section class="bg-paper">
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
+  <p class="max-w-content mx-auto px-5 sm:px-8 mt-10 text-[14px] text-slate/80 max-w-xl leading-relaxed" data-reveal>
+    Masy Consulting does not offer academic writing, essays, or tutoring of
+    any kind. That work belongs entirely to
+    <a href="https://masyacademy.com" target="_blank" rel="noopener noreferrer" class="link-underline text-ink font-medium">Masy Academy</a>,
+    a separate company.
+  </p>
+
+  <section class="py-24">
+    <div class="max-w-content mx-auto px-5 sm:px-8">
+      <h2 class="font-display font-bold text-[clamp(1.9rem,3.4vw,2.7rem)] max-w-[640px] mb-14 text-ink" data-reveal>
+        Four steps, start to finish.
+      </h2>
       <div data-reveal>
-        <Eyebrow num="05">FAQ</Eyebrow>
-        <h2 class="mt-6 font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
-          Questions people ask before booking a call.
-        </h2>
+        {steps.map((step, i) => (
+          <div class:list={['grid grid-cols-[60px_1fr] sm:grid-cols-[100px_1fr] gap-8 items-start py-[30px] border-t border-ink/10', i === steps.length - 1 && 'border-b']}>
+            <span class="font-mono text-[22px] font-bold text-orange">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3 class="font-display font-bold text-[1.3rem] text-ink mb-1.5">{step.title}</h3>
+              <p class="text-[15px] text-slate max-w-[480px]">{step.body}</p>
+            </div>
+          </div>
+        ))}
       </div>
-      <div class="mt-12 max-w-[760px] border-t border-ink/10" data-reveal>
+    </div>
+  </section>
+
+  <section class="pb-24">
+    <div class="max-w-content mx-auto px-5 sm:px-8">
+      <div class="max-w-[720px] border-t border-ink/10" data-reveal>
         {faqs.map((f) => (
-          <details class="faq-item border-b border-ink/10">
-            <summary class="flex items-center justify-between gap-5 py-6 px-1 cursor-pointer font-semibold text-[17px] tracking-[-0.01em] text-ink">
+          <details class="plain-faq border-b border-ink/10">
+            <summary class="list-none cursor-pointer flex justify-between gap-5 py-[26px] px-1 font-display font-bold text-ink text-[18px]">
               {f.q}
-              <span class="plus" aria-hidden="true"></span>
+              <span class="faq-plus shrink-0"></span>
             </summary>
-            <p class="px-1 pb-6 text-[15px] text-slate leading-relaxed max-w-[640px]">{f.a}</p>
+            <p class="px-1 pb-[26px] text-[15px] max-w-[600px] text-slate">{f.a}</p>
           </details>
         ))}
       </div>
     </div>
   </section>
 
-  <CTASection
-    heading="Let's take this off your plate."
-    body="Book a discovery call, or message us on WhatsApp, whichever's easier."
-    primaryLabel="Book a discovery call"
-    secondaryLabel="WhatsApp us"
-    secondaryHref="/contact/"
-  />
+  <section id="contact" class="bg-ink py-16 sm:py-[88px] text-center">
+    <div class="max-w-content mx-auto px-5 sm:px-8">
+      <h2 class="font-display font-bold text-[clamp(2rem,4vw,3rem)] text-white mb-[18px]">Let's take this off your plate.</h2>
+      <p class="text-[#B9B4C9] text-[16px] mb-8">Book a discovery call, or message us on WhatsApp, whichever's easier.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <Button href="/contact/" variant="primary" size="lg">Book a discovery call</Button>
+        <Button href="/contact/" variant="outlineDark" size="lg">WhatsApp us</Button>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
-  .faq-item summary {
-    list-style: none;
+  .sig {
+    position: relative;
+    display: inline-block;
+    color: var(--indigo, #281398);
   }
-  .faq-item summary::-webkit-details-marker {
+  .sig svg {
+    position: absolute;
+    left: -2%;
+    bottom: -8px;
+    width: 104%;
+    height: 18px;
+    overflow: visible;
+  }
+  .sig path {
+    stroke: #fb961f;
+    stroke-width: 4;
+    fill: none;
+    stroke-linecap: round;
+    stroke-dasharray: 340;
+    stroke-dashoffset: 340;
+    animation: draw 1s var(--ease-out-expo) 0.3s forwards;
+  }
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  .plain-faq summary::-webkit-details-marker {
     display: none;
   }
-  .faq-item .plus {
-    flex: none;
+  .faq-plus {
     width: 22px;
     height: 22px;
     position: relative;
   }
-  .faq-item .plus::before,
-  .faq-item .plus::after {
+  .faq-plus::before,
+  .faq-plus::after {
     content: '';
     position: absolute;
-    background: theme('colors.indigo.DEFAULT');
+    background: theme('colors.ink');
     border-radius: 2px;
     transition: transform 0.25s var(--ease-out-expo), opacity 0.25s;
   }
-  .faq-item .plus::before {
+  .faq-plus::before {
     left: 0;
     top: 50%;
     width: 100%;
     height: 2px;
     transform: translateY(-50%);
   }
-  .faq-item .plus::after {
+  .faq-plus::after {
     top: 0;
     left: 50%;
     width: 2px;
     height: 100%;
     transform: translateX(-50%);
   }
-  .faq-item[open] .plus::after {
+  .plain-faq[open] .faq-plus::after {
     transform: translateX(-50%) rotate(90deg);
     opacity: 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sig path {
+      stroke-dashoffset: 0;
+      animation: none;
+    }
   }
 </style>

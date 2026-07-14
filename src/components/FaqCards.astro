@@ -1,0 +1,34 @@
+---
+interface Item {
+  q: string;
+  a: string;
+}
+interface Props {
+  items: Item[];
+}
+const { items } = Astro.props;
+---
+<div class="max-w-[700px] mx-auto flex flex-col gap-2.5" data-reveal>
+  {items.map((item) => (
+    <details class="faq-card bg-white border-[1.33px] border-indigo-light rounded-[14px] shadow-[0_4px_20px_rgba(47,50,213,0.1)] overflow-hidden">
+      <summary class="list-none cursor-pointer flex items-center justify-between gap-5 px-6 py-5 font-display font-bold text-ink text-[15px]">
+        {item.q}
+        <span class="faq-icon shrink-0 w-8 h-8 rounded-full bg-indigo-light flex items-center justify-center transition-transform duration-300 ease-out-quart">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 5l5 5 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+      </summary>
+      <p class="px-6 pb-6 text-[14.5px] text-slate leading-relaxed max-w-[600px]">{item.a}</p>
+    </details>
+  ))}
+</div>
+
+<style>
+  .faq-card summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-card[open] .faq-icon {
+    transform: rotate(180deg);
+  }
+</style>
