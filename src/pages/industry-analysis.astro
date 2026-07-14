@@ -3,27 +3,56 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PillarHero from '../components/PillarHero.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import ServiceGrid from '../components/ServiceGrid.astro';
-import Qualifier from '../components/Qualifier.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
 import PricingNote from '../components/PricingNote.astro';
 import CTASection from '../components/CTASection.astro';
 
 const included = [
   {
-    title: 'Market entry & expansion research',
-    body: 'A grounded answer to whether a market, city, or segment is actually worth entering, before you commit capital to finding out.',
+    title: 'Desk research & analysis',
+    body: 'Industry overviews, market sizing, and competitive landscapes, built from existing data and sharpened into something you can actually act on.',
   },
   {
-    title: 'Industry reports for investment decisions',
-    body: 'The report that gets attached to the funding application or sits in front of your board when a real decision is on the table.',
+    title: 'Primary & field research',
+    body: 'Our own team conducts the interviews, in-person surveys, and data collection, in Nigeria or other African markets, for when you need original data.',
   },
   {
-    title: 'Custom market surveys',
-    body: 'A survey built around your specific question, fielded properly, not a recycled template with your logo on it.',
+    title: 'Written reports',
+    body: 'Findings written up as a report you can hand straight to investors or partners, by the same team, no separate vendor required.',
+  },
+];
+
+const whoFor = [
+  {
+    title: 'Raising a round',
+    body: 'You need market sizing or a competitive landscape to back up the numbers in your pitch deck, not just assumptions.',
   },
   {
-    title: 'Competitive landscape mapping',
-    body: 'A clear view of who is already fighting for the customer you want, including the informal players no database lists.',
+    title: 'Entering a new market',
+    body: 'You’re expanding into Africa, or into a new African market, and need real data before you commit resources.',
+  },
+  {
+    title: 'Only have desk data',
+    body: 'You’ve got reports and secondary sources, but nobody has actually gone out and verified any of it on the ground.',
+  },
+  {
+    title: 'Tried buying reports off the shelf',
+    body: 'Generic industry reports didn’t answer the specific question you actually needed answered.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'What’s the difference between desk research and primary research?',
+    a: 'Desk research works from data that already exists: reports, public sources, existing surveys. Primary research means our own team goes out and collects new data through interviews or surveys. We’ll help you figure out which one actually answers your question on the discovery call.',
+  },
+  {
+    q: 'Do you only cover Nigeria?',
+    a: 'No. Nigeria is where our fieldwork team is based, but we cover other African markets too, scoped on the discovery call depending on what you need.',
+  },
+  {
+    q: 'Can this be delivered as something we can hand to investors?',
+    a: 'Yes. Findings are written up as a proper report by the same team that ran the research, not handed off to a separate writer who has to be re-briefed from scratch.',
   },
 ];
 
@@ -86,24 +115,19 @@ const steps = [
 
   <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
     <div data-reveal>
-      <Eyebrow num="03">Fit check</Eyebrow>
+      <Eyebrow num="03">Who this is for</Eyebrow>
       <h2 class="mt-6 font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
-        Built for a specific question. Worth checking before you scope a project.
+        If any of this sounds familiar.
       </h2>
     </div>
-    <div class="mt-12">
-      <Qualifier
-        fit={[
-          'You’re about to enter a new country, city, or customer segment and don’t want to guess.',
-          'An investor, lender, or board will ask for your evidence on a market, and you don’t have a strong answer yet.',
-          'You want a straight answer, even if that answer is “don’t enter this market yet.”',
-        ]}
-        notFit={[
-          'You need a continent-wide, syndicated panel study. That’s a larger scope than we run at SME pace.',
-          'You want research that confirms a decision you’ve already made, regardless of what the data shows.',
-          'You need live financial market data feeds. That’s a different category of provider entirely.',
-        ]}
-      />
+    <div class="mt-12 grid sm:grid-cols-2 gap-5" data-reveal-stagger>
+      {whoFor.map((item, i) => (
+        <div class="rounded-[1.5rem] bg-white border border-ink/12 p-7 sm:p-8 flex flex-col gap-2.5">
+          <span class="font-mono text-[12.5px] font-semibold text-slate/50">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="font-display font-bold text-[1.15rem] text-ink">{item.title}</h3>
+          <p class="text-[14px] text-slate leading-relaxed">{item.body}</p>
+        </div>
+      ))}
     </div>
   </section>
 
@@ -133,11 +157,74 @@ const steps = [
     />
   </section>
 
+  <section class="bg-paper">
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
+      <div data-reveal>
+        <Eyebrow num="05">FAQ</Eyebrow>
+        <h2 class="mt-6 font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
+          Questions people ask before booking a call.
+        </h2>
+      </div>
+      <div class="mt-12 max-w-[760px] border-t border-ink/10" data-reveal>
+        {faqs.map((f) => (
+          <details class="faq-item border-b border-ink/10">
+            <summary class="flex items-center justify-between gap-5 py-6 px-1 cursor-pointer font-semibold text-[17px] tracking-[-0.01em] text-ink">
+              {f.q}
+              <span class="plus" aria-hidden="true"></span>
+            </summary>
+            <p class="px-1 pb-6 text-[15px] text-slate leading-relaxed max-w-[640px]">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <CTASection
-    heading="Bring us the question a search engine can't answer."
-    body="Tell us the market and the decision riding on it. We'll tell you what it would take to get you a real answer."
-    primaryLabel="Book a consultation"
-    secondaryLabel="See all services"
-    secondaryHref="/#pillars"
+    heading="Back your next decision with real data."
+    body="Book a discovery call, or message us on WhatsApp, whichever's easier."
+    primaryLabel="Book a discovery call"
+    secondaryLabel="WhatsApp us"
+    secondaryHref="/contact/"
   />
 </BaseLayout>
+
+<style>
+  .faq-item summary {
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item .plus {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    position: relative;
+  }
+  .faq-item .plus::before,
+  .faq-item .plus::after {
+    content: '';
+    position: absolute;
+    background: theme('colors.indigo.DEFAULT');
+    border-radius: 2px;
+    transition: transform 0.25s var(--ease-out-expo), opacity 0.25s;
+  }
+  .faq-item .plus::before {
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+    transform: translateY(-50%);
+  }
+  .faq-item .plus::after {
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+  .faq-item[open] .plus::after {
+    transform: translateX(-50%) rotate(90deg);
+    opacity: 0;
+  }
+</style>
