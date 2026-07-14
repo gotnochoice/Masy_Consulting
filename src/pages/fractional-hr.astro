@@ -3,27 +3,60 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PillarHero from '../components/PillarHero.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import ServiceGrid from '../components/ServiceGrid.astro';
-import Qualifier from '../components/Qualifier.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
 import PricingNote from '../components/PricingNote.astro';
 import CTASection from '../components/CTASection.astro';
 
 const included = [
   {
-    title: 'Day-to-day people operations',
-    body: 'Staff management, performance follow-up, and employee relations, handled on your behalf so problems get resolved before they reach you.',
+    title: 'Hiring & recruitment',
+    body: 'For any role your business needs, not just traditional HR positions. If your business needs someone hired and managed, we can find and manage that person.',
+  },
+  {
+    title: 'Payroll & pay management',
+    body: 'We handle payroll for your team directly, so you’re not managing bank transfers or compliance yourself.',
   },
   {
     title: 'HR policy & documentation',
     body: 'Contracts, employee handbooks, and onboarding materials built for your business specifically, not a downloaded template.',
   },
   {
-    title: 'Recruitment for growing teams',
-    body: 'Sourcing, screening, and placing staff as your African team grows, so hiring doesn’t fall on whoever has time that week.',
+    title: 'Weekly check-ins',
+    body: 'A standing cadence with your team, so problems surface on schedule, not as an 11pm phone call.',
+  },
+];
+
+const whoFor = [
+  {
+    title: 'Based abroad',
+    body: 'Your business is in the diaspora, but you need to employ a team in Nigeria, hired properly, with someone managing them day to day.',
   },
   {
-    title: 'Timezone-aligned support',
-    body: 'Available across UK, US, and Canada working hours, not just African office hours, so you’re never waiting overnight for an answer.',
+    title: 'Running it alone',
+    body: 'One person handling sales, staff, and everything in between, with no real HR structure and no time to build one.',
+  },
+  {
+    title: 'Need outsourced HR',
+    body: 'You already have a team, but no HR department, and hiring one just to manage payroll and people issues doesn’t make sense yet.',
+  },
+  {
+    title: 'Already tried it, and it didn’t stick',
+    body: 'You hired an in-house HR person before, but it didn’t work out, wrong fit, too expensive for what you needed, or they left and you’re back to square one.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'My business doesn’t feel like it needs HR. Is this still for us?',
+    a: 'Probably, yes. Most businesses that think they don’t need HR still need someone hired and managed, whatever the role. We recruit across any function, not just traditional HR positions.',
+  },
+  {
+    q: 'I already have staff. Can you just take over managing them?',
+    a: 'Yes. We’ll scope where things stand today on the discovery call and take over payroll, policy, and management from there.',
+  },
+  {
+    q: 'How do payroll payments work?',
+    a: 'We handle payroll for your team directly, so you’re not managing bank transfers or compliance yourself.',
   },
 ];
 
@@ -43,13 +76,13 @@ const steps = [
     label="Fractional HR & People Management · Anchor service"
     title="A fractional HR partner for the team you can't"
     titleAccent="physically manage."
-    lead="You run your business from the UK, US, or Canada. Your staff are on the ground in Nigeria or wherever your operations sit. Masy becomes your people function there: policy, performance, and the day-to-day management that keeps a distributed team accountable, without you micromanaging from another continent."
+    lead="You run your business from the UK, US, or Canada. Your staff are on the ground in Nigeria or wherever your operations sit. Masy becomes your people function there: hiring, payroll, policy, and the day-to-day management that keeps a distributed team accountable, without you micromanaging from another continent."
     facts={[
       ['Engagement', 'Monthly retainer'],
       ['Scoped by', 'Team size & needs'],
+      ['Payroll', 'Handled directly'],
       ['Working hours', 'Aligned to yours'],
       ['Reporting', 'Monthly, in writing'],
-      ['Best for', 'Diaspora-owned SMEs'],
     ]}
   />
 
@@ -87,24 +120,19 @@ const steps = [
 
   <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
     <div data-reveal>
-      <Eyebrow num="03">Fit check</Eyebrow>
+      <Eyebrow num="03">Who this is for</Eyebrow>
       <h2 class="mt-6 font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
-        Built for a specific person. Worth checking before you book a call.
+        If any of this sounds familiar.
       </h2>
     </div>
-    <div class="mt-12">
-      <Qualifier
-        fit={[
-          'You own or run a business based in Africa, but you personally live in the UK, US, or Canada.',
-          'You have, or are actively hiring, a team on the ground with no one formally responsible for managing them.',
-          'You want an ongoing relationship, not a one-off HR document you have to maintain yourself.',
-        ]}
-        notFit={[
-          'You need a single HR document with no ongoing relationship. That sits closer to our Business Writing pillar.',
-          'Your whole team is already based in the UK, US, or Canada. Our specialism is African-based teams managed from the diaspora.',
-          'You’re shopping purely on lowest price. We’re built for rigor and accountability, not the cheapest line item.',
-        ]}
-      />
+    <div class="mt-12 grid sm:grid-cols-2 gap-5" data-reveal-stagger>
+      {whoFor.map((item, i) => (
+        <div class="rounded-[1.5rem] bg-white border border-ink/12 p-7 sm:p-8 flex flex-col gap-2.5">
+          <span class="font-mono text-[12.5px] font-semibold text-slate/50">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="font-display font-bold text-[1.15rem] text-ink">{item.title}</h3>
+          <p class="text-[14px] text-slate leading-relaxed">{item.body}</p>
+        </div>
+      ))}
     </div>
   </section>
 
@@ -134,11 +162,74 @@ const steps = [
     />
   </section>
 
+  <section class="bg-paper">
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
+      <div data-reveal>
+        <Eyebrow num="05">FAQ</Eyebrow>
+        <h2 class="mt-6 font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
+          Questions people ask before booking a call.
+        </h2>
+      </div>
+      <div class="mt-12 max-w-[760px] border-t border-ink/10" data-reveal>
+        {faqs.map((f) => (
+          <details class="faq-item border-b border-ink/10">
+            <summary class="flex items-center justify-between gap-5 py-6 px-1 cursor-pointer font-semibold text-[17px] tracking-[-0.01em] text-ink">
+              {f.q}
+              <span class="plus" aria-hidden="true"></span>
+            </summary>
+            <p class="px-1 pb-6 text-[15px] text-slate leading-relaxed max-w-[640px]">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <CTASection
-    heading="Stop managing your team through voice notes and timezone guesswork."
-    body="Book a discovery call. We'll map where your people operations are breaking down and tell you plainly whether a retainer makes sense."
+    heading="Let's take this off your plate."
+    body="Book a discovery call, or message us on WhatsApp, whichever's easier."
     primaryLabel="Book a discovery call"
-    secondaryLabel="See all services"
-    secondaryHref="/#pillars"
+    secondaryLabel="WhatsApp us"
+    secondaryHref="/contact/"
   />
 </BaseLayout>
+
+<style>
+  .faq-item summary {
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item .plus {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    position: relative;
+  }
+  .faq-item .plus::before,
+  .faq-item .plus::after {
+    content: '';
+    position: absolute;
+    background: theme('colors.indigo.DEFAULT');
+    border-radius: 2px;
+    transition: transform 0.25s var(--ease-out-expo), opacity 0.25s;
+  }
+  .faq-item .plus::before {
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+    transform: translateY(-50%);
+  }
+  .faq-item .plus::after {
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+  .faq-item[open] .plus::after {
+    transform: translateX(-50%) rotate(90deg);
+    opacity: 0;
+  }
+</style>
