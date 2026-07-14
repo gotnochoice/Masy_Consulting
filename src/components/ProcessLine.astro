@@ -1,0 +1,39 @@
+---
+interface Step {
+  title: string;
+  body: string;
+}
+interface Props {
+  steps: Step[];
+}
+const { steps } = Astro.props;
+---
+<div class="process-line relative grid sm:grid-cols-2 lg:grid-cols-4 gap-[22px]" data-reveal-stagger>
+  {steps.map((step, i) => (
+    <div class="relative z-[1]">
+      <span class="w-10 h-10 rounded-full bg-indigo text-white flex items-center justify-center font-mono font-bold text-[14px] mb-[18px]">
+        {String(i + 1).padStart(2, '0')}
+      </span>
+      <h4 class="font-display font-bold text-[1.05rem] text-ink tracking-[-0.01em] mb-1.5">{step.title}</h4>
+      <p class="text-[13.5px] text-slate">{step.body}</p>
+    </div>
+  ))}
+</div>
+
+<style>
+  .process-line::before {
+    content: '';
+    position: absolute;
+    top: 19px;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: #e7e4dc;
+    z-index: 0;
+  }
+  @media (max-width: 860px) {
+    .process-line::before {
+      display: none;
+    }
+  }
+</style>
