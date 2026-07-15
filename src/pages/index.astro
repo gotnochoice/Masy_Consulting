@@ -85,6 +85,29 @@ const steps = [
   },
 ];
 
+const trustPoints = [
+  {
+    idx: '01',
+    title: 'Registered, not anonymous',
+    body: 'Masy Consulting Limited, RC No. 8189749, incorporated in Nigeria. A real, registered company you can look up, not a freelancer collective operating under a name.',
+  },
+  {
+    idx: '02',
+    title: 'No long contracts',
+    body: 'Every engagement can end without penalty if it stops working for you. We’d rather earn the next month than lock you into this one.',
+  },
+  {
+    idx: '03',
+    title: 'Same team, start to finish',
+    body: 'The person who scopes your call is the person doing the work, not a rotating bench of juniors you re-brief every time.',
+  },
+  {
+    idx: '04',
+    title: 'We’ll tell you if it’s not a fit',
+    body: 'Honestly, on the discovery call, before you’ve paid for anything. We turn down work that isn’t ours to do.',
+  },
+];
+
 const faqs = [
   {
     q: 'Do you only work with businesses abroad?',
@@ -107,7 +130,7 @@ const faqs = [
 <BaseLayout
   title="Masy Consulting — Fractional HR, Business Writing & Market Intelligence for African Businesses"
   description="Masy Consulting gives African-founded and diaspora-owned businesses the writing, people operations, and market intelligence of a world-class consultancy, grounded in how African businesses actually operate."
-  footerMarker={{ idx: '07', label: 'Contact', count: '07 / 07' }}
+  footerMarker={{ idx: '08', label: 'Contact', count: '08 / 08' }}
 >
   <!-- ============ HERO (locked) ============ -->
   <HeroSlides />
@@ -115,7 +138,7 @@ const faqs = [
   <!-- ============ 01 · THE PROBLEM ============ -->
   <section class="bg-paper">
     <div class="max-w-content mx-auto px-5 sm:px-8 py-14 sm:py-[88px]">
-      <Marker idx="01" label="The problem, plainly" count="01 / 07" />
+      <Marker idx="01" label="The problem, plainly" count="01 / 08" />
 
       <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-start">
         <div data-reveal>
@@ -150,7 +173,7 @@ const faqs = [
   <!-- ============ 02 · PILLARS ============ -->
   <section id="pillars" class="bg-white scroll-mt-24">
     <div class="max-w-content mx-auto px-5 sm:px-8 py-14 sm:py-[88px]">
-      <Marker idx="02" label="What we do" count="02 / 07" />
+      <Marker idx="02" label="What we do" count="02 / 08" />
 
       <div class="max-w-[640px] mb-9" data-reveal>
         <h2 class="font-display font-extrabold text-[clamp(2rem,3.8vw,3rem)] leading-[1.08] tracking-[-0.03em] text-ink text-balance">
@@ -181,7 +204,7 @@ const faqs = [
   <!-- ============ 03 · WHO THIS IS FOR ============ -->
   <section class="texture-dots">
     <div class="max-w-content mx-auto px-5 sm:px-8 py-14 sm:py-[88px]">
-      <Marker idx="03" label="Who this is for" count="03 / 07" />
+      <Marker idx="03" label="Who this is for" count="03 / 08" />
 
       <div class="max-w-[640px] mb-9" data-reveal>
         <h2 class="font-display font-extrabold text-[clamp(2rem,3.8vw,3rem)] leading-[1.08] tracking-[-0.03em] text-ink">
@@ -228,7 +251,7 @@ const faqs = [
   <!-- ============ 04 · HOW IT WORKS ============ -->
   <section id="how" class="bg-indigo text-white scroll-mt-24">
     <div class="max-w-content mx-auto px-5 sm:px-8 py-14 sm:py-[88px]">
-      <Marker idx="04" label="How it works" count="04 / 07" tone="dark" />
+      <Marker idx="04" label="How it works" count="04 / 08" tone="dark" />
 
       <div class="max-w-[640px] mb-9" data-reveal>
         <h2 class="font-display font-extrabold text-[clamp(2rem,3.8vw,3rem)] leading-[1.08] tracking-[-0.03em] text-white">
@@ -248,10 +271,34 @@ const faqs = [
     </div>
   </section>
 
-  <!-- ============ 05 · FAQ ============ -->
+  <!-- ============ 05 · WHY TRUST US ============ -->
+  <section class="bg-[#F7F5F0]">
+    <div class="max-w-content mx-auto px-5 sm:px-8 py-14 sm:py-[88px]">
+      <Marker idx="05" label="Why trust us" count="05 / 08" />
+
+      <div class="max-w-[640px] mb-9" data-reveal>
+        <h2 class="font-display font-extrabold text-[clamp(2rem,3.8vw,3rem)] leading-[1.08] tracking-[-0.03em] text-ink text-balance">
+          No case studies to wave around yet.
+          <span class="text-indigo">Here's what you can actually check.</span>
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5" data-reveal-stagger>
+        {trustPoints.map((t) => (
+          <div class="bg-white border border-[#E7E4DC] rounded-xl px-7 py-[26px] flex flex-col gap-2.5 transition-all duration-300 ease-out-expo hover:-translate-y-1 hover:border-indigo-light hover:shadow-[0_24px_48px_-30px_rgba(40,19,152,0.28)]">
+            <span class="font-mono font-semibold text-[12.5px] text-slate/50">{t.idx}</span>
+            <h3 class="font-display font-extrabold text-[1.1rem] tracking-[-0.02em] text-ink">{t.title}</h3>
+            <p class="text-[14px] text-slate leading-relaxed text-pretty">{t.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 · FAQ ============ -->
   <section class="bg-white">
     <div class="max-w-content mx-auto px-5 sm:px-8 py-14 sm:py-[88px]">
-      <Marker idx="05" label="FAQ" count="05 / 07" />
+      <Marker idx="06" label="FAQ" count="06 / 08" />
 
       <div class="max-w-[640px] mx-auto text-center mb-9" data-reveal>
         <h2 class="font-display font-extrabold text-[clamp(2rem,3.8vw,3rem)] leading-[1.08] tracking-[-0.03em] text-ink text-balance">
@@ -263,9 +310,9 @@ const faqs = [
     </div>
   </section>
 
-  <!-- ============ 06 · GET STARTED ============ -->
+  <!-- ============ 07 · GET STARTED ============ -->
   <CTASection
-    marker={{ idx: '06', label: 'Get started', count: '06 / 07' }}
+    marker={{ idx: '07', label: 'Get started', count: '07 / 08' }}
     heading="Let's take this off your plate."
     body="Book a discovery call, or message us on WhatsApp, whichever's easier."
     primaryLabel="Book a discovery call"
