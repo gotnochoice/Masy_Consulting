@@ -23,6 +23,18 @@ body {
   color: #140a45;
 }
 
+/* ---------- Visible keyboard focus for links, summaries, and form controls ---------- */
+a:focus-visible,
+summary:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #fb961f;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 /* ---------- Display type: Plus Jakarta Sans, bold by default ----------
    Weight utilities (font-medium, font-semibold, …) still win where set,
    because this lives in the components layer. */
