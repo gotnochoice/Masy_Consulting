@@ -1,56 +1,59 @@
 ---
 import Button from './Button.astro';
+import Marker from './Marker.astro';
 
 interface Props {
-  eyebrow?: string;
   heading: string;
   body?: string;
   primaryLabel?: string;
   primaryHref?: string;
   secondaryLabel?: string;
   secondaryHref?: string;
+  marker?: { idx: string; label: string; count: string };
 }
 const {
-  eyebrow = 'Start a conversation',
   heading,
   body,
   primaryLabel = 'Book a consultation',
   primaryHref = '/contact/',
   secondaryLabel,
   secondaryHref,
+  marker,
 } = Astro.props;
 ---
-<section class="relative bg-ink text-white overflow-hidden dark-section">
-  <div class="absolute inset-0 grain-overlay"></div>
-  <div
-    class="absolute -right-32 top-1/2 -translate-y-1/2 w-[560px] h-[560px] rounded-full opacity-[0.1] pointer-events-none"
-    style="background: radial-gradient(circle, #FB961F 0%, transparent 68%)"
-  ></div>
-  <img
-    src="/logo-mark.png"
-    alt=""
-    class="absolute -left-16 -bottom-24 w-[340px] opacity-[0.05] pointer-events-none select-none"
-    aria-hidden="true"
-  />
-
-  <div class="max-w-content mx-auto px-5 sm:px-8 py-24 sm:py-32 relative" data-reveal>
-    <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-orange mb-7 flex items-center gap-3">
-      <span class="w-8 h-px bg-current inline-block"></span>
-      {eyebrow}
-    </p>
-    <h2 class="font-display font-bold text-[clamp(2.25rem,5.5vw,4.25rem)] leading-[1.03] tracking-[-0.02em] max-w-3xl text-balance">
-      {heading}
-    </h2>
-    {body && (
-      <p class="mt-7 text-white/65 text-[16.5px] sm:text-[17.5px] leading-relaxed max-w-xl text-pretty">
-        {body}
-      </p>
-    )}
-    <div class="mt-10 flex flex-wrap items-center gap-4">
-      <Button href={primaryHref} variant="primary" size="lg" magnetic>{primaryLabel}</Button>
-      {secondaryHref && secondaryLabel && (
-        <Button href={secondaryHref} variant="outlineDark" size="lg">{secondaryLabel}</Button>
-      )}
+<section class="py-14 sm:py-[88px]">
+  <div class="max-w-content mx-auto px-5 sm:px-8">
+    {marker && <Marker idx={marker.idx} label={marker.label} count={marker.count} />}
+    <div class="cta-band bg-ink rounded-[20px] px-6 py-11 sm:px-[52px] sm:py-16 relative overflow-hidden" data-reveal>
+      <div class="max-w-[600px] mx-auto text-center relative z-[1]">
+        <h2 class="font-display font-extrabold text-[clamp(1.9rem,3.8vw,2.8rem)] leading-[1.1] tracking-[-0.03em] text-white mb-4">
+          {heading}
+        </h2>
+        {body && (
+          <p class="text-[15.5px] text-[#B9B4C9] leading-[1.65] mb-8">
+            {body}
+          </p>
+        )}
+        <div class="flex flex-wrap justify-center items-center gap-4">
+          <Button href={primaryHref} variant="primary" magnetic>{primaryLabel}</Button>
+          {secondaryHref && secondaryLabel && (
+            <Button href={secondaryHref} variant="outlineDark">{secondaryLabel}</Button>
+          )}
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .cta-band::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -60px;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(251, 150, 31, 0.16) 0%, transparent 70%);
+  }
+</style>

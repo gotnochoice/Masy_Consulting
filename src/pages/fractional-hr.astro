@@ -1,11 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Eyebrow from '../components/Eyebrow.astro';
+import Marker from '../components/Marker.astro';
 import IconCardGrid from '../components/IconCardGrid.astro';
 import PersonaGrid from '../components/PersonaGrid.astro';
 import ProcessCards from '../components/ProcessCards.astro';
 import FaqCards from '../components/FaqCards.astro';
+import CTASection from '../components/CTASection.astro';
 import Button from '../components/Button.astro';
+
+const facts = [
+  { label: 'Engagement', body: 'Monthly retainer, scoped to your team size on the discovery call.' },
+  { label: 'Payroll', body: 'Handled directly, so you’re not managing transfers or compliance.' },
+  { label: 'Reporting', body: 'Monthly, in writing, so you always know what happened.' },
+  { label: 'Pricing', body: 'Confirmed in writing before work begins, not a flat rate off a card.' },
+];
 
 const included = [
   {
@@ -111,56 +119,63 @@ const faqs = [
     </div>
   </section>
 
-  <section class="pt-[120px] pb-20 sm:pb-28">
+  <div class="pt-[120px]">
     <div class="max-w-content mx-auto px-5 sm:px-8">
-      <div data-reveal>
-        <Eyebrow num="01">What's included</Eyebrow>
-        <h2 class="mt-6 font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 py-[26px] border-t border-b border-ink/10">
+        {facts.map((fact) => (
+          <div>
+            <h4 class="text-[12px] font-bold uppercase tracking-[0.05em] text-indigo mb-1.5">{fact.label}</h4>
+            <p class="text-[14px] text-slate leading-relaxed">{fact.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <section class="pt-20 sm:pt-28 pb-20 sm:pb-28">
+    <div class="max-w-content mx-auto px-5 sm:px-8">
+      <Marker idx="01" label="What's included" count="01 / 04" />
+      <div class="mb-10" data-reveal>
+        <h2 class="font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
           Everything it takes to run people, handled.
         </h2>
         <p class="mt-4 text-[15.5px] text-slate max-w-xl leading-relaxed text-pretty">
           Not just the paperwork, the actual day-to-day of having a team. The same team manages your account every week, not a rotating cast of freelancers.
         </p>
       </div>
-      <div class="mt-12">
-        <IconCardGrid items={included} columns={2} />
-      </div>
+      <IconCardGrid items={included} columns={2} />
     </div>
   </section>
 
   <section class="bg-paper-2 py-20 sm:py-28">
     <div class="max-w-content mx-auto px-5 sm:px-8">
-      <div data-reveal>
-        <Eyebrow num="02">Who this is for</Eyebrow>
-        <h2 class="mt-6 font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
+      <Marker idx="02" label="Who this is for" count="02 / 04" />
+      <div class="mb-10" data-reveal>
+        <h2 class="font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
           If any of this sounds familiar.
         </h2>
       </div>
-      <div class="mt-12">
-        <PersonaGrid items={whoFor} />
-      </div>
+      <PersonaGrid items={whoFor} />
     </div>
   </section>
 
   <section class="py-20 sm:py-28">
     <div class="max-w-content mx-auto px-5 sm:px-8">
-      <div data-reveal>
-        <Eyebrow num="03">How it works</Eyebrow>
-        <h2 class="mt-6 font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
+      <Marker idx="03" label="How it works" count="03 / 04" />
+      <div class="mb-10" data-reveal>
+        <h2 class="font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
           Four steps, start to finish.
         </h2>
       </div>
-      <div class="mt-12">
-        <ProcessCards steps={steps} />
-      </div>
+      <ProcessCards steps={steps} />
     </div>
   </section>
 
   <section class="py-20 sm:py-28">
     <div class="max-w-content mx-auto px-5 sm:px-8">
+      <Marker idx="04" label="FAQ" count="04 / 04" />
       <div class="text-center max-w-[640px] mx-auto mb-10" data-reveal>
-        <Eyebrow class="justify-center">FAQ</Eyebrow>
-        <h2 class="mt-6 font-display font-bold text-[clamp(1.7rem,3vw,2.3rem)] text-ink">
+        <h2 class="font-display font-bold text-[clamp(1.7rem,3vw,2.3rem)] text-ink">
           Questions people ask before booking a call.
         </h2>
       </div>
@@ -168,24 +183,13 @@ const faqs = [
     </div>
   </section>
 
-  <section id="contact" class="py-14 sm:py-[88px]">
-    <div class="max-w-content mx-auto px-5 sm:px-8">
-      <div class="cta-band bg-ink rounded-[20px] px-6 py-11 sm:px-[52px] sm:py-16 relative overflow-hidden" data-reveal>
-        <div class="max-w-[600px] mx-auto text-center relative z-[1]">
-          <h2 class="font-display font-extrabold text-[clamp(1.9rem,3.8vw,2.8rem)] leading-[1.1] tracking-[-0.03em] text-white mb-4">
-            Let's take this off your plate.
-          </h2>
-          <p class="text-[15.5px] text-[#B9B4C9] leading-[1.65] mb-8">
-            Book a discovery call, or message us on WhatsApp, whichever's easier.
-          </p>
-          <div class="flex flex-wrap justify-center items-center gap-4">
-            <Button href="/contact/" variant="primary">Book a discovery call</Button>
-            <Button href="/contact/" variant="outlineDark">WhatsApp us</Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <CTASection
+    heading="Let's take this off your plate."
+    body="Book a discovery call, or message us on WhatsApp, whichever's easier."
+    primaryLabel="Book a discovery call"
+    secondaryLabel="WhatsApp us"
+    secondaryHref="/contact/"
+  />
 </BaseLayout>
 
 <style>
@@ -204,16 +208,6 @@ const faqs = [
       opacity: 1;
       transform: translateX(-50%) translateY(0) scale(1);
     }
-  }
-  .cta-band::after {
-    content: '';
-    position: absolute;
-    bottom: -100px;
-    left: -60px;
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(251, 150, 31, 0.16) 0%, transparent 70%);
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-fact-card {
