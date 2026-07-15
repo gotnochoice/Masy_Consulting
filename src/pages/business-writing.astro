@@ -3,7 +3,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Marker from '../components/Marker.astro';
 import ProcessLine from '../components/ProcessLine.astro';
 import FaqCards from '../components/FaqCards.astro';
+import CTASection from '../components/CTASection.astro';
 import Button from '../components/Button.astro';
+
+const facts = [
+  { label: 'Two tracks', body: 'Startup, for fundraising documents, and SME, for ongoing written work. Scoped on the discovery call.' },
+  { label: 'One team', body: 'The same people who write your proposal can write your next one. No re-briefing a new freelancer each time.' },
+  { label: 'Every timezone', body: 'UK, US, Canada, and Nigeria. Wherever you’re based, the process doesn’t change.' },
+  { label: 'Pricing', body: 'Fixed and agreed upfront once we’ve seen your brief, with one revision round included.' },
+];
 
 const startupItems = [
   'Pitch decks',
@@ -73,19 +81,13 @@ const faqs = [
         </div>
       </div>
 
-      <div class="grid sm:grid-cols-3 gap-8 py-[26px] border-t border-b border-ink/10">
-        <div>
-          <h4 class="text-[12px] font-bold uppercase tracking-[0.05em] text-indigo mb-1.5">Two tracks</h4>
-          <p class="text-[14px] text-slate leading-relaxed">Startup, for fundraising documents, and SME, for ongoing written work. Scoped on the discovery call.</p>
-        </div>
-        <div>
-          <h4 class="text-[12px] font-bold uppercase tracking-[0.05em] text-indigo mb-1.5">One team</h4>
-          <p class="text-[14px] text-slate leading-relaxed">The same people who write your proposal can write your next one. No re-briefing a new freelancer each time.</p>
-        </div>
-        <div>
-          <h4 class="text-[12px] font-bold uppercase tracking-[0.05em] text-indigo mb-1.5">Every timezone</h4>
-          <p class="text-[14px] text-slate leading-relaxed">UK, US, Canada, and Nigeria. Wherever you're based, the process doesn't change.</p>
-        </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 py-[26px] border-t border-b border-ink/10">
+        {facts.map((fact) => (
+          <div>
+            <h4 class="text-[12px] font-bold uppercase tracking-[0.05em] text-indigo mb-1.5">{fact.label}</h4>
+            <p class="text-[14px] text-slate leading-relaxed">{fact.body}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -134,7 +136,7 @@ const faqs = [
           <p class="mt-auto pt-4 border-t border-ink/10 text-[12.5px] text-slate/50">Best for a business that needs a steady stream of sharp written material.</p>
         </div>
       </div>
-      <p class="mt-10 text-[14px] text-slate/80 max-w-xl leading-relaxed" data-reveal>
+      <p class="mt-10 pl-4 border-l-2 border-orange/40 text-[14px] text-slate/80 max-w-xl leading-relaxed" data-reveal>
         Masy Consulting does not offer academic writing, essays, or tutoring of
         any kind. That work belongs entirely to
         <a href="https://masyacademy.com" target="_blank" rel="noopener noreferrer" class="link-underline text-ink font-medium">Masy Academy</a>,
@@ -167,24 +169,13 @@ const faqs = [
     </div>
   </section>
 
-  <section id="contact" class="py-14 sm:py-[88px]">
-    <div class="max-w-content mx-auto px-5 sm:px-8">
-      <div class="cta-band bg-ink rounded-[20px] px-6 py-11 sm:px-[52px] sm:py-16 relative overflow-hidden" data-reveal>
-        <div class="max-w-[600px] mx-auto text-center relative z-[1]">
-          <h2 class="font-display font-extrabold text-[clamp(1.9rem,3.8vw,2.8rem)] leading-[1.1] tracking-[-0.03em] text-white mb-4">
-            Let's take this off your plate.
-          </h2>
-          <p class="text-[15.5px] text-[#B9B4C9] leading-[1.65] mb-8">
-            Book a discovery call, or message us on WhatsApp, whichever's easier.
-          </p>
-          <div class="flex flex-wrap justify-center items-center gap-4">
-            <Button href="/contact/" variant="primary">Book a discovery call</Button>
-            <Button href="/contact/" variant="outlineDark">WhatsApp us</Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <CTASection
+    heading="Let's take this off your plate."
+    body="Book a discovery call, or message us on WhatsApp, whichever's easier."
+    primaryLabel="Book a discovery call"
+    secondaryLabel="WhatsApp us"
+    secondaryHref="/contact/"
+  />
 </BaseLayout>
 
 <style>
@@ -228,16 +219,6 @@ const faqs = [
     to {
       stroke-dashoffset: 0;
     }
-  }
-  .cta-band::after {
-    content: '';
-    position: absolute;
-    bottom: -100px;
-    left: -60px;
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(251, 150, 31, 0.16) 0%, transparent 70%);
   }
   @media (prefers-reduced-motion: reduce) {
     .sig path {

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Eyebrow from '../components/Eyebrow.astro';
+import Marker from '../components/Marker.astro';
 import Marquee from '../components/Marquee.astro';
 import CTASection from '../components/CTASection.astro';
 
@@ -54,7 +55,7 @@ const principles = [
   <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
     <div class="grid lg:grid-cols-12 gap-12">
       <div class="lg:col-span-5" data-reveal>
-        <Eyebrow num="01">Why we exist</Eyebrow>
+        <Marker idx="01" label="Why we exist" count="01 / 05" />
         <h2 class="mt-6 font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink text-balance">
           Three problems that usually get handled by three different people, badly.
         </h2>
@@ -93,7 +94,7 @@ const principles = [
     />
     <div class="max-w-content mx-auto px-5 sm:px-8 py-24 sm:py-32 relative">
       <div class="max-w-4xl" data-reveal>
-        <Eyebrow light num="02">Our positioning</Eyebrow>
+        <Marker idx="02" label="Our positioning" count="02 / 05" tone="dark" />
         <p class="mt-8 font-display text-[clamp(1.8rem,4.2vw,3.2rem)] leading-[1.14] tracking-[-0.015em] text-balance">
           For the business owner who needs their documents, their people, and
           their market intelligence handled with the same rigor as their
@@ -108,7 +109,7 @@ const principles = [
 
   <section class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
     <div data-reveal>
-      <Eyebrow num="03">How we work</Eyebrow>
+      <Marker idx="03" label="How we work" count="03 / 05" />
       <h2 class="mt-6 font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink max-w-2xl text-balance">
         A handful of rules we don't break, even when it would be easier to.
       </h2>
@@ -132,7 +133,7 @@ const principles = [
     <div class="max-w-content mx-auto px-5 sm:px-8 py-20 sm:py-28">
       <div class="grid lg:grid-cols-12 gap-12">
         <div class="lg:col-span-5" data-reveal>
-          <Eyebrow num="04">The team</Eyebrow>
+          <Marker idx="04" label="The team" count="04 / 05" />
           <h2 class="mt-6 font-display font-bold text-[clamp(1.8rem,3.8vw,2.7rem)] leading-[1.08] tracking-[-0.02em] text-ink text-balance">
             A small, senior team. Not a rotating bench of juniors.
           </h2>
@@ -155,6 +156,7 @@ const principles = [
   </section>
 
   <CTASection
+    marker={{ idx: '05', label: 'Get started', count: '05 / 05' }}
     heading="If this sounds like how you'd want a firm to operate, let's talk."
     body="Thirty minutes. No obligation. We'll tell you honestly whether Masy is the right fit for what you need."
     primaryLabel="Book a consultation"
