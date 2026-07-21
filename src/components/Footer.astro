@@ -1,50 +1,40 @@
 ---
 import Logo from './Logo.astro';
-import Marker from './Marker.astro';
 import { siteMeta } from '../data/site';
-
-interface Props {
-  marker?: { idx: string; label: string; count: string };
-}
-const { marker } = Astro.props;
 
 const year = new Date().getFullYear();
 ---
-<footer class="bg-white border-t border-[#E7E4DC]">
+<footer id="contact" class="bg-white border-t border-line scroll-mt-24">
   <div class="max-w-content mx-auto px-5 sm:px-8 pt-[52px] pb-9">
-    {marker && <Marker idx={marker.idx} label={marker.label} count={marker.count} class="mb-8" />}
-
-    <div class="grid grid-cols-2 md:grid-cols-[1.3fr_1fr_1fr_1.2fr] gap-8 mb-8">
+    <div class="grid grid-cols-2 md:grid-cols-[1.3fr_1fr_1fr_1fr] gap-8 mb-8 pb-8 border-b border-line">
       <div class="col-span-2 md:col-span-1">
         <Logo size="sm" class="mb-3" />
-        <p class="text-[13px] text-slate/80 leading-relaxed max-w-[280px]">
-          One team for your people, your writing, and your research, wherever
-          you are.
+        <p class="text-[13px] text-slate leading-relaxed max-w-[280px]">
+          Masy Consulting Limited, RC No. 8189749. A separate brand from Masy Academy, our tutoring business.
         </p>
       </div>
 
       <div>
-        <h5 class="text-[12px] font-bold uppercase tracking-[0.06em] text-indigo mb-3">What we do</h5>
-        <ul class="space-y-2 text-[13.5px] text-slate">
-          <li><a href="/fractional-hr/" class="hover:text-indigo transition-colors">Fractional HR</a></li>
-          <li><a href="/industry-analysis/" class="hover:text-indigo transition-colors">Market Research</a></li>
-          <li><a href="/business-writing/" class="hover:text-indigo transition-colors">Business Writing</a></li>
+        <h5 class="text-[11.5px] font-bold uppercase tracking-[0.06em] text-slate-light mb-3">What we run</h5>
+        <ul class="space-y-2 text-[14px] text-ink font-medium">
+          <li><a href="/#groups" class="hover:text-indigo transition-colors">Your team</a></li>
+          <li><a href="/#groups" class="hover:text-indigo transition-colors">What goes out the door</a></li>
+          <li><a href="/#examples" class="hover:text-indigo transition-colors">Examples</a></li>
         </ul>
       </div>
 
       <div>
-        <h5 class="text-[12px] font-bold uppercase tracking-[0.06em] text-indigo mb-3">Company</h5>
-        <ul class="space-y-2 text-[13.5px] text-slate">
-          <li><a href="/#how" class="hover:text-indigo transition-colors">How it works</a></li>
-          <li><a href="/about/" class="hover:text-indigo transition-colors">About</a></li>
-          <li><a href="/insights/" class="hover:text-indigo transition-colors">Insights</a></li>
-          <li><a href="/contact/" class="hover:text-indigo transition-colors">Book a call</a></li>
+        <h5 class="text-[11.5px] font-bold uppercase tracking-[0.06em] text-slate-light mb-3">Company</h5>
+        <ul class="space-y-2 text-[14px] text-ink font-medium">
+          <li><a href="/#about" class="hover:text-indigo transition-colors">Who we are</a></li>
+          <li><a href="/#process" class="hover:text-indigo transition-colors">Approach</a></li>
+          <li><a href="/#book" class="hover:text-indigo transition-colors">Book a call</a></li>
         </ul>
       </div>
 
       <div>
-        <h5 class="text-[12px] font-bold uppercase tracking-[0.06em] text-indigo mb-3">Contact</h5>
-        <ul class="space-y-2 text-[13.5px] text-slate">
+        <h5 class="text-[11.5px] font-bold uppercase tracking-[0.06em] text-slate-light mb-3">Reach us</h5>
+        <ul class="space-y-2 text-[14px] text-ink font-medium">
           <li><a href={`mailto:${siteMeta.email}`} class="hover:text-indigo transition-colors">{siteMeta.email}</a></li>
           <li><a href="/contact/" class="hover:text-indigo transition-colors">WhatsApp</a></li>
           <li>
@@ -56,9 +46,9 @@ const year = new Date().getFullYear();
       </div>
     </div>
 
-    <div class="flex flex-wrap justify-between gap-2.5 pt-[22px] border-t border-[#E7E4DC] text-[12.5px] text-slate/60">
-      <span>Masy Consulting Limited · RC No. 8189749, incorporated in Nigeria</span>
-      <span>&copy; {year} Masy Consulting</span>
+    <div class="flex flex-wrap justify-between gap-2.5 text-[12.5px] text-slate-light">
+      <span>&copy; {year} Masy Consulting Limited.</span>
+      <span>Lagos · London · Toronto · Houston</span>
     </div>
   </div>
 </footer>

@@ -1,11 +1,13 @@
 ---
 interface Props {
   href?: string;
-  variant?: 'primary' | 'outline' | 'outlineDark' | 'ink';
+  variant?: 'primary' | 'outline' | 'outlineDark' | 'ink' | 'indigo';
   size?: 'sm' | 'md' | 'lg';
   class?: string;
   type?: 'button' | 'submit';
   magnetic?: boolean;
+  /** false = 8px corners (current locked design system). true = legacy pill shape, kept only for pages not yet migrated. */
+  pill?: boolean;
 }
 const {
   href,
@@ -14,14 +16,16 @@ const {
   class: className = '',
   type = 'button',
   magnetic = false,
+  pill = true,
 } = Astro.props;
 
 const base =
-  'group/btn relative inline-flex items-center justify-center gap-2.5 font-medium whitespace-nowrap overflow-hidden transition-colors duration-300 ease-out-quart focus-visible:outline-none focus-visible:[box-shadow:0_0_0_2px_white,0_0_0_4px_#140A45]';
+  'group/btn relative inline-flex items-center justify-center gap-2.5 font-semibold whitespace-nowrap overflow-hidden transition-colors duration-300 ease-out-quart focus-visible:outline-none focus-visible:[box-shadow:0_0_0_2px_white,0_0_0_4px_#151515]';
 
 const variants: Record<string, string> = {
   primary: 'bg-orange text-ink hover:text-paper',
   ink: 'bg-ink text-paper hover:text-ink',
+  indigo: 'bg-indigo text-white hover:text-ink',
   outline: 'bg-transparent text-ink border border-ink/30 hover:border-ink hover:text-paper',
   outlineDark: 'bg-transparent text-white border border-white/30 hover:border-white hover:text-ink',
 };
@@ -30,14 +34,17 @@ const variants: Record<string, string> = {
 const sweeps: Record<string, string> = {
   primary: 'bg-ink',
   ink: 'bg-orange',
+  indigo: 'bg-orange',
   outline: 'bg-ink',
   outlineDark: 'bg-white',
 };
 
+const radius = pill ? 'rounded-full' : 'rounded-lg';
+
 const sizes: Record<string, string> = {
-  sm: 'text-[13.5px] px-5 py-2.5 rounded-full',
-  md: 'text-[15px] px-7 py-3.5 rounded-full',
-  lg: 'text-[16px] px-9 py-[18px] rounded-full',
+  sm: `text-[13.5px] px-5 py-2.5 ${radius}`,
+  md: `text-[15px] px-7 py-3.5 ${radius}`,
+  lg: `text-[16px] px-9 py-[18px] ${radius}`,
 };
 
 const classes = `${base} ${variants[variant]} ${sizes[size]} ${magnetic ? 'magnetic' : ''} ${className}`;
@@ -45,7 +52,7 @@ const Tag = href ? 'a' : 'button';
 ---
 <Tag href={href} type={href ? undefined : type} class={classes}>
   <span
-    class={`absolute inset-0 ${sweeps[variant]} rounded-full translate-y-[101%] transition-transform duration-[450ms] ease-out-quart group-hover/btn:translate-y-0`}
+    class={`absolute inset-0 ${sweeps[variant]} ${radius} translate-y-[101%] transition-transform duration-[450ms] ease-out-quart group-hover/btn:translate-y-0`}
     aria-hidden="true"
   ></span>
   <span class="relative z-10 inline-flex items-center gap-2.5">

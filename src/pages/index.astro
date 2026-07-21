@@ -1,414 +1,673 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroSlides from '../components/HeroSlides.astro';
-import Marker from '../components/Marker.astro';
-import FaqCards from '../components/FaqCards.astro';
-import CTASection from '../components/CTASection.astro';
+import Button from '../components/Button.astro';
 
-const problems = [
+const heroSlides = [
+  { src: '/one.jpg', alt: 'A team of five working through a plan together around a laptop in a bright meeting room' },
+  { src: '/two.jpg', alt: 'An HR manager reviewing and annotating a staff schedule at his desk' },
+  { src: '/three.jpg', alt: 'A consultant reviewing and stamping documents at a conference table' },
+];
+
+const traitGroups = [
   {
-    num: '01',
-    title: 'Deals die on paper',
-    body: 'The work is excellent. The proposal describing it isn’t. Somewhere between your ability and your documents, the contract goes quiet.',
+    title: 'Running things locally',
+    traits: [
+      'You’ve hired one or two people, and the business needs more hands than you can manage yourself.',
+      'You’re not ready for a full HR department, you’re still building.',
+      'You’d rather one team already knew your business than explain it to a new vendor every time.',
+      'You’re the one settling every staff disagreement, and it’s eating into time you don’t have.',
+      'You don’t have a real system for knowing whether the work actually got done each week.',
+      'You’re paying staff manually, and it’s quietly become its own weekly task.',
+    ],
   },
   {
-    num: '02',
-    title: 'A team you can’t see',
-    body: 'Your staff are in Lagos. You’re in London. Policy lives in someone’s head, and problems surface as 11pm phone calls instead of Tuesday check-ins.',
-  },
-  {
-    num: '03',
-    title: 'Decisions made on instinct',
-    body: 'You’re entering a market or backing a call on gut feel, because the research that should inform it was priced for multinationals, not for you.',
+    title: 'Watching from a distance',
+    traits: [
+      'You’re running a Nigeria-based team from another country and can’t check on it yourself.',
+      'You want to know the work got done. Not hope it did.',
+      'A phone call only tells you so much, you need someone actually watching.',
+      'You haven’t set up local payment rails yet, so paying staff is its own headache.',
+      'You need a proposal, research, or a projection built properly, and you’re not around to manage it.',
+      'You want one point of contact who knows your whole operation, not five people each holding a piece of it.',
+    ],
   },
 ];
 
-const pillarCards = [
+const traitCount = traitGroups.reduce((n, g) => n + g.traits.length, 0);
+
+const yourTeamServices = [
   {
-    idx: '01',
-    href: '/fractional-hr/',
-    accent: '#281398',
-    title: 'Fractional HR & People Management',
-    body: 'You run the business from the UK or US. We manage your African team on the ground, hiring, pay, and weekly check-ins, so you don’t have to.',
-    tag: 'Monthly retainer',
-    icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"/><path d="M4 20c1.5-4.5 5-6.5 8-6.5s6.5 2 8 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 014-4h6a4 4 0 014 4v2"/><path d="M16 3.13a4 4 0 010 7.75"/><path d="M22 21v-2a4 4 0 00-3-3.87"/></svg>',
+    title: 'Hiring & Recruitment',
+    body: 'Sifting CVs and running interviews isn’t where your time should go. We advertise the role, screen and interview candidates, draft the staff contract, and bring the right person on, so you only meet the ones worth meeting.',
   },
   {
-    idx: '02',
-    href: '/business-writing/',
-    accent: '#FB961F',
-    title: 'Business Writing',
-    body: 'Proposals, pitch decks, and reports that carry the same quality as the business behind them, ready to hold up in front of investors or partners.',
-    tag: 'Per document',
-    icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.8"/><path d="M14 2v6h6M8 13h8M8 17h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>',
+    title: 'Weekly Accountability',
+    body: 'You shouldn’t have to wonder if the work actually got done this week. We track it and check in, so you always know without having to ask.',
   },
   {
-    idx: '03',
-    href: '/industry-analysis/',
-    accent: '#2F32D5',
-    title: 'Industry Analysis & Market Surveys',
-    body: 'Grounded research for the market you’re about to enter, so the decision riding on it is backed by real data, not guesswork.',
-    tag: 'Per project',
-    icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="1.8"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>',
+    title: 'Conflict Resolution',
+    body: 'Staff disagreements cost you time and patience you don’t have. We step in and settle it, before it lands on your desk.',
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>',
+    title: 'Staff Logistics',
+    body: 'A staff phone, a data plan, a small request that keeps getting pushed back. We handle it, so it’s one less thing sitting on your list.',
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg>',
+    title: 'Payroll Disbursement',
+    body: 'Payday shouldn’t be something you have to remember and chase every month. We disburse on time, under our name, so it’s just handled.',
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+    title: 'Operations Management',
+    body: 'The random asks that come with a growing team, sourcing equipment, running an errand, getting something from one place to another. We take care of it.',
   },
 ];
 
-const whoFeatured = [
+const doorServices = [
   {
-    idx: '01',
-    title: 'Based abroad',
-    body: 'Your business is in the diaspora, but you need to employ a team in Nigeria. You want good people, hired properly, with someone managing them for you day to day, not trying to coordinate it all yourself from a different country.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6M9 11h6"/></svg>',
+    title: 'Proposals',
+    body: 'The proposal that could win you a client shouldn’t be sitting half-written in your drafts. We write it client-ready, on your timeline.',
   },
   {
-    idx: '02',
-    title: 'Running it alone',
-    body: 'One person handling sales, staff, and everything in between, with no real HR structure and no time to build one, just trying to keep the team coordinated while still running the business itself.',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>',
+    title: 'Research',
+    body: 'Before you enter a market or take on a client, you need to know what you’re actually walking into. We do the digging, you make the call.',
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>',
+    title: 'Financial Projections & Budgets',
+    body: 'A client asks for a projection and suddenly you need real numbers by tomorrow. We build them properly, so you’re never caught without.',
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
+    title: 'Pitch Decks',
+    body: 'Getting in the room with an investor or a big client takes more than a few slides thrown together. We build a deck made to be pitched, not just read.',
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 4H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-3"/><path d="M9 12h6M9 16h6"/></svg>',
+    title: 'Business Plans',
+    body: 'A loan or grant application wants a real business plan, not a paragraph explaining your idea. We build it the way reviewers actually expect to see it.',
+  },
+  {
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="4" width="3" height="14"/></svg>',
+    title: 'Reports',
+    body: 'Clients and partners expect regular updates, and writing them shouldn’t be your 11pm task. We handle it, on schedule, every time.',
   },
 ];
 
-const steps = [
+const caseStudies = [
   {
-    title: 'Book a discovery call',
-    body: 'Tell us what you need, a team in Nigeria, a document, or research on a market.',
+    kicker: 'Fashion & Events',
+    loc: 'USA · Sole proprietor',
+    body: 'Started with one virtual assistant to help run a US-based fashion, events, makeup, and tailoring business. As the work outgrew one person, we hired a brand strategist, a graphic designer, and a video editor, and now manage the full team’s day-to-day, from performance to settling staff issues.',
+    tags: ['Hiring', 'Team management', 'Weekly accountability'],
   },
   {
-    title: 'We scope it',
-    body: 'You get exactly what we’ll do and what it costs, no long contracts.',
+    kicker: 'Real Estate',
+    loc: 'Nigeria · 2 years old',
+    body: 'A young real estate company that didn’t want the overhead of an in-house HR hire. We hired their receptionist, admin, video editor, and graphic designer, handle staff disbursement and day-to-day issues, and just built a financial projection for one of their live projects.',
+    tags: ['Hiring', 'Disbursement', 'Financial projections'],
+  },
+];
+
+const processSteps = [
+  {
+    title: 'Discovery call',
+    body: 'We talk through what’s actually breaking, not a sales pitch, a real conversation about where the operations are slipping.',
+  },
+  {
+    title: 'Scoped plan',
+    body: 'You get a clear plan naming what we handle, what it costs, and how often you’ll hear from us.',
   },
   {
     title: 'We get to work',
-    body: 'Recruiting, writing, or researching, whichever applies to you.',
-  },
-  {
-    title: 'You stay updated',
-    body: 'Weekly check-ins if it’s HR, regular updates either way, so you’re never wondering what’s happening.',
-  },
-];
-
-const trustPoints = [
-  {
-    idx: '01',
-    title: 'Registered, not anonymous',
-    body: 'Masy Consulting Limited, RC No. 8189749, incorporated in Nigeria. A real, registered company you can look up, not a freelancer collective operating under a name.',
-  },
-  {
-    idx: '02',
-    title: 'No long contracts',
-    body: 'Every engagement can end without penalty if it stops working for you. We’d rather earn the next month than lock you into this one.',
-  },
-  {
-    idx: '03',
-    title: 'Same team, start to finish',
-    body: 'The person who scopes your call is the person doing the work, not a rotating bench of juniors you re-brief every time.',
-  },
-  {
-    idx: '04',
-    title: 'We’ll tell you if it’s not a fit',
-    body: 'Honestly, on the discovery call, before you’ve paid for anything. We turn down work that isn’t ours to do.',
+    body: 'One named team runs it, with a reporting cadence you can actually rely on.',
   },
 ];
 
 const faqs = [
   {
-    q: 'Do you only work with businesses abroad?',
-    a: 'No. We work with businesses in Nigeria and across the diaspora, anyone who needs a team managed, a document written, or research done.',
+    q: 'What makes Masy different from a regular HR agency or a freelance VA?',
+    a: 'We don’t just place someone and step away. We manage the actual weekly work: performance, conflict, logistics, and payroll, plus whatever needs to go out the door in writing. One team handling both, not a placement service you have to manage yourself afterward.',
   },
   {
-    q: 'How fast can you start?',
-    a: 'Once we’ve scoped what you need on a discovery call, we can usually begin immediately, with full focus on getting it right.',
+    q: 'Do we need an ongoing relationship, or can this be a one-off?',
+    a: 'Both work. Some clients bring us in for a single proposal, a research piece, or a projection. Most relationships grow into something ongoing once the first piece of work is done well, but there’s no obligation either way.',
   },
   {
-    q: 'How do payments work?',
-    a: 'We handle payroll for your team directly, so you’re not managing bank transfers or compliance yourself.',
+    q: 'How does payroll actually work? Are you handling our money?',
+    a: 'We disburse staff pay on your behalf, under our name, on a schedule agreed upfront with you. You approve the payroll amount each cycle; we handle getting it to your team on time, so payday isn’t something you have to remember and chase.',
   },
   {
-    q: 'What if it’s not a fit?',
-    a: 'There are no long contracts. If it’s not working, you can walk away.',
+    q: 'What if we already have someone doing some of this?',
+    a: 'Tell us what’s already covered on the discovery call. We scope around it rather than replacing what’s already working.',
   },
 ];
 ---
 <BaseLayout
-  title="Masy Consulting — Fractional HR, Business Writing & Market Intelligence for African Businesses"
-  description="Masy Consulting gives African-founded and diaspora-owned businesses the writing, people operations, and market intelligence of a world-class consultancy, grounded in how African businesses actually operate."
-  footerMarker={{ idx: '08', label: 'Contact', count: '08 / 08' }}
+  title="Masy Consulting — You Run the Business. We Run Everything Underneath."
+  description="Masy Consulting hires and manages your team, and writes and builds the proposals, research, projections, and decks that go out the door, so you can focus on the business instead of running it."
 >
-  <!-- ============ HERO (locked) ============ -->
-  <HeroSlides />
+  <section class="hero relative min-h-[78vh] flex items-end overflow-hidden" style="background: linear-gradient(160deg, #281398 0%, #180B5E 100%);">
+    {heroSlides.map((slide, i) => (
+      <div class:list={['hero-slide absolute inset-0', { active: i === 0 }]} data-hslide={i}>
+        <img src={slide.src} alt={slide.alt} class="absolute inset-0 w-full h-full object-cover" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'auto'} decoding="async" />
+        <div class="absolute inset-0" style="background: linear-gradient(0deg, rgba(21,10,66,0.85) 0%, rgba(21,10,66,0.5) 45%, rgba(21,10,66,0.2) 100%);"></div>
+      </div>
+    ))}
 
-  <!-- ============ 01 · THE PROBLEM ============ -->
-  <section class="bg-paper">
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-14 sm:py-[88px]">
-      <Marker idx="01" label="The problem, plainly" count="01 / 08" />
+    <div class="relative z-[2] max-w-content mx-auto w-full px-5 sm:px-8 pb-16 sm:pb-[72px] text-center">
+      <span class="block text-orange-light text-[13px] tracking-[0.06em] uppercase font-extrabold mb-5">For the owner who doesn’t want to run it all themselves</span>
+      <h1 class="text-white font-extrabold text-[clamp(2.4rem,6vw,4.6rem)] leading-[1.1] tracking-[-0.02em] max-w-[840px] mx-auto mb-5 min-h-[1.1em]">
+        <span id="typeContent"></span><span class="type-cursor" id="typeCursor"></span>
+      </h1>
+      <p class="hero-sub fade-in text-white/85 text-[17.5px] leading-[1.55] max-w-[520px] mx-auto mb-8" id="heroSub">
+        Your team, your paperwork, your numbers, handled by one team, whether you're in Lagos or watching from abroad.
+      </p>
+      <div class="hero-cta fade-in flex gap-3.5 flex-wrap items-center justify-center" id="heroCta">
+        <Button href="/#book" variant="primary" size="lg" pill={false}>Book a discovery call</Button>
+        <Button href="/contact/" variant="outlineDark" size="lg" pill={false}>WhatsApp us</Button>
+      </div>
+    </div>
 
-      <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-start">
-        <div data-reveal>
-          <h2 class="font-display font-extrabold text-[clamp(2rem,3.6vw,2.9rem)] leading-[1.12] tracking-[-0.025em] text-ink mb-5">
-            Scaling across borders creates three
-            <span class="whitespace-nowrap"><span class="sig">very specific problems<svg viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8c50-7 220-7 296 4"/></svg></span>.</span>
-          </h2>
-          <p class="text-[16.5px] text-slate leading-relaxed max-w-[440px] text-pretty">
-            They usually get patched by a cousin who writes well, a friend who
-            "does HR," and a few late nights on Google. That works, until the
-            business gets serious.
-          </p>
+    <div class="hero-dots absolute bottom-7 right-8 z-[3] flex gap-2" id="heroDots"></div>
+  </section>
+
+  <section class="whofor2 py-24 sm:py-28 max-w-content mx-auto px-5 sm:px-8" id="whofor">
+    <div class="max-w-[640px] mx-auto mb-9 text-center">
+      <span class="block text-orange text-[13px] tracking-[0.08em] uppercase font-extrabold mb-4">Who this is for</span>
+      <h2 class="font-extrabold text-[clamp(1.75rem,3.8vw,2.75rem)] tracking-[-0.02em] leading-[1.15] text-ink">If any of this sounds like you, keep reading.</h2>
+    </div>
+
+    <div class="max-w-[340px] mx-auto mb-14 px-6 py-4 bg-indigo rounded-full flex items-center justify-center gap-2.5 text-white text-[14.5px] font-bold">
+      <span>Tap what sounds like you</span>
+      <span>·</span>
+      <span><span class="text-orange-light text-[19px] font-extrabold" id="traitCount">0</span> of {traitCount}</span>
+    </div>
+
+    {traitGroups.map((group) => (
+      <div class="mb-14 last:mb-0">
+        <div class="flex items-center gap-3.5 mb-7">
+          <span class="trait-mark w-5 h-[26px] relative shrink-0" aria-hidden="true"></span>
+          <h3 class="font-extrabold text-[24px] tracking-[-0.01em] text-indigo">{group.title}</h3>
         </div>
-
-        <div class="flex flex-col" data-reveal-stagger>
-          {problems.map((p) => (
-            <article class="py-7 first:pt-1 border-t border-ink/10">
-              <div class="flex items-start gap-5">
-                <span class="font-mono font-semibold text-[40px] leading-none tracking-[-0.01em] text-indigo/15 flex-none w-14 select-none" aria-hidden="true">{p.num}</span>
-                <div>
-                  <h3 class="font-display font-extrabold text-[1.22rem] tracking-[-0.02em] text-ink mb-2">{p.title}</h3>
-                  <p class="text-[14.5px] text-slate leading-relaxed max-w-[420px] text-pretty">{p.body}</p>
-                </div>
-              </div>
-            </article>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" data-reveal-stagger>
+          {group.traits.map((trait) => (
+            <button type="button" class="trait-card text-left bg-white rounded-xl p-6 flex gap-3.5 items-start border-[1.5px] border-ink/[0.06] shadow-[0_2px_8px_rgba(15,15,15,0.04),0_10px_26px_-14px_rgba(15,15,15,0.1)] transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:shadow-[0_4px_12px_rgba(15,15,15,0.06),0_20px_36px_-16px_rgba(15,15,15,0.18)] hover:border-ink/[0.12]">
+              <span class="trait-check w-[30px] h-[30px] rounded-full bg-indigo-tint flex items-center justify-center shrink-0 transition-all duration-300 ease-out-quart">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-[15px] h-[15px] stroke-indigo opacity-30 transition-opacity duration-200"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <p class="text-[14.5px] font-semibold text-ink leading-[1.45] pt-1 transition-colors duration-200">{trait}</p>
+            </button>
           ))}
         </div>
       </div>
-    </div>
+    ))}
   </section>
 
-  <!-- ============ 02 · PILLARS ============ -->
-  <section id="pillars" class="bg-white scroll-mt-24">
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-14 sm:py-[88px]">
-      <Marker idx="02" label="What we do" count="02 / 08" />
+  <section class="groups py-24 sm:py-28" id="groups">
+    <div class="max-w-[640px] mx-auto mb-16 px-5 text-center">
+      <span class="block text-orange text-[12.5px] tracking-[0.08em] uppercase font-extrabold mb-3.5">Everything underneath</span>
+      <h2 class="font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink mb-3.5">Two things stop landing on your desk.</h2>
+      <p class="text-slate text-[16px] leading-[1.6]">Not services picked off a menu. Everything below is part of the same job, keeping the business running while you focus on the business.</p>
+    </div>
 
-      <div class="max-w-[640px] mb-9" data-reveal>
-        <h2 class="font-display font-extrabold text-[clamp(2rem,3.8vw,3rem)] leading-[1.08] tracking-[-0.03em] text-ink text-balance">
-          Three pillars. One partner. Zero hand-offs between vendors.
-        </h2>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-[22px]" data-reveal-stagger>
-        {pillarCards.map((c) => (
-          <a
-            href={c.href}
-            class="relative bg-white border border-[#E7E4DC] rounded-xl px-7 pt-8 pb-7 flex flex-col gap-3.5 overflow-hidden transition-all duration-300 ease-out-expo hover:-translate-y-1 hover:border-transparent hover:shadow-[0_28px_50px_-32px_rgba(20,10,69,0.28)]"
-          >
-            <span class="absolute top-0 left-0 right-0 h-[3px]" style={`background:${c.accent}`} aria-hidden="true"></span>
-            <div class="flex items-center justify-between">
-              <span class="font-mono font-semibold text-[12.5px] text-slate/50">{c.idx}</span>
-              <div class="w-10 h-10 rounded-[9px] bg-[#EEEAFB] flex items-center justify-center" style={`color:${c.accent}`} set:html={c.icon} />
+    <div class="max-w-content mx-auto px-5 sm:px-8">
+      <div class="mb-16">
+        <div class="flex items-center gap-3.5 mb-8">
+          <span class="trait-mark w-5 h-[26px] relative shrink-0" aria-hidden="true"></span>
+          <h3 class="font-extrabold text-[26px] tracking-[-0.01em] text-indigo">Your Team</h3>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" data-reveal-stagger>
+          {yourTeamServices.map((s) => (
+            <div class="svc-card group relative bg-white rounded-xl p-8 pb-7 border border-ink/[0.06] shadow-[0_2px_8px_rgba(15,15,15,0.04),0_12px_32px_-16px_rgba(15,15,15,0.12)] transition-all duration-300 ease-out-quart hover:-translate-y-2 hover:border-ink/[0.15] hover:shadow-[0_4px_14px_rgba(15,15,15,0.06),0_28px_50px_-20px_rgba(15,15,15,0.28)] overflow-hidden">
+              <span class="svc-card-bar absolute top-0 left-0 right-0 h-[3px] scale-x-0 origin-left transition-transform duration-[400ms] ease-out-quart" style="background: linear-gradient(90deg, #FB961F, #281398);" aria-hidden="true"></span>
+              <span class="svc-icon w-[46px] h-[46px] rounded-[10px] bg-indigo-tint flex items-center justify-center mb-5 transition-all duration-300 ease-out-quart group-hover:bg-indigo group-hover:-rotate-[8deg] group-hover:scale-[1.06]" set:html={s.icon.replace('<svg ', '<svg class="w-[22px] h-[22px] stroke-indigo group-hover:stroke-white transition-colors duration-300" ')} />
+              <h4 class="font-extrabold text-[20px] text-indigo mb-3 leading-[1.25] tracking-[-0.008em] transition-colors duration-200 group-hover:text-indigo-light">{s.title}</h4>
+              <p class="text-[14.5px] text-slate leading-[1.6]">{s.body}</p>
+              <div class="flex items-center justify-between mt-6">
+                <span class="text-[12px] font-extrabold tracking-[0.06em] uppercase text-indigo">Book a call</span>
+                <a href="/#book" aria-label={`Book a call about ${s.title}`} class="arrow-circle w-[42px] h-[42px] rounded-full bg-orange flex items-center justify-center shrink-0 transition-transform duration-300 ease-out-quart group-hover:scale-[1.12] group-hover:rotate-[360deg]">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#151515" stroke-width="2.4" stroke-linecap="round" class="w-4 h-4 transition-transform duration-300 ease-out-quart group-hover:rotate-45"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                </a>
+              </div>
             </div>
-            <h3 class="font-display font-extrabold text-[1.28rem] tracking-[-0.02em] text-ink mt-1">{c.title}</h3>
-            <p class="text-[14.5px] text-slate leading-relaxed flex-1 text-pretty">{c.body}</p>
-            <span class="self-start font-mono font-semibold text-[10.5px] uppercase tracking-[0.05em] text-slate/60 border border-[#E7E4DC] rounded-full px-[11px] py-[5px] mt-0.5">{c.tag}</span>
-          </a>
-        ))}
+          ))}
+        </div>
+        <div class="flex items-center gap-5 bg-indigo rounded-xl px-7 py-6 mt-6 flex-col sm:flex-row text-left">
+          <span class="w-11 h-11 rounded-[10px] bg-white/[0.14] flex items-center justify-center shrink-0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-[22px] h-[22px]"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </span>
+          <p class="text-[14.5px] text-white/85 leading-[1.5]"><strong class="text-white">You get to see it, not just take our word for it.</strong> Every client is onboarded onto our HR platform, one place to see the team roster, performance reviews, and payment records as they happen.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center gap-3.5 mb-8">
+          <span class="trait-mark w-5 h-[26px] relative shrink-0" aria-hidden="true"></span>
+          <h3 class="font-extrabold text-[26px] tracking-[-0.01em] text-indigo">What Goes Out the Door</h3>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" data-reveal-stagger>
+          {doorServices.map((s) => (
+            <div class="svc-card group relative bg-white rounded-xl p-8 pb-7 border border-ink/[0.06] shadow-[0_2px_8px_rgba(15,15,15,0.04),0_12px_32px_-16px_rgba(15,15,15,0.12)] transition-all duration-300 ease-out-quart hover:-translate-y-2 hover:border-ink/[0.15] hover:shadow-[0_4px_14px_rgba(15,15,15,0.06),0_28px_50px_-20px_rgba(15,15,15,0.28)] overflow-hidden">
+              <span class="svc-card-bar absolute top-0 left-0 right-0 h-[3px] scale-x-0 origin-left transition-transform duration-[400ms] ease-out-quart" style="background: linear-gradient(90deg, #FB961F, #281398);" aria-hidden="true"></span>
+              <span class="svc-icon w-[46px] h-[46px] rounded-[10px] bg-indigo-tint flex items-center justify-center mb-5 transition-all duration-300 ease-out-quart group-hover:bg-indigo group-hover:-rotate-[8deg] group-hover:scale-[1.06]" set:html={s.icon.replace('<svg ', '<svg class="w-[22px] h-[22px] stroke-indigo group-hover:stroke-white transition-colors duration-300" ')} />
+              <h4 class="font-extrabold text-[20px] text-indigo mb-3 leading-[1.25] tracking-[-0.008em] transition-colors duration-200 group-hover:text-indigo-light">{s.title}</h4>
+              <p class="text-[14.5px] text-slate leading-[1.6]">{s.body}</p>
+              <div class="flex items-center justify-between mt-6">
+                <span class="text-[12px] font-extrabold tracking-[0.06em] uppercase text-indigo">Book a call</span>
+                <a href="/#book" aria-label={`Book a call about ${s.title}`} class="arrow-circle w-[42px] h-[42px] rounded-full bg-orange flex items-center justify-center shrink-0 transition-transform duration-300 ease-out-quart group-hover:scale-[1.12] group-hover:rotate-[360deg]">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#151515" stroke-width="2.4" stroke-linecap="round" class="w-4 h-4 transition-transform duration-300 ease-out-quart group-hover:rotate-45"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p class="text-center text-[13.5px] text-slate mt-6">Also available on request, quoted separately: business registration support.</p>
       </div>
     </div>
   </section>
 
-  <!-- ============ 03 · WHO THIS IS FOR ============ -->
-  <section class="texture-dots">
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-14 sm:py-[88px]">
-      <Marker idx="03" label="Who this is for" count="03 / 08" />
-
-      <div class="max-w-[640px] mb-9" data-reveal>
-        <h2 class="font-display font-extrabold text-[clamp(2rem,3.8vw,3rem)] leading-[1.08] tracking-[-0.03em] text-ink">
-          If any of this sounds
-          <span class="whitespace-nowrap"><span class="sig">familiar<svg viewBox="0 0 140 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8c22-7 96-7 136 4"/></svg></span>.</span>
-        </h2>
+  <section class="about py-24 sm:py-28 bg-[#F7F5F0]" id="about">
+    <div class="max-w-[1160px] mx-auto px-5 sm:px-8 grid md:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
+      <div class="order-2 md:order-1">
+        <span class="trait-mark w-10 h-[52px] relative block mb-7" aria-hidden="true" style="--mark-w: 12px; --mark-gap: 22px;"></span>
+        <h2 class="font-extrabold text-[clamp(1.9rem,4vw,2.75rem)] tracking-[-0.02em] leading-[1.15] text-ink mb-6">We didn't set out to build a service menu.</h2>
+        <p class="text-[17px] leading-[1.7] text-slate max-w-[560px] mb-5">Masy Consulting started the way most real businesses do, by solving one problem for one client, then staying because the work kept growing. A single hire turned into a team. A one-off request turned into an ongoing relationship. That pattern is now the whole business.</p>
+        <p class="text-[17px] leading-[1.7] text-slate max-w-[560px]">We're not a large firm pretending to be small, or a solo consultant pretending to be a firm. We're a hands-on team that shows up in the actual weekly work, hiring, monitoring, paying staff, writing what needs to go out the door, not just advising from a distance.</p>
       </div>
+      <div class="order-1 md:order-2 relative rounded-xl overflow-hidden aspect-[4/5] shadow-[0_20px_50px_-20px_rgba(15,15,15,0.18)]">
+        <img src="/four.jpg" alt="A consultant writing in a notebook beside her laptop and financial charts" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </section>
 
+  <section class="examples py-20 sm:py-24 bg-white border-y border-line" id="examples">
+    <div class="max-w-content mx-auto px-5 sm:px-8">
+      <div class="max-w-[640px] mx-auto mb-12 text-center">
+        <span class="block text-orange text-[12.5px] tracking-[0.08em] uppercase font-extrabold mb-3.5">Not hypothetical, already happening</span>
+        <h2 class="font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink">Two businesses we're running the operations for right now.</h2>
+      </div>
       <div class="grid md:grid-cols-2 gap-5" data-reveal-stagger>
-        {whoFeatured.map((w) => (
-          <div class="bg-white border border-[#E7E4DC] rounded-xl px-8 py-[34px] flex flex-col gap-3.5 transition-all duration-300 ease-out-expo hover:-translate-y-[3px] hover:border-indigo-light hover:shadow-[0_24px_48px_-30px_rgba(40,19,152,0.32)]">
-            <span class="font-mono font-semibold text-[12.5px] text-slate/50">{w.idx}</span>
-            <h3 class="font-display font-extrabold text-[1.3rem] tracking-[-0.02em] text-ink">{w.title}</h3>
-            <p class="text-[15px] text-slate leading-relaxed text-pretty">{w.body}</p>
+        {caseStudies.map((c) => (
+          <div class="bg-white rounded-xl p-9 border border-ink/[0.06] shadow-[0_2px_8px_rgba(15,15,15,0.04),0_12px_32px_-16px_rgba(15,15,15,0.12)] transition-all duration-300 ease-out-quart hover:-translate-y-1.5 hover:shadow-[0_4px_14px_rgba(15,15,15,0.06),0_24px_44px_-18px_rgba(15,15,15,0.18)]">
+            <div class="flex justify-between items-baseline mb-4.5 gap-3 flex-wrap">
+              <span class="text-[14px] font-extrabold text-indigo">{c.kicker}</span>
+              <span class="text-[13px] text-slate-light font-semibold">{c.loc}</span>
+            </div>
+            <p class="text-[15.5px] text-slate leading-[1.65] mb-5">{c.body}</p>
+            <div class="flex flex-wrap gap-2.5">
+              {c.tags.map((tag) => (
+                <span class="text-[13px] font-bold text-indigo border-[1.5px] border-indigo rounded-lg px-3.5 py-1.5">{tag}</span>
+              ))}
+            </div>
           </div>
         ))}
       </div>
-
-      <div class="grid sm:grid-cols-2 gap-5 mt-5" data-reveal-stagger>
-        <div class="bg-white border border-[#E7E4DC] rounded-xl px-6 py-[26px] flex flex-col gap-2.5">
-          <span class="font-mono font-semibold text-[12.5px] text-slate/50">03</span>
-          <h3 class="font-display font-extrabold text-[1.05rem] tracking-[-0.02em] text-ink">Need outsourced HR</h3>
-          <p class="text-[13.5px] text-slate leading-relaxed text-pretty">
-            You already have a team, but no HR department, and hiring one just
-            to manage payroll, performance, and day-to-day people issues
-            doesn't make sense yet. You'd rather hand it to someone who
-            already knows how.
-          </p>
-        </div>
-
-        <div class="bg-indigo rounded-xl px-6 py-[26px] flex flex-col gap-2.5 relative overflow-hidden">
-          <span class="font-mono font-semibold text-[12.5px] text-white/40">04</span>
-          <span class="font-mono font-semibold text-[11px] uppercase tracking-[0.06em] text-[#FFC876]">Everyone else</span>
-          <h3 class="font-display font-extrabold text-[1.05rem] tracking-[-0.02em] text-white">A few more we hear often</h3>
-          <p class="who-slide-text text-[13.5px] text-[#C6BEEF] leading-relaxed min-h-[56px]" id="whoSlideText">
-            Raising capital and need real market data behind the pitch.
-          </p>
-          <div class="flex gap-1.5 mt-auto pt-2" id="whoSlideDots"></div>
-        </div>
-      </div>
+      <p class="text-center text-[14px] text-slate mt-9">Two of the businesses we currently run operations for, among others we're working with.</p>
     </div>
   </section>
 
-  <!-- ============ 04 · HOW IT WORKS ============ -->
-  <section id="how" class="bg-indigo text-white scroll-mt-24">
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-14 sm:py-[88px]">
-      <Marker idx="04" label="How it works" count="04 / 08" tone="dark" />
-
-      <div class="max-w-[640px] mb-9" data-reveal>
-        <h2 class="font-display font-extrabold text-[clamp(2rem,3.8vw,3rem)] leading-[1.08] tracking-[-0.03em] text-white">
-          Four steps, start to finish.
-        </h2>
+  <section class="process py-24 sm:py-28" id="process">
+    <div class="max-w-content mx-auto px-5 sm:px-8">
+      <div class="max-w-[520px] mb-14">
+        <span class="block text-orange text-[12.5px] tracking-[0.08em] uppercase font-extrabold mb-3.5">How it works</span>
+        <h2 class="font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink">Three steps, no fluff.</h2>
       </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-[22px]" data-reveal-stagger>
-        {steps.map((step, i) => (
-          <div class="relative pt-[22px] px-1 border-t-[1.5px] border-white/[0.18]">
-            <span class="font-mono font-bold text-[80px] leading-none text-white/[0.08] absolute -top-2 right-0 select-none" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-            <h3 class="font-display font-extrabold text-[1.08rem] tracking-[-0.02em] text-white mt-2.5 mb-2 relative">{step.title}</h3>
-            <p class="text-[13.5px] text-[#C6BEEF] leading-relaxed relative text-pretty">{step.body}</p>
+      <div class="grid md:grid-cols-3 gap-6" data-reveal-stagger>
+        {processSteps.map((step, i) => (
+          <div class="bg-white rounded-xl p-8 border border-indigo/[0.06] shadow-[0_2px_8px_rgba(15,15,15,0.04),0_12px_32px_-16px_rgba(40,19,152,0.12)] transition-all duration-300 ease-out-quart hover:-translate-y-1.5 hover:shadow-[0_4px_14px_rgba(15,15,15,0.06),0_24px_44px_-18px_rgba(40,19,152,0.24)]">
+            <span class="w-11 h-11 rounded-full bg-orange text-ink flex items-center justify-center font-extrabold text-[16px] mb-5">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="font-extrabold text-[19px] text-ink mb-2.5">{step.title}</h3>
+            <p class="text-[14.5px] text-slate leading-[1.6]">{step.body}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- ============ 05 · WHY TRUST US ============ -->
-  <section class="bg-[#F7F5F0]">
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-14 sm:py-[88px]">
-      <Marker idx="05" label="Why trust us" count="05 / 08" />
-
-      <div class="max-w-[640px] mb-9" data-reveal>
-        <h2 class="font-display font-extrabold text-[clamp(2rem,3.8vw,3rem)] leading-[1.08] tracking-[-0.03em] text-ink text-balance">
-          No case studies to wave around yet.
-          <span class="text-indigo">Here's what you can actually check.</span>
-        </h2>
+  <section class="faq py-24 sm:py-28 bg-[#F7F5F0]" id="faq">
+    <div class="max-w-content mx-auto px-5 sm:px-8">
+      <div class="max-w-[640px] mx-auto mb-12 text-center">
+        <span class="block text-orange text-[12.5px] tracking-[0.08em] uppercase font-extrabold mb-3.5">Questions worth asking</span>
+        <h2 class="font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink">Before you book the call.</h2>
       </div>
-
-      <div class="grid sm:grid-cols-2 gap-5" data-reveal-stagger>
-        {trustPoints.map((t) => (
-          <div class="bg-white border border-[#E7E4DC] rounded-xl px-7 py-[26px] flex flex-col gap-2.5 transition-all duration-300 ease-out-expo hover:-translate-y-1 hover:border-indigo-light hover:shadow-[0_24px_48px_-30px_rgba(40,19,152,0.28)]">
-            <span class="font-mono font-semibold text-[12.5px] text-slate/50">{t.idx}</span>
-            <h3 class="font-display font-extrabold text-[1.1rem] tracking-[-0.02em] text-ink">{t.title}</h3>
-            <p class="text-[14px] text-slate leading-relaxed text-pretty">{t.body}</p>
-          </div>
+      <div class="max-w-[720px] mx-auto flex flex-col gap-3" data-reveal>
+        {faqs.map((f) => (
+          <details class="faq-item bg-white rounded-xl border border-ink/[0.06] shadow-[0_2px_8px_rgba(15,15,15,0.04),0_12px_32px_-16px_rgba(15,15,15,0.12)] overflow-hidden">
+            <summary class="list-none cursor-pointer flex items-center justify-between gap-5 px-7 py-5 font-extrabold text-ink text-[16px]">
+              {f.q}
+              <span class="faq-plus shrink-0"></span>
+            </summary>
+            <p class="px-7 pb-6 text-[14.5px] text-slate leading-[1.6] max-w-[600px]">{f.a}</p>
+          </details>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- ============ 06 · FAQ ============ -->
-  <section class="bg-white">
-    <div class="max-w-content mx-auto px-5 sm:px-8 py-14 sm:py-[88px]">
-      <Marker idx="06" label="FAQ" count="06 / 08" />
-
-      <div class="max-w-[640px] mx-auto text-center mb-9" data-reveal>
-        <h2 class="font-display font-extrabold text-[clamp(2rem,3.8vw,3rem)] leading-[1.08] tracking-[-0.03em] text-ink text-balance">
-          Questions people ask before booking a call.
-        </h2>
-      </div>
-
-      <FaqCards items={faqs} />
+  <section class="closing py-24 sm:py-28 text-center bg-indigo" id="book">
+    <div class="max-w-content mx-auto px-5 sm:px-8">
+      <h2 class="text-white font-extrabold text-[clamp(1.9rem,4.4vw,3.2rem)] tracking-[-0.02em] leading-[1.12] mb-4.5 max-w-[800px] mx-auto">Stop being your own operations department.</h2>
+      <p class="text-white/75 text-[17px] font-medium mb-9">One free discovery call, no obligation, no pitch deck.</p>
+      <Button href="/contact/" variant="primary" size="lg" pill={false}>Book a discovery call</Button>
     </div>
   </section>
-
-  <!-- ============ 07 · GET STARTED ============ -->
-  <CTASection
-    marker={{ idx: '07', label: 'Get started', count: '07 / 08' }}
-    heading="Let's take this off your plate."
-    body="Book a discovery call, or message us on WhatsApp, whichever's easier."
-    primaryLabel="Book a discovery call"
-    secondaryLabel="WhatsApp us"
-    secondaryHref="/contact/"
-  />
 </BaseLayout>
 
 <style>
-  /* Hand-drawn underline; the stroke draws itself when the reveal
-     engine marks the block in view. */
-  .sig {
+  /* ---------- Hero slideshow ---------- */
+  .hero-slide {
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  .hero-slide.active {
+    opacity: 1;
+  }
+  .hero-dots :global(button) {
+    width: 26px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.35);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 2px;
+    transition: background 0.2s ease;
+  }
+  .hero-dots :global(button.active) {
+    background: var(--orange, #fb961f);
+  }
+  .fade-in {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .fade-in.show {
+    opacity: 1;
+  }
+  .type-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 0.85em;
+    background: #fb961f;
+    margin-left: 3px;
+    vertical-align: -0.1em;
+    animation: blink 0.85s steps(1) infinite;
+  }
+  .type-cursor.done {
+    opacity: 0;
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  :global(.quill-wrap) {
     position: relative;
     display: inline-block;
-    color: theme('colors.indigo.DEFAULT');
+    font-style: italic;
+    color: #fb961f;
+    font-weight: 700;
   }
-  .sig svg {
+  :global(.quill-underline) {
     position: absolute;
-    left: -2%;
-    bottom: -6px;
-    width: 104%;
-    height: 16px;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 12px;
     overflow: visible;
+    pointer-events: none;
   }
-  .sig path {
-    stroke: theme('colors.orange.DEFAULT');
-    stroke-width: 3.5;
+  :global(.quill-underline path) {
     fill: none;
+    stroke: #fb961f;
+    stroke-width: 3.5;
     stroke-linecap: round;
-    stroke-dasharray: 340;
-    stroke-dashoffset: 340;
+    stroke-dasharray: 180;
+    stroke-dashoffset: 180;
+    transition: stroke-dashoffset 0.7s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .is-inview .sig path {
-    animation: sig-draw 1s var(--ease-out-expo) 0.3s forwards;
+  :global(.quill-underline.draw path) {
+    stroke-dashoffset: 0;
   }
-  @keyframes sig-draw {
-    to {
-      stroke-dashoffset: 0;
-    }
+
+  /* ---------- "Your Team" / "What Goes Out the Door" section marks ---------- */
+  .trait-mark {
+    --mark-w: 6px;
+    --mark-gap: 11px;
   }
+  .trait-mark::before,
+  .trait-mark::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: var(--mark-w);
+    background: var(--orange, #fb961f);
+    transform: skewX(-14deg);
+  }
+  .trait-mark::before {
+    left: 0;
+    background: var(--indigo, #281398);
+  }
+  .trait-mark::after {
+    left: var(--mark-gap);
+  }
+
+  /* ---------- Trait card checked state ---------- */
+  .trait-card.checked {
+    background: #281398;
+    border-color: #281398;
+  }
+  .trait-card.checked p {
+    color: #fff;
+  }
+  .trait-card.checked .trait-check {
+    background: #fb961f;
+    transform: scale(1.15) rotate(-8deg);
+  }
+  .trait-card.checked .trait-check svg {
+    opacity: 1;
+    stroke: #151515;
+  }
+
+  /* ---------- Service card top bar reveal on hover ---------- */
+  .svc-card:hover .svc-card-bar {
+    transform: scaleX(1);
+  }
+
+  /* ---------- FAQ plus/minus ---------- */
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-plus {
+    width: 22px;
+    height: 22px;
+    position: relative;
+  }
+  .faq-plus::before,
+  .faq-plus::after {
+    content: '';
+    position: absolute;
+    background: #281398;
+    border-radius: 2px;
+    transition: transform 0.25s var(--ease-out-expo), opacity 0.25s;
+  }
+  .faq-plus::before {
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+    transform: translateY(-50%);
+  }
+  .faq-plus::after {
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+  .faq-item[open] .faq-plus::after {
+    transform: translateX(-50%) rotate(90deg);
+    opacity: 0;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .sig path {
-      stroke-dashoffset: 0;
+    .fade-in {
+      opacity: 1;
+      transition: none;
+    }
+    .type-cursor {
       animation: none;
+      opacity: 0;
     }
   }
-
-  /* Dotted-paper texture behind "Who this is for" */
-  .texture-dots {
-    background-color: theme('colors.paper');
-    background-image: radial-gradient(#e7e4dc 1.2px, transparent 1.2px);
-    background-size: 22px 22px;
-  }
-
-  /* Rotating "everyone else" card */
-  .who-slide-text {
-    transition: opacity 0.4s var(--ease-out-expo);
-  }
-  #whoSlideDots :global(span) {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.28);
-    transition: background 0.3s;
-  }
-  #whoSlideDots :global(span.active) {
-    background: theme('colors.orange.DEFAULT');
-  }
-
 </style>
 
 <script>
-  // Rotating quotes in the "Everyone else" card
-  const whoSlides = [
-    'Raising capital and need real market data behind the pitch.',
-    'Entering a new state or country and need to understand it first.',
-    "Already tried an in-house HR hire and it didn't stick.",
-    'Need documents that hold up in front of investors or partners.',
-  ];
-  const whoText = document.getElementById('whoSlideText');
-  const whoDots = document.getElementById('whoSlideDots');
-  if (whoText && whoDots && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    whoSlides.forEach((_, i) => {
-      const dot = document.createElement('span');
-      if (i === 0) dot.classList.add('active');
-      whoDots.appendChild(dot);
-    });
-    let whoIndex = 0;
-    setInterval(() => {
-      whoIndex = (whoIndex + 1) % whoSlides.length;
-      whoText.style.opacity = '0';
-      setTimeout(() => {
-        whoText.textContent = whoSlides[whoIndex];
-        whoText.style.opacity = '1';
-        [...whoDots.children].forEach((d, i) => d.classList.toggle('active', i === whoIndex));
-      }, 400);
-    }, 3200);
-  }
+  document.addEventListener('DOMContentLoaded', () => {
+    // ---------- Hero slideshow ----------
+    (() => {
+      const slides = document.querySelectorAll<HTMLElement>('.hero-slide');
+      const dotsWrap = document.getElementById('heroDots');
+      if (!slides.length || !dotsWrap) return;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let current = 0;
+      let timer: ReturnType<typeof setInterval> | undefined;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+          show(i);
+          resetTimer();
+        });
+        dotsWrap.appendChild(dot);
+      });
+      const dots = dotsWrap.querySelectorAll('button');
+
+      function show(i: number) {
+        slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+        dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+        current = i;
+      }
+      function next() {
+        show((current + 1) % slides.length);
+      }
+      function resetTimer() {
+        if (reduceMotion) return;
+        clearInterval(timer);
+        timer = setInterval(next, 5500);
+      }
+      resetTimer();
+    })();
+
+    // ---------- Typewriter headline with quill underline ----------
+    (() => {
+      const target = document.getElementById('typeContent');
+      const cursor = document.getElementById('typeCursor');
+      const heroSub = document.getElementById('heroSub');
+      const heroCta = document.getElementById('heroCta');
+      if (!target || !cursor || !heroSub || !heroCta) return;
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const segments = [
+        { text: 'You run the business. We run ', em: false },
+        { text: 'everything', em: true },
+        { text: ' underneath.', em: false },
+      ];
+
+      if (reduceMotion) {
+        segments.forEach((seg) => {
+          if (seg.em) {
+            const wrap = document.createElement('span');
+            wrap.className = 'quill-wrap';
+            wrap.textContent = seg.text;
+            target.appendChild(wrap);
+          } else {
+            target.appendChild(document.createTextNode(seg.text));
+          }
+        });
+        cursor.classList.add('done');
+        heroSub.classList.add('show');
+        heroCta.classList.add('show');
+        return;
+      }
+
+      let segIdx = 0;
+      let charIdx = 0;
+      let currentEl: HTMLElement | null = null;
+      let emTarget: HTMLElement | null = null;
+
+      function step() {
+        if (segIdx >= segments.length) {
+          cursor!.classList.add('done');
+          heroSub!.classList.add('show');
+          heroCta!.classList.add('show');
+          const quillWrap = target!.querySelector<HTMLElement>('.quill-wrap');
+          if (quillWrap) {
+            const ns = 'http://www.w3.org/2000/svg';
+            const svg = document.createElementNS(ns, 'svg');
+            svg.setAttribute('class', 'quill-underline');
+            svg.setAttribute('viewBox', '0 0 140 14');
+            svg.setAttribute('preserveAspectRatio', 'none');
+            const path = document.createElementNS(ns, 'path');
+            path.setAttribute('d', 'M2,10 C30,2 90,14 138,4');
+            svg.appendChild(path);
+            quillWrap.appendChild(svg);
+            setTimeout(() => svg.classList.add('draw'), 150);
+          }
+          return;
+        }
+        const seg = segments[segIdx];
+        if (charIdx === 0) {
+          currentEl = document.createElement('span');
+          if (seg.em) {
+            currentEl.className = 'quill-wrap';
+            const inner = document.createElement('em');
+            inner.style.fontStyle = 'italic';
+            currentEl.appendChild(inner);
+            emTarget = inner;
+          }
+          target!.appendChild(currentEl);
+        }
+        if (seg.em && emTarget) {
+          emTarget.textContent += seg.text[charIdx];
+        } else if (currentEl) {
+          currentEl.textContent += seg.text[charIdx];
+        }
+        charIdx++;
+        if (charIdx >= seg.text.length) {
+          segIdx++;
+          charIdx = 0;
+        }
+        setTimeout(step, 28 + Math.random() * 30);
+      }
+      setTimeout(step, 400);
+    })();
+
+    // ---------- Trait cards: click to check + live counter ----------
+    (() => {
+      const traits = document.querySelectorAll('.trait-card');
+      const countEl = document.getElementById('traitCount');
+      if (!traits.length) return;
+      function updateCount() {
+        const checked = document.querySelectorAll('.trait-card.checked').length;
+        if (countEl) countEl.textContent = String(checked);
+      }
+      traits.forEach((card) => {
+        card.addEventListener('click', () => {
+          card.classList.toggle('checked');
+          updateCount();
+        });
+      });
+    })();
+  });
 </script>

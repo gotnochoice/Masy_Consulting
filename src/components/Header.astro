@@ -16,8 +16,8 @@ const currentPath = Astro.url.pathname;
           <a
             href={link.href}
             class:list={[
-              'link-underline text-[14px] font-medium tracking-wide py-1.5 transition-colors duration-200',
-              active ? 'text-ink' : 'text-slate hover:text-ink',
+              'link-underline text-[14px] font-semibold tracking-wide py-1.5 transition-colors duration-200',
+              active ? 'text-indigo' : 'text-slate hover:text-indigo',
             ]}
             aria-current={active ? 'page' : undefined}
           >
@@ -28,7 +28,7 @@ const currentPath = Astro.url.pathname;
     </nav>
 
     <div class="hidden lg:block">
-      <Button href="/contact/" variant="ink" size="sm">Book a discovery call</Button>
+      <Button href="/#book" variant="indigo" size="sm" pill={false}>Book a discovery call</Button>
     </div>
 
     <button
@@ -56,13 +56,13 @@ const currentPath = Astro.url.pathname;
           class="menu-item font-display text-[32px] leading-none py-4 border-b border-white/10 flex items-baseline gap-4"
           style={`--i:${i}`}
         >
-          <span class="font-mono text-[12px] text-orange">0{i + 1}</span>
+          <span class="font-sans font-extrabold text-[12px] tracking-[0.06em] text-orange">0{i + 1}</span>
           {link.label}
         </a>
       ))}
     </nav>
     <div class="pt-8">
-      <Button href="/contact/" variant="primary" size="lg" class="w-full">
+      <Button href="/#book" variant="primary" size="lg" pill={false} class="w-full">
         Book a discovery call
       </Button>
     </div>
