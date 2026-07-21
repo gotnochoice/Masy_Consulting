@@ -6,26 +6,33 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Near-black indigo for large dark surfaces (never pure black)
-        ink: '#140A45',
+        // Locked two-color system: indigo + orange. Everything else is black/white/gray.
+        ink: '#151515',
         indigo: {
           DEFAULT: '#281398',
           deep: '#1C0E6B',
-          light: '#2F32D5',
+          light: '#3D2FE0',
+          tint: '#F0EDFB',
         },
         orange: {
           DEFAULT: '#FB961F',
           deep: '#E07D0A',
+          light: '#FFC276',
           soft: '#FFF3E2',
         },
         slate: {
-          DEFAULT: '#4A4A5A',
+          DEFAULT: '#5C5C5C',
+          light: '#8C8C8C',
         },
-        paper: '#F5F3EE',
+        paper: '#FFFFFF',
+        line: '#ECEAF3',
       },
       fontFamily: {
         display: ['"Plus Jakarta Sans Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         sans: ['"Plus Jakarta Sans Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // Kept only so the not-yet-migrated pages (About, Insights, old pillar
+        // pages) still render their existing font-mono labels correctly.
+        // The new homepage never uses font-mono — see .mono-label utility instead.
         mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
       },
       maxWidth: {
