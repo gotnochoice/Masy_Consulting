@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    { "source": "/about", "destination": "/#about", "permanent": true },
+    { "source": "/about/", "destination": "/#about", "permanent": true },
+    { "source": "/fractional-hr", "destination": "/#groups", "permanent": true },
+    { "source": "/fractional-hr/", "destination": "/#groups", "permanent": true },
+    { "source": "/business-writing", "destination": "/#groups", "permanent": true },
+    { "source": "/business-writing/", "destination": "/#groups", "permanent": true },
+    { "source": "/industry-analysis", "destination": "/#groups", "permanent": true },
+    { "source": "/industry-analysis/", "destination": "/#groups", "permanent": true },
+    { "source": "/insights", "destination": "/", "permanent": true },
+    { "source": "/insights/", "destination": "/", "permanent": true },
+    { "source": "/insights/:slug", "destination": "/", "permanent": true },
+    { "source": "/insights/:slug/", "destination": "/", "permanent": true }
+  ]
+}

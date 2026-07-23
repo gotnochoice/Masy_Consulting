@@ -212,7 +212,7 @@ const faqs = [
     ))}
   </section>
 
-  <section class="groups py-16 sm:py-20" id="groups">
+  <section class="groups py-16 sm:py-20 border-t border-line" id="groups">
     <div class="max-w-[640px] mx-auto mb-10 px-5 text-center">
       <span class="block text-orange text-[12.5px] tracking-[0.08em] uppercase font-extrabold mb-3.5">Everything underneath</span>
       <h2 class="font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink mb-3.5">Two things stop landing on your desk.</h2>
@@ -683,9 +683,7 @@ const faqs = [
             if (entry.isIntersecting && !started) {
               started = true;
               runTypewriter(target, cursor, [
-                { text: 'If any of this sounds like ', em: false },
-                { text: 'you', em: true },
-                { text: ', keep reading.', em: false },
+                { text: 'If any of this sounds like you, keep reading.', em: false },
               ]);
               observer.disconnect();
             }

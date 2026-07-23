@@ -8,6 +8,11 @@ export default defineConfig({
   devToolbar: { enabled: false },
   integrations: [
     tailwind({ applyBaseStyles: false }),
-    sitemap(),
+    sitemap({
+      filter: (page) =>
+        !/^\/(about|fractional-hr|business-writing|industry-analysis|insights)(\/|$)/.test(
+          new URL(page).pathname
+        ),
+    }),
   ],
 });
