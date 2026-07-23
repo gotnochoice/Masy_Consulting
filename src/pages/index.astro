@@ -181,7 +181,9 @@ const faqs = [
   <section class="whofor2 py-16 sm:py-20 max-w-content mx-auto px-5 sm:px-8" id="whofor">
     <div class="max-w-[640px] mx-auto mb-9 text-center">
       <span class="block text-orange text-[13px] tracking-[0.08em] uppercase font-extrabold mb-4">Who this is for</span>
-      <h2 class="font-extrabold text-[clamp(1.75rem,3.8vw,2.75rem)] tracking-[-0.02em] leading-[1.15] text-ink">If any of this sounds like you, keep reading.</h2>
+      <h2 class="font-extrabold text-[clamp(1.75rem,3.8vw,2.75rem)] tracking-[-0.02em] leading-[1.15] text-ink min-h-[1.15em]">
+        <span id="typeContent2"></span><span class="type-cursor" id="typeCursor2"></span>
+      </h2>
     </div>
 
     <div class="max-w-[340px] mx-auto mb-10 px-6 py-4 bg-indigo rounded-lg flex items-center justify-center gap-2.5 text-white text-[14.5px] font-bold">
@@ -566,20 +568,16 @@ const faqs = [
       resetTimer();
     })();
 
-    // ---------- Typewriter headline with quill underline ----------
-    (() => {
-      const target = document.getElementById('typeContent');
-      const cursor = document.getElementById('typeCursor');
-      const heroSub = document.getElementById('heroSub');
-      const heroCta = document.getElementById('heroCta');
-      if (!target || !cursor || !heroSub || !heroCta) return;
+    // ---------- Typewriter with quill underline (reusable) ----------
+    type TypeSegment = { text: string; em: boolean };
 
+    function runTypewriter(
+      target: HTMLElement,
+      cursor: HTMLElement,
+      segments: TypeSegment[],
+      onDone?: () => void
+    ) {
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const segments = [
-        { text: 'You run the business. We run ', em: false },
-        { text: 'everything', em: true },
-        { text: ' underneath.', em: false },
-      ];
 
       if (reduceMotion) {
         segments.forEach((seg) => {
@@ -593,8 +591,7 @@ const faqs = [
           }
         });
         cursor.classList.add('done');
-        heroSub.classList.add('show');
-        heroCta.classList.add('show');
+        onDone?.();
         return;
       }
 
@@ -605,10 +602,8 @@ const faqs = [
 
       function step() {
         if (segIdx >= segments.length) {
-          cursor!.classList.add('done');
-          heroSub!.classList.add('show');
-          heroCta!.classList.add('show');
-          const quillWrap = target!.querySelector<HTMLElement>('.quill-wrap');
+          cursor.classList.add('done');
+          const quillWrap = target.querySelector<HTMLElement>('.quill-wrap');
           if (quillWrap) {
             const ns = 'http://www.w3.org/2000/svg';
             const svg = document.createElementNS(ns, 'svg');
@@ -621,6 +616,7 @@ const faqs = [
             quillWrap.appendChild(svg);
             setTimeout(() => svg.classList.add('draw'), 150);
           }
+          onDone?.();
           return;
         }
         const seg = segments[segIdx];
@@ -633,7 +629,7 @@ const faqs = [
             currentEl.appendChild(inner);
             emTarget = inner;
           }
-          target!.appendChild(currentEl);
+          target.appendChild(currentEl);
         }
         if (seg.em && emTarget) {
           emTarget.textContent += seg.text[charIdx];
@@ -648,6 +644,56 @@ const faqs = [
         setTimeout(step, 28 + Math.random() * 30);
       }
       setTimeout(step, 400);
+    }
+
+    // ---------- Hero headline ----------
+    (() => {
+      const target = document.getElementById('typeContent');
+      const cursor = document.getElementById('typeCursor');
+      const heroSub = document.getElementById('heroSub');
+      const heroCta = document.getElementById('heroCta');
+      if (!target || !cursor || !heroSub || !heroCta) return;
+
+      runTypewriter(
+        target,
+        cursor,
+        [
+          { text: 'You run the business. We run ', em: false },
+          { text: 'everything', em: true },
+          { text: ' underneath.', em: false },
+        ],
+        () => {
+          heroSub.classList.add('show');
+          heroCta.classList.add('show');
+        }
+      );
+    })();
+
+    // ---------- "Who This Is For" headline: type on scroll into view ----------
+    (() => {
+      const target = document.getElementById('typeContent2');
+      const cursor = document.getElementById('typeCursor2');
+      const section = document.getElementById('whofor');
+      if (!target || !cursor || !section) return;
+
+      let started = false;
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !started) {
+              started = true;
+              runTypewriter(target, cursor, [
+                { text: 'If any of this sounds like ', em: false },
+                { text: 'you', em: true },
+                { text: ', keep reading.', em: false },
+              ]);
+              observer.disconnect();
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+      observer.observe(section);
     })();
 
     // ---------- Trait cards: click to check + live counter ----------
