@@ -36,7 +36,11 @@ const year = new Date().getFullYear();
         <h5 class="text-[11.5px] font-bold uppercase tracking-[0.06em] text-slate-light mb-3">Reach us</h5>
         <ul class="space-y-2 text-[14px] text-ink font-medium">
           <li><a href={`mailto:${siteMeta.email}`} class="hover:text-indigo transition-colors">{siteMeta.email}</a></li>
-          <li><a href="/contact/" class="hover:text-indigo transition-colors">WhatsApp</a></li>
+          <li>
+            <a href={siteMeta.whatsappUrl} target="_blank" rel="noopener noreferrer" class="hover:text-indigo transition-colors">
+              {siteMeta.whatsappDisplay}
+            </a>
+          </li>
           <li>
             <a href={siteMeta.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-indigo transition-colors">
               LinkedIn

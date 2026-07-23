@@ -1,3 +1,6 @@
+const whatsappNumber = '2348035176379';
+const whatsappMessage = 'Hi, I’d like to talk to Masy Consulting about running my team and/or getting some documents written.';
+
 export const siteMeta = {
   name: 'Masy Consulting',
   tagline: 'You run the business. We run everything underneath.',
@@ -6,6 +9,8 @@ export const siteMeta = {
   url: 'https://www.masyconsulting.com',
   linkedin: 'https://www.linkedin.com/company/masy-consulting',
   email: 'hello@masyconsulting.com',
+  whatsappDisplay: '+234 803 517 6379',
+  whatsappUrl: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
 };
 
 export const navLinks = [

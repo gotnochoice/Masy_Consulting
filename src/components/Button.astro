@@ -8,6 +8,7 @@ interface Props {
   magnetic?: boolean;
   /** false = 8px corners (current locked design system). true = legacy pill shape, kept only for pages not yet migrated. */
   pill?: boolean;
+  newTab?: boolean;
 }
 const {
   href,
@@ -17,6 +18,7 @@ const {
   type = 'button',
   magnetic = false,
   pill = true,
+  newTab = false,
 } = Astro.props;
 
 const base =
@@ -50,7 +52,13 @@ const sizes: Record<string, string> = {
 const classes = `${base} ${variants[variant]} ${sizes[size]} ${magnetic ? 'magnetic' : ''} ${className}`;
 const Tag = href ? 'a' : 'button';
 ---
-<Tag href={href} type={href ? undefined : type} class={classes}>
+<Tag
+  href={href}
+  type={href ? undefined : type}
+  target={newTab ? '_blank' : undefined}
+  rel={newTab ? 'noopener noreferrer' : undefined}
+  class={classes}
+>
   <span
     class={`absolute inset-0 ${sweeps[variant]} ${radius} translate-y-[101%] transition-transform duration-[450ms] ease-out-quart group-hover/btn:translate-y-0`}
     aria-hidden="true"

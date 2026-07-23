@@ -10,7 +10,7 @@ export default defineConfig({
     tailwind({ applyBaseStyles: false }),
     sitemap({
       filter: (page) =>
-        !/^\/(about|fractional-hr|business-writing|industry-analysis|insights)(\/|$)/.test(
+        !/^\/(about|fractional-hr|business-writing|industry-analysis|insights|contact)(\/|$)/.test(
           new URL(page).pathname
         ),
     }),

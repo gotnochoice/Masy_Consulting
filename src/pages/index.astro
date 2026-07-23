@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
+import { siteMeta } from '../data/site';
 
 const heroSlides = [
   { src: '/four.jpg', alt: 'A consultant writing in a notebook beside her laptop and financial charts' },
@@ -171,7 +172,7 @@ const faqs = [
       </p>
       <div class="hero-cta fade-in flex gap-3.5 flex-wrap items-center justify-center" id="heroCta">
         <Button href="/#book" variant="primary" size="lg" pill={false}>Book a discovery call</Button>
-        <Button href="/contact/" variant="outlineDark" size="lg" pill={false}>WhatsApp us</Button>
+        <Button href={siteMeta.whatsappUrl} variant="outlineDark" size="lg" pill={false} newTab>WhatsApp us</Button>
       </div>
     </div>
 
@@ -179,7 +180,7 @@ const faqs = [
   </section>
 
   <section class="whofor2 py-16 sm:py-20 max-w-content mx-auto px-5 sm:px-8" id="whofor">
-    <div class="max-w-[640px] mx-auto mb-9 text-center">
+    <div class="max-w-[640px] mx-auto mb-9 text-center" id="whoforHead">
       <span class="block text-orange text-[13px] tracking-[0.08em] uppercase font-extrabold mb-4">Who this is for</span>
       <h2 class="font-extrabold text-[clamp(1.75rem,3.8vw,2.75rem)] tracking-[-0.02em] leading-[1.15] text-ink min-h-[1.15em]">
         <span id="typeContent2"></span><span class="type-cursor" id="typeCursor2"></span>
@@ -355,7 +356,7 @@ const faqs = [
     <div class="max-w-content mx-auto px-5 sm:px-8">
       <h2 class="text-white font-extrabold text-[clamp(1.9rem,4.4vw,3.2rem)] tracking-[-0.02em] leading-[1.12] mb-4.5 max-w-[800px] mx-auto">Stop being your own operations department.</h2>
       <p class="text-white/75 text-[17px] font-medium mb-9">One free discovery call, no obligation, no pitch deck.</p>
-      <Button href="/contact/" variant="primary" size="lg" pill={false}>Book a discovery call</Button>
+      <Button href={siteMeta.whatsappUrl} variant="primary" size="lg" pill={false} newTab>Book a discovery call</Button>
     </div>
   </section>
 </BaseLayout>
@@ -673,8 +674,8 @@ const faqs = [
     (() => {
       const target = document.getElementById('typeContent2');
       const cursor = document.getElementById('typeCursor2');
-      const section = document.getElementById('whofor');
-      if (!target || !cursor || !section) return;
+      const head = document.getElementById('whoforHead');
+      if (!target || !cursor || !head) return;
 
       let started = false;
       const observer = new IntersectionObserver(
@@ -689,9 +690,9 @@ const faqs = [
             }
           });
         },
-        { threshold: 0.5 }
+        { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
       );
-      observer.observe(section);
+      observer.observe(head);
     })();
 
     // ---------- Trait cards: click to check + live counter ----------
