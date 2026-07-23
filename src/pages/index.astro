@@ -178,20 +178,20 @@ const faqs = [
     <div class="hero-dots absolute bottom-7 right-8 z-[3] flex gap-2" id="heroDots"></div>
   </section>
 
-  <section class="whofor2 py-24 sm:py-28 max-w-content mx-auto px-5 sm:px-8" id="whofor">
+  <section class="whofor2 py-16 sm:py-20 max-w-content mx-auto px-5 sm:px-8" id="whofor">
     <div class="max-w-[640px] mx-auto mb-9 text-center">
       <span class="block text-orange text-[13px] tracking-[0.08em] uppercase font-extrabold mb-4">Who this is for</span>
       <h2 class="font-extrabold text-[clamp(1.75rem,3.8vw,2.75rem)] tracking-[-0.02em] leading-[1.15] text-ink">If any of this sounds like you, keep reading.</h2>
     </div>
 
-    <div class="max-w-[340px] mx-auto mb-14 px-6 py-4 bg-indigo rounded-full flex items-center justify-center gap-2.5 text-white text-[14.5px] font-bold">
+    <div class="max-w-[340px] mx-auto mb-10 px-6 py-4 bg-indigo rounded-lg flex items-center justify-center gap-2.5 text-white text-[14.5px] font-bold">
       <span>Tap what sounds like you</span>
       <span>·</span>
       <span><span class="text-orange-light text-[19px] font-extrabold" id="traitCount">0</span> of {traitCount}</span>
     </div>
 
     {traitGroups.map((group) => (
-      <div class="mb-14 last:mb-0">
+      <div class="mb-10 last:mb-0">
         <div class="flex items-center gap-3.5 mb-7">
           <span class="trait-mark w-5 h-[26px] relative shrink-0" aria-hidden="true"></span>
           <h3 class="font-extrabold text-[24px] tracking-[-0.01em] text-indigo">{group.title}</h3>
@@ -199,7 +199,7 @@ const faqs = [
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" data-reveal-stagger>
           {group.traits.map((trait) => (
             <button type="button" class="trait-card text-left bg-white rounded-xl p-6 flex gap-3.5 items-start border-[1.5px] border-ink/[0.06] shadow-[0_2px_8px_rgba(15,15,15,0.04),0_10px_26px_-14px_rgba(15,15,15,0.1)] transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:shadow-[0_4px_12px_rgba(15,15,15,0.06),0_20px_36px_-16px_rgba(15,15,15,0.18)] hover:border-ink/[0.12]">
-              <span class="trait-check w-[30px] h-[30px] rounded-full bg-indigo-tint flex items-center justify-center shrink-0 transition-all duration-300 ease-out-quart">
+              <span class="trait-check w-[30px] h-[30px] rounded-lg bg-indigo-tint flex items-center justify-center shrink-0 transition-all duration-300 ease-out-quart">
                 <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="w-[15px] h-[15px] stroke-indigo opacity-30 transition-opacity duration-200"><path d="M20 6L9 17l-5-5"/></svg>
               </span>
               <p class="text-[14.5px] font-semibold text-ink leading-[1.45] pt-1 transition-colors duration-200">{trait}</p>
@@ -210,15 +210,15 @@ const faqs = [
     ))}
   </section>
 
-  <section class="groups py-24 sm:py-28" id="groups">
-    <div class="max-w-[640px] mx-auto mb-16 px-5 text-center">
+  <section class="groups py-16 sm:py-20" id="groups">
+    <div class="max-w-[640px] mx-auto mb-10 px-5 text-center">
       <span class="block text-orange text-[12.5px] tracking-[0.08em] uppercase font-extrabold mb-3.5">Everything underneath</span>
       <h2 class="font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink mb-3.5">Two things stop landing on your desk.</h2>
       <p class="text-slate text-[16px] leading-[1.6]">Not services picked off a menu. Everything below is part of the same job, keeping the business running while you focus on the business.</p>
     </div>
 
     <div class="max-w-content mx-auto px-5 sm:px-8">
-      <div class="mb-16">
+      <div class="mb-10">
         <div class="flex items-center gap-3.5 mb-8">
           <span class="trait-mark w-5 h-[26px] relative shrink-0" aria-hidden="true"></span>
           <h3 class="font-extrabold text-[26px] tracking-[-0.01em] text-indigo">Your Team</h3>
@@ -232,7 +232,7 @@ const faqs = [
               <p class="text-[14.5px] text-slate leading-[1.6]">{s.body}</p>
               <div class="flex items-center justify-between mt-6">
                 <span class="text-[12px] font-extrabold tracking-[0.06em] uppercase text-indigo">Book a call</span>
-                <a href="/#book" aria-label={`Book a call about ${s.title}`} class="arrow-circle w-[42px] h-[42px] rounded-full bg-orange flex items-center justify-center shrink-0 transition-transform duration-300 ease-out-quart group-hover:scale-[1.12] group-hover:rotate-[360deg]">
+                <a href="/#book" aria-label={`Book a call about ${s.title}`} class="svc-arrow w-[42px] h-[42px] rounded-lg bg-orange flex items-center justify-center shrink-0 transition-transform duration-300 ease-out-quart group-hover:scale-[1.12] group-hover:rotate-[360deg]">
                   <svg viewBox="0 0 24 24" fill="none" stroke="#151515" stroke-width="2.4" stroke-linecap="round" class="w-4 h-4 transition-transform duration-300 ease-out-quart group-hover:rotate-45"><path d="M7 17L17 7M9 7h8v8"/></svg>
                 </a>
               </div>
@@ -252,28 +252,26 @@ const faqs = [
           <span class="trait-mark w-5 h-[26px] relative shrink-0" aria-hidden="true"></span>
           <h3 class="font-extrabold text-[26px] tracking-[-0.01em] text-indigo">What Goes Out the Door</h3>
         </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" data-reveal-stagger>
+        <div class="divide-y divide-line" data-reveal-stagger>
           {doorServices.map((s) => (
-            <div class="svc-card group relative bg-white rounded-xl p-8 pb-7 border border-ink/[0.06] shadow-[0_2px_8px_rgba(15,15,15,0.04),0_12px_32px_-16px_rgba(15,15,15,0.12)] transition-all duration-300 ease-out-quart hover:-translate-y-2 hover:border-ink/[0.15] hover:shadow-[0_4px_14px_rgba(15,15,15,0.06),0_28px_50px_-20px_rgba(15,15,15,0.28)] overflow-hidden">
-              <span class="svc-card-bar absolute top-0 left-0 right-0 h-[3px] scale-x-0 origin-left transition-transform duration-[400ms] ease-out-quart" style="background: linear-gradient(90deg, #FB961F, #281398);" aria-hidden="true"></span>
-              <span class="svc-icon w-[46px] h-[46px] rounded-[10px] bg-indigo-tint flex items-center justify-center mb-5 transition-all duration-300 ease-out-quart group-hover:bg-indigo group-hover:-rotate-[8deg] group-hover:scale-[1.06]" set:html={s.icon.replace('<svg ', '<svg class="w-[22px] h-[22px] stroke-indigo group-hover:stroke-white transition-colors duration-300" ')} />
-              <h4 class="font-extrabold text-[20px] text-indigo mb-3 leading-[1.25] tracking-[-0.008em] transition-colors duration-200 group-hover:text-indigo-light">{s.title}</h4>
-              <p class="text-[14.5px] text-slate leading-[1.6]">{s.body}</p>
-              <div class="flex items-center justify-between mt-6">
-                <span class="text-[12px] font-extrabold tracking-[0.06em] uppercase text-indigo">Book a call</span>
-                <a href="/#book" aria-label={`Book a call about ${s.title}`} class="arrow-circle w-[42px] h-[42px] rounded-full bg-orange flex items-center justify-center shrink-0 transition-transform duration-300 ease-out-quart group-hover:scale-[1.12] group-hover:rotate-[360deg]">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#151515" stroke-width="2.4" stroke-linecap="round" class="w-4 h-4 transition-transform duration-300 ease-out-quart group-hover:rotate-45"><path d="M7 17L17 7M9 7h8v8"/></svg>
-                </a>
+            <div class="svc-row group flex items-start gap-5 py-6 pl-4 border-l-[3px] border-transparent transition-all duration-300 ease-out-quart hover:border-orange hover:pl-6">
+              <span class="svc-row-icon w-10 h-10 rounded-lg bg-indigo-tint flex items-center justify-center shrink-0 transition-colors duration-300 ease-out-quart group-hover:bg-indigo" set:html={s.icon.replace('<svg ', '<svg class="w-[19px] h-[19px] stroke-indigo group-hover:stroke-white transition-colors duration-300" ')} />
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-4 flex-wrap">
+                  <h4 class="font-extrabold text-[17px] text-indigo tracking-[-0.005em]">{s.title}</h4>
+                  <a href="/#book" aria-label={`Book a call about ${s.title}`} class="shrink-0 text-[12px] font-extrabold tracking-[0.06em] uppercase text-indigo/60 group-hover:text-orange-deep transition-colors duration-200">Book a call →</a>
+                </div>
+                <p class="text-[14.5px] text-slate leading-[1.6] mt-1.5 max-w-[560px]">{s.body}</p>
               </div>
             </div>
           ))}
         </div>
-        <p class="text-center text-[13.5px] text-slate mt-6">Also available on request, quoted separately: business registration support.</p>
+        <p class="text-center text-[13.5px] text-slate mt-8">Also available on request, quoted separately: business registration support.</p>
       </div>
     </div>
   </section>
 
-  <section class="about py-24 sm:py-28 bg-[#F7F5F0]" id="about">
+  <section class="about py-16 sm:py-20 bg-[#F7F5F0]" id="about">
     <div class="max-w-[1160px] mx-auto px-5 sm:px-8 grid md:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
       <div class="order-2 md:order-1">
         <span class="trait-mark w-10 h-[52px] relative block mb-7" aria-hidden="true" style="--mark-w: 12px; --mark-gap: 22px;"></span>
@@ -287,9 +285,9 @@ const faqs = [
     </div>
   </section>
 
-  <section class="examples py-20 sm:py-24 bg-white border-y border-line" id="examples">
+  <section class="examples py-16 sm:py-20 bg-white border-y border-line" id="examples">
     <div class="max-w-content mx-auto px-5 sm:px-8">
-      <div class="max-w-[640px] mx-auto mb-12 text-center">
+      <div class="max-w-[640px] mx-auto mb-9 text-center">
         <span class="block text-orange text-[12.5px] tracking-[0.08em] uppercase font-extrabold mb-3.5">Not hypothetical, already happening</span>
         <h2 class="font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink">Two businesses we're running the operations for right now.</h2>
       </div>
@@ -313,16 +311,16 @@ const faqs = [
     </div>
   </section>
 
-  <section class="process py-24 sm:py-28" id="process">
+  <section class="process py-16 sm:py-20" id="process">
     <div class="max-w-content mx-auto px-5 sm:px-8">
-      <div class="max-w-[520px] mb-14">
+      <div class="max-w-[520px] mb-10">
         <span class="block text-orange text-[12.5px] tracking-[0.08em] uppercase font-extrabold mb-3.5">How it works</span>
         <h2 class="font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink">Three steps, no fluff.</h2>
       </div>
       <div class="grid md:grid-cols-3 gap-6" data-reveal-stagger>
         {processSteps.map((step, i) => (
           <div class="bg-white rounded-xl p-8 border border-indigo/[0.06] shadow-[0_2px_8px_rgba(15,15,15,0.04),0_12px_32px_-16px_rgba(40,19,152,0.12)] transition-all duration-300 ease-out-quart hover:-translate-y-1.5 hover:shadow-[0_4px_14px_rgba(15,15,15,0.06),0_24px_44px_-18px_rgba(40,19,152,0.24)]">
-            <span class="w-11 h-11 rounded-full bg-orange text-ink flex items-center justify-center font-extrabold text-[16px] mb-5">{String(i + 1).padStart(2, '0')}</span>
+            <span class="w-11 h-11 rounded-lg bg-orange text-ink flex items-center justify-center font-extrabold text-[16px] mb-5">{String(i + 1).padStart(2, '0')}</span>
             <h3 class="font-extrabold text-[19px] text-ink mb-2.5">{step.title}</h3>
             <p class="text-[14.5px] text-slate leading-[1.6]">{step.body}</p>
           </div>
@@ -331,9 +329,9 @@ const faqs = [
     </div>
   </section>
 
-  <section class="faq py-24 sm:py-28 bg-[#F7F5F0]" id="faq">
+  <section class="faq py-16 sm:py-20 bg-[#F7F5F0]" id="faq">
     <div class="max-w-content mx-auto px-5 sm:px-8">
-      <div class="max-w-[640px] mx-auto mb-12 text-center">
+      <div class="max-w-[640px] mx-auto mb-9 text-center">
         <span class="block text-orange text-[12.5px] tracking-[0.08em] uppercase font-extrabold mb-3.5">Questions worth asking</span>
         <h2 class="font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink">Before you book the call.</h2>
       </div>
@@ -351,7 +349,7 @@ const faqs = [
     </div>
   </section>
 
-  <section class="closing py-24 sm:py-28 text-center bg-indigo" id="book">
+  <section class="closing py-16 sm:py-20 text-center bg-indigo" id="book">
     <div class="max-w-content mx-auto px-5 sm:px-8">
       <h2 class="text-white font-extrabold text-[clamp(1.9rem,4.4vw,3.2rem)] tracking-[-0.02em] leading-[1.12] mb-4.5 max-w-[800px] mx-auto">Stop being your own operations department.</h2>
       <p class="text-white/75 text-[17px] font-medium mb-9">One free discovery call, no obligation, no pitch deck.</p>
