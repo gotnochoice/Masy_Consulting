@@ -255,7 +255,7 @@ const faqs = [
             <div class="svc-row reveal-item group flex items-start gap-5 py-6 pl-4 border-l-[3px] border-transparent transition-all duration-300 ease-out-quart hover:border-orange hover:pl-6">
               <span class="svc-row-icon w-10 h-10 rounded-lg bg-indigo-tint flex items-center justify-center shrink-0 transition-colors duration-300 ease-out-quart group-hover:bg-indigo" set:html={s.icon.replace('<svg ', '<svg class="w-[19px] h-[19px] stroke-indigo group-hover:stroke-white transition-colors duration-300" ')} />
               <div class="flex-1 min-w-0">
-                <div class="flex items-baseline justify-between gap-4 flex-wrap">
+                <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4">
                   <h4 class="font-extrabold text-[17px] text-indigo tracking-[-0.005em]">{s.title}</h4>
                   <a href="/#book" aria-label={`Book a call about ${s.title}`} class="shrink-0 text-[12px] font-extrabold tracking-[0.06em] uppercase text-indigo/60 group-hover:text-orange-deep transition-colors duration-200">Book a call →</a>
                 </div>
