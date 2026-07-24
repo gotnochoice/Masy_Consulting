@@ -155,7 +155,7 @@ const faqs = [
   title="Masy Consulting — You Run the Business. We Run Everything Underneath."
   description="Masy Consulting hires and manages your team, and writes and builds the proposals, research, projections, and decks that go out the door, so you can focus on the business instead of running it."
 >
-  <section class="hero relative min-h-[78vh] flex items-end overflow-hidden" style="background: linear-gradient(160deg, #281398 0%, #180B5E 100%);">
+  <section class="hero relative min-h-screen flex items-end overflow-hidden" style="background: linear-gradient(160deg, #281398 0%, #180B5E 100%);">
     {heroSlides.map((slide, i) => (
       <div class:list={['hero-slide absolute inset-0', { active: i === 0 }]} data-hslide={i}>
         <img src={slide.src} alt={slide.alt} class="absolute inset-0 w-full h-full object-cover" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'auto'} decoding="async" />
