@@ -155,7 +155,7 @@ const faqs = [
   title="Masy Consulting — You Run the Business. We Run Everything Underneath."
   description="Masy Consulting hires and manages your team, and writes and builds the proposals, research, projections, and decks that go out the door, so you can focus on the business instead of running it."
 >
-  <section class="hero relative min-h-[calc(100vh-84px)] flex items-end overflow-hidden" style="background: linear-gradient(160deg, #281398 0%, #180B5E 100%);">
+  <section class="hero relative min-h-[calc(100vh-84px)] flex items-center overflow-hidden" style="background: linear-gradient(160deg, #281398 0%, #180B5E 100%);">
     {heroSlides.map((slide, i) => (
       <div class:list={['hero-slide absolute inset-0', { active: i === 0 }]} data-hslide={i}>
         <img src={slide.src} alt={slide.alt} class="absolute inset-0 w-full h-full object-cover" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'auto'} decoding="async" />
@@ -163,7 +163,7 @@ const faqs = [
       </div>
     ))}
 
-    <div class="relative z-[2] max-w-content mx-auto w-full px-5 sm:px-8 pb-16 sm:pb-[72px] text-center">
+    <div class="relative z-[2] max-w-content mx-auto w-full px-5 sm:px-8 pb-10 sm:pb-8 text-center">
       <h1 class="text-white font-extrabold text-[clamp(2.4rem,6vw,4.6rem)] leading-[1.1] tracking-[-0.02em] max-w-[840px] mx-auto mb-5 min-h-[1.1em]">
         <span id="typeContent"></span><span class="type-cursor" id="typeCursor"></span>
       </h1>
@@ -243,15 +243,17 @@ const faqs = [
           ))}
         </div>
         <div
-          class="flex items-center gap-6 rounded-xl px-7 py-7 mt-6 flex-col sm:flex-row text-center sm:text-left border border-white/10"
+          class="flex items-center justify-center rounded-xl px-7 py-7 mt-6 border border-white/10"
           style="background: linear-gradient(135deg, #281398 0%, #1C0E6B 100%);"
         >
-          <span class="w-12 h-12 rounded-lg bg-orange flex items-center justify-center shrink-0">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#151515" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-[22px] h-[22px]"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          </span>
-          <div>
-            <p class="text-white font-extrabold text-[16px] leading-[1.3] mb-1.5">You get to see it, not just take our word for it.</p>
-            <p class="text-[14.5px] text-white/70 leading-[1.6]">Every client is onboarded onto our HR platform, one place to see the team roster, performance reviews, and payment records as they happen.</p>
+          <div class="flex items-center gap-6 flex-col sm:flex-row text-center sm:text-left max-w-[720px]">
+            <span class="w-12 h-12 rounded-lg bg-orange flex items-center justify-center shrink-0">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#151515" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-[22px] h-[22px]"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </span>
+            <div>
+              <p class="text-white font-extrabold text-[16px] leading-[1.3] mb-1.5">You get to see it, not just take our word for it.</p>
+              <p class="text-[14.5px] text-white/70 leading-[1.6]">Every client is onboarded onto our HR platform, one place to see the team roster, performance reviews, and payment records as they happen.</p>
+            </div>
           </div>
         </div>
       </div>
