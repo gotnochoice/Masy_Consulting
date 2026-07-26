@@ -93,14 +93,25 @@ const currentPath = Astro.url.pathname;
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
   let open = false;
-  toggle?.addEventListener('click', () => {
-    open = !open;
+
+  function setMenu(next: boolean) {
+    open = next;
     menu?.classList.toggle('hidden', !open);
     menu?.classList.toggle('flex', open);
     menu?.classList.toggle('menu-open', open);
     document.body.classList.toggle('overflow-hidden', open);
-    toggle.setAttribute('aria-expanded', String(open));
-    toggle.classList.toggle('is-open', open);
+    toggle?.setAttribute('aria-expanded', String(open));
+    toggle?.classList.toggle('is-open', open);
+  }
+
+  toggle?.addEventListener('click', () => setMenu(!open));
+
+  // Close the menu whenever a link inside it is followed - otherwise
+  // the overlay stays open covering the page after an in-page anchor
+  // link navigates underneath it, making the tap look like it did
+  // nothing.
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMenu(false));
   });
 </script>
 
