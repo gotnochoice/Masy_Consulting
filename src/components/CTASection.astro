@@ -15,7 +15,7 @@ const {
   heading,
   body,
   primaryLabel = 'Book a discovery call',
-  primaryHref = '/contact/',
+  primaryHref = '/#book',
   secondaryLabel,
   secondaryHref,
   marker,
@@ -35,9 +35,9 @@ const {
           </p>
         )}
         <div class="flex flex-wrap justify-center items-center gap-4">
-          <Button href={primaryHref} variant="primary" magnetic>{primaryLabel}</Button>
+          <Button href={primaryHref} variant="primary" pill={false} magnetic>{primaryLabel}</Button>
           {secondaryHref && secondaryLabel && (
-            <Button href={secondaryHref} variant="outlineDark">{secondaryLabel}</Button>
+            <Button href={secondaryHref} variant="outlineDark" pill={false}>{secondaryLabel}</Button>
           )}
         </div>
       </div>

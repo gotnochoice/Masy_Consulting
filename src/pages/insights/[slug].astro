@@ -24,9 +24,9 @@ const dateStr = post.data.date.toLocaleDateString('en-GB', {
 });
 
 const pillarHref: Record<string, string> = {
-  'Fractional HR': '/fractional-hr/',
-  'Business Writing': '/business-writing/',
-  'Industry Analysis': '/industry-analysis/',
+  'Fractional HR': '/#groups',
+  'Business Writing': '/#groups',
+  'Industry Analysis': '/#groups',
 };
 ---
 <BaseLayout title={post.data.title} description={post.data.dek}>
@@ -39,7 +39,7 @@ const pillarHref: Record<string, string> = {
     </a>
 
     <header class="mt-10 max-w-3xl">
-      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11.5px] uppercase tracking-[0.14em]">
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-sans font-bold text-[11.5px] uppercase tracking-[0.14em]">
         <a href={pillarHref[post.data.pillar]} class="text-orange-deep hover:text-ink transition-colors">
           {post.data.pillar}
         </a>

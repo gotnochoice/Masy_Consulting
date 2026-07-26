@@ -155,6 +155,31 @@ const faqs = [
   title="Masy Consulting — You Run the Business. We Run Everything Underneath."
   description="Masy Consulting hires and manages your team, and writes and builds the proposals, research, projections, and decks that go out the door, so you can focus on the business instead of running it."
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Fractional HR and business writing for African and diaspora-owned businesses',
+    provider: { '@type': 'ProfessionalService', name: 'Masy Consulting' },
+    areaServed: ['United Kingdom', 'United States', 'Canada', 'Nigeria'],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Services',
+      itemListElement: [...yourTeamServices, ...doorServices].map((s) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: s.title, description: s.body },
+      })),
+    },
+  })} />
+
   <section class="hero relative min-h-[calc(100vh-84px)] flex items-center overflow-hidden" style="background: linear-gradient(160deg, #281398 0%, #180B5E 100%);">
     {heroSlides.map((slide, i) => (
       <div class:list={['hero-slide absolute inset-0', { active: i === 0 }]} data-hslide={i}>

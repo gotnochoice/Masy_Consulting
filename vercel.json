@@ -8,10 +8,6 @@
     { "source": "/business-writing/", "destination": "/#groups", "permanent": true },
     { "source": "/industry-analysis", "destination": "/#groups", "permanent": true },
     { "source": "/industry-analysis/", "destination": "/#groups", "permanent": true },
-    { "source": "/insights", "destination": "/", "permanent": true },
-    { "source": "/insights/", "destination": "/", "permanent": true },
-    { "source": "/insights/:slug", "destination": "/", "permanent": true },
-    { "source": "/insights/:slug/", "destination": "/", "permanent": true },
     { "source": "/contact", "destination": "/#book", "permanent": true },
     { "source": "/contact/", "destination": "/#book", "permanent": true }
   ]

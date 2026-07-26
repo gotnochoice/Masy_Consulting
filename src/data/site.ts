@@ -21,5 +21,6 @@ export const navLinks = [
   { label: 'Services', href: '/#groups' },
   { label: 'Who We Are', href: '/#about' },
   { label: 'Who This Is For', href: '/#whofor' },
+  { label: 'Insights', href: '/insights/' },
   { label: 'Contact Us', href: '/#contact' },
 ];

@@ -34,7 +34,7 @@ const fmt = (d: Date) =>
           href={`/insights/${post.slug}/`}
           class="group grid lg:grid-cols-[130px_minmax(0,1fr)_minmax(0,380px)_60px] items-baseline lg:items-center gap-x-8 gap-y-3 py-9 sm:py-11 border-b border-ink/12"
         >
-          <div class="font-mono text-[11.5px] uppercase tracking-[0.14em] text-slate/60 leading-relaxed">
+          <div class="font-sans font-bold text-[11.5px] uppercase tracking-[0.14em] text-slate/60 leading-relaxed">
             <p class="text-orange-deep">{post.data.pillar}</p>
             <p class="mt-1">{fmt(post.data.date)}</p>
             <p>{post.data.readMinutes} min read</p>
