@@ -250,9 +250,9 @@ const faqs = [
           <span class="trait-mark w-5 h-[26px] relative shrink-0" aria-hidden="true"></span>
           <h3 class="font-extrabold text-[26px] tracking-[-0.01em] text-indigo">What Goes Out the Door</h3>
         </div>
-        <div class="divide-y divide-line border-t border-line">
+        <div>
           {doorServices.map((s) => (
-            <div class="svc-row reveal-item group flex items-start gap-5 py-6 pl-4 border-l-[3px] border-transparent transition-all duration-300 ease-out-quart hover:border-orange hover:pl-6">
+            <div class="svc-row reveal-item group flex items-start gap-5 py-6 pl-4 border-t border-t-line border-l-[3px] border-l-transparent transition-all duration-300 ease-out-quart hover:border-l-orange hover:pl-6">
               <span class="svc-row-icon w-10 h-10 rounded-lg bg-indigo-tint flex items-center justify-center shrink-0 transition-colors duration-300 ease-out-quart group-hover:bg-indigo" set:html={s.icon.replace('<svg ', '<svg class="w-[19px] h-[19px] stroke-indigo group-hover:stroke-white transition-colors duration-300" ')} />
               <div class="flex-1 min-w-0">
                 <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4">
