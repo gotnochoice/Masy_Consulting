@@ -4,6 +4,8 @@ dek: "Most decks don't fail because the business is weak. They fail because they
 pillar: "Business Writing"
 date: 2026-06-16
 readMinutes: 4
+image: "/four.jpg"
+imageAlt: "A consultant writing in a notebook beside her laptop and financial charts"
 ---
 
 Here's the uncomfortable part about most pitch decks and proposals: the person deciding whether to fund you, hire you, or sign the contract usually reads it alone, without you in the room to explain the slide, fill the gap, or answer the question it raises. By the time you find out the document didn't work, the deal is already quiet.

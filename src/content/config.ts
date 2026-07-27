@@ -8,6 +8,8 @@ const insights = defineCollection({
     pillar: z.enum(['Fractional HR', 'Business Writing', 'Industry Analysis']),
     date: z.date(),
     readMinutes: z.number(),
+    image: z.string(),
+    imageAlt: z.string(),
   }),
 });
 
