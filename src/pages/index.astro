@@ -2,6 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import { siteMeta } from '../data/site';
+import { getCollection } from 'astro:content';
+
+const insightPosts = (await getCollection('insights')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
 
 const heroSlides = [
   { src: '/four.jpg', alt: 'A consultant writing in a notebook beside her laptop and financial charts' },
@@ -152,7 +157,7 @@ const faqs = [
 ];
 ---
 <BaseLayout
-  title="Masy Consulting — You Run the Business. We Run Everything Underneath."
+  title="Masy Consulting — Fractional HR & Business Writing for Diaspora Founders"
   description="Masy Consulting hires and manages your team, and writes and builds the proposals, research, projections, and decks that go out the door, so you can focus on the business instead of running it."
 >
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -369,6 +374,17 @@ const faqs = [
           </details>
         ))}
       </div>
+      {insightPosts.length > 0 && (
+        <p class="max-w-[720px] mx-auto mt-7 text-center text-[13.5px] text-slate">
+          Further reading:{' '}
+          {insightPosts.map((post, i) => (
+            <>
+              <a href={`/insights/${post.slug}/`} class="text-indigo font-semibold hover:text-orange-deep transition-colors">{post.data.title}</a>
+              {i < insightPosts.length - 1 && <span class="mx-1.5">·</span>}
+            </>
+          ))}
+        </p>
+      )}
     </div>
   </section>
 
