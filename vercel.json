@@ -9,6 +9,10 @@
     { "source": "/industry-analysis", "destination": "/#groups", "permanent": true },
     { "source": "/industry-analysis/", "destination": "/#groups", "permanent": true },
     { "source": "/contact", "destination": "/#book", "permanent": true },
-    { "source": "/contact/", "destination": "/#book", "permanent": true }
+    { "source": "/contact/", "destination": "/#book", "permanent": true },
+    { "source": "/quote", "destination": "/#book", "permanent": true },
+    { "source": "/quote/", "destination": "/#book", "permanent": true },
+    { "source": "/tutoring", "destination": "https://www.masyacademy.com/", "permanent": true },
+    { "source": "/tutoring/", "destination": "https://www.masyacademy.com/", "permanent": true }
   ]
 }
