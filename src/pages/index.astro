@@ -185,11 +185,11 @@ const faqs = [
     },
   })} />
 
-  <section class="hero relative min-h-[calc(100vh-84px)] flex items-center overflow-hidden" style="background: linear-gradient(160deg, #281398 0%, #180B5E 100%);">
+  <section class="hero relative min-h-[calc(100vh-84px)] flex items-center overflow-hidden" style="background: linear-gradient(160deg, #4D148C 0%, #2D0B53 100%);">
     {heroSlides.map((slide, i) => (
       <div class:list={['hero-slide absolute inset-0', { active: i === 0 }]} data-hslide={i}>
         <img src={slide.src} alt={slide.alt} class="absolute inset-0 w-full h-full object-cover" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'auto'} decoding="async" />
-        <div class="absolute inset-0" style="background: linear-gradient(0deg, rgba(21,10,66,0.85) 0%, rgba(21,10,66,0.5) 45%, rgba(21,10,66,0.2) 100%);"></div>
+        <div class="absolute inset-0" style="background: linear-gradient(0deg, rgba(31,9,56,0.85) 0%, rgba(31,9,56,0.5) 45%, rgba(31,9,56,0.2) 100%);"></div>
       </div>
     ))}
 
@@ -259,7 +259,7 @@ const faqs = [
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {yourTeamServices.map((s) => (
             <div class="svc-card reveal-item group relative bg-white rounded-xl p-8 pb-7 border border-ink/[0.06] shadow-[0_2px_8px_rgba(15,15,15,0.04),0_12px_32px_-16px_rgba(15,15,15,0.12)] transition-all duration-300 ease-out-quart hover:-translate-y-2 hover:border-ink/[0.15] hover:shadow-[0_4px_14px_rgba(15,15,15,0.06),0_28px_50px_-20px_rgba(15,15,15,0.28)] overflow-hidden">
-              <span class="svc-card-bar absolute top-0 left-0 right-0 h-[3px] scale-x-0 origin-left transition-transform duration-[400ms] ease-out-quart" style="background: linear-gradient(90deg, #FB961F, #281398);" aria-hidden="true"></span>
+              <span class="svc-card-bar absolute top-0 left-0 right-0 h-[3px] scale-x-0 origin-left transition-transform duration-[400ms] ease-out-quart" style="background: linear-gradient(90deg, #ff6600, #4D148C);" aria-hidden="true"></span>
               <span class="svc-icon w-[46px] h-[46px] rounded-[10px] bg-indigo-tint flex items-center justify-center mb-5 transition-all duration-300 ease-out-quart group-hover:bg-indigo group-hover:-rotate-[8deg] group-hover:scale-[1.06]" set:html={s.icon.replace('<svg ', '<svg class="w-[22px] h-[22px] stroke-indigo group-hover:stroke-white transition-colors duration-300" ')} />
               <h4 class="font-extrabold text-[20px] text-indigo mb-3 leading-[1.25] tracking-[-0.008em] transition-colors duration-200 group-hover:text-indigo-light">{s.title}</h4>
               <p class="text-[14.5px] text-slate leading-[1.6]">{s.body}</p>
@@ -347,7 +347,7 @@ const faqs = [
       </div>
       <div class="grid md:grid-cols-3 gap-6">
         {processSteps.map((step, i) => (
-          <div class="reveal-item bg-white rounded-xl p-8 border border-indigo/[0.06] shadow-[0_2px_8px_rgba(15,15,15,0.04),0_12px_32px_-16px_rgba(40,19,152,0.12)] transition-all duration-300 ease-out-quart hover:-translate-y-1.5 hover:shadow-[0_4px_14px_rgba(15,15,15,0.06),0_24px_44px_-18px_rgba(40,19,152,0.24)]">
+          <div class="reveal-item bg-white rounded-xl p-8 border border-indigo/[0.06] shadow-[0_2px_8px_rgba(15,15,15,0.04),0_12px_32px_-16px_rgba(77,20,140,0.12)] transition-all duration-300 ease-out-quart hover:-translate-y-1.5 hover:shadow-[0_4px_14px_rgba(15,15,15,0.06),0_24px_44px_-18px_rgba(77,20,140,0.24)]">
             <span class="w-11 h-11 rounded-lg bg-orange text-ink flex items-center justify-center font-extrabold text-[16px] mb-5">{String(i + 1).padStart(2, '0')}</span>
             <h3 class="font-extrabold text-[19px] text-ink mb-2.5">{step.title}</h3>
             <p class="text-[14.5px] text-slate leading-[1.6]">{step.body}</p>
@@ -417,7 +417,7 @@ const faqs = [
     transition: background 0.2s ease;
   }
   .hero-dots :global(button.active) {
-    background: var(--orange, #fb961f);
+    background: var(--orange, #ff6600);
   }
   .fade-in {
     opacity: 0;
@@ -430,7 +430,7 @@ const faqs = [
     display: inline-block;
     width: 3px;
     height: 0.85em;
-    background: #fb961f;
+    background: #ff6600;
     margin-left: 3px;
     vertical-align: -0.1em;
     animation: blink 0.85s steps(1) infinite;
@@ -447,7 +447,7 @@ const faqs = [
     position: relative;
     display: inline-block;
     font-style: italic;
-    color: #fb961f;
+    color: #ff6600;
     font-weight: 700;
   }
   :global(.quill-underline) {
@@ -461,7 +461,7 @@ const faqs = [
   }
   :global(.quill-underline path) {
     fill: none;
-    stroke: #fb961f;
+    stroke: #ff6600;
     stroke-width: 3.5;
     stroke-linecap: round;
     stroke-dasharray: 180;
@@ -484,12 +484,12 @@ const faqs = [
     top: 0;
     bottom: 0;
     width: var(--mark-w);
-    background: var(--orange, #fb961f);
+    background: var(--orange, #ff6600);
     transform: skewX(-14deg);
   }
   .trait-mark::before {
     left: 0;
-    background: var(--indigo, #281398);
+    background: var(--indigo, #4D148C);
   }
   .trait-mark::after {
     left: var(--mark-gap);
@@ -497,14 +497,14 @@ const faqs = [
 
   /* ---------- Trait card checked state ---------- */
   .trait-card.checked {
-    background: #281398;
-    border-color: #281398;
+    background: #4D148C;
+    border-color: #4D148C;
   }
   .trait-card.checked p {
     color: #fff;
   }
   .trait-card.checked .trait-check {
-    background: #fb961f;
+    background: #ff6600;
     transform: scale(1.15) rotate(-8deg);
   }
   .trait-card.checked .trait-check svg {
@@ -530,7 +530,7 @@ const faqs = [
   .faq-plus::after {
     content: '';
     position: absolute;
-    background: #281398;
+    background: #4D148C;
     border-radius: 2px;
     transition: transform 0.25s var(--ease-out-expo), opacity 0.25s;
   }

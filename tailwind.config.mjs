@@ -9,16 +9,16 @@ export default {
         // Locked two-color system: indigo + orange. Everything else is black/white/gray.
         ink: '#151515',
         indigo: {
-          DEFAULT: '#281398',
-          deep: '#1C0E6B',
-          light: '#3D2FE0',
-          tint: '#F0EDFB',
+          DEFAULT: '#4D148C',
+          deep: '#350E60',
+          light: '#7E29DB',
+          tint: '#EEE4F9',
         },
         orange: {
-          DEFAULT: '#FB961F',
-          deep: '#E07D0A',
-          light: '#FFC276',
-          soft: '#FFF3E2',
+          DEFAULT: '#FF6600',
+          deep: '#CA5405',
+          light: '#FF9D5B',
+          soft: '#FFDDC7',
         },
         slate: {
           DEFAULT: '#5C5C5C',

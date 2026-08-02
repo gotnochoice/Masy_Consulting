@@ -13,14 +13,14 @@ html {
 
 body {
   background-color: #f5f3ee;
-  color: #140a45;
+  color: #210a3a;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
 
 ::selection {
-  background-color: #fb961f;
-  color: #140a45;
+  background-color: #ff6600;
+  color: #210a3a;
 }
 
 /* ---------- Visible keyboard focus for links, summaries, and form controls ---------- */
@@ -30,7 +30,7 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2px solid #fb961f;
+  outline: 2px solid #ff6600;
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -112,7 +112,7 @@ select:focus-visible {
 
 /* ---------- Underline sweep links ---------- */
 a.link-underline {
-  background-image: linear-gradient(#fb961f, #fb961f);
+  background-image: linear-gradient(#ff6600, #ff6600);
   background-position: 0 100%;
   background-repeat: no-repeat;
   background-size: 0% 2px;
@@ -129,7 +129,7 @@ a.link-underline:hover { background-size: 100% 2px; }
   content: '';
   position: absolute;
   inset: 0;
-  background: #140a45;
+  background: #210a3a;
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform 0.45s var(--ease-out-quart);
