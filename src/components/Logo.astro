@@ -5,14 +5,14 @@ interface Props {
   size?: 'sm' | 'md' | 'lg';
 }
 const { class: className = '', on = 'light', size = 'md' } = Astro.props;
-const wordPrimary = on === 'dark' ? 'text-white' : 'text-ink';
-const wordSecondary = on === 'dark' ? 'text-white/60' : 'text-slate';
+const wordPrimary = on === 'dark' ? 'text-white' : 'text-orange';
+const wordSecondary = on === 'dark' ? 'text-white/60' : 'text-orange';
 const markSize = size === 'sm' ? 'h-7 w-7' : size === 'lg' ? 'h-11 w-11' : 'h-9 w-9';
 const textSize = size === 'sm' ? 'text-[13px]' : size === 'lg' ? 'text-lg' : 'text-[15px]';
 ---
 <a href="/" class={`inline-flex items-center gap-2.5 group ${className}`} aria-label="Masy Consulting, home">
   <img
-    src="/logo-mark.png"
+    src="/logo-mark-purple.png"
     alt=""
     class={`${markSize} shrink-0 object-contain transition-transform duration-500 ease-out-quart group-hover:rotate-[-8deg]`}
     width="666"
