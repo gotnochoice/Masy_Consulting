@@ -8,6 +8,8 @@ const insightPosts = (await getCollection('insights')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 
+const words = (text: string) => text.split(' ');
+
 const heroSlides = [
   { src: '/four.jpg', alt: 'A consultant writing in a notebook beside her laptop and financial charts' },
   { src: '/two.jpg', alt: 'An HR manager reviewing and annotating a staff schedule at his desk' },
@@ -246,7 +248,13 @@ const faqs = [
   <section class="groups py-16 sm:py-20 border-t border-line" id="groups">
     <div class="max-w-[640px] mx-auto mb-10 px-5 text-center">
       <span class="block text-orange text-[12.5px] tracking-[0.08em] uppercase font-extrabold mb-3.5">Everything underneath</span>
-      <h2 id="groupsHead" class="font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink mb-3.5 min-h-[1.15em]"><span id="typeContent3"></span><span class="type-cursor" id="typeCursor3"></span></h2>
+      <h2 class="word-rise-heading font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink mb-3.5">
+        {words('Two things stop landing on your desk.').map((word, i) => (
+          <>
+            <span class="word"><span style={`--i:${i}`}>{word}</span></span>{' '}
+          </>
+        ))}
+      </h2>
       <p class="text-slate text-[16px] leading-[1.6]">Not services picked off a menu. Everything below is part of the same job, keeping the business running while you focus on the business.</p>
     </div>
 
@@ -303,7 +311,13 @@ const faqs = [
     <div class="max-w-[1160px] mx-auto px-5 sm:px-8 grid md:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
       <div class="order-2 md:order-1">
         <span class="trait-mark w-10 h-[52px] relative block mb-7" aria-hidden="true" style="--mark-w: 12px; --mark-gap: 22px;"></span>
-        <h2 id="aboutHead" class="font-extrabold text-[clamp(1.9rem,4vw,2.75rem)] tracking-[-0.02em] leading-[1.15] text-ink mb-6 min-h-[1.15em]"><span id="typeContent4"></span><span class="type-cursor" id="typeCursor4"></span></h2>
+        <h2 class="word-rise-heading font-extrabold text-[clamp(1.9rem,4vw,2.75rem)] tracking-[-0.02em] leading-[1.15] text-ink mb-6">
+          {words("We didn't set out to build a service menu.").map((word, i) => (
+            <>
+              <span class="word"><span style={`--i:${i}`}>{word}</span></span>{' '}
+            </>
+          ))}
+        </h2>
         <p class="text-[17px] leading-[1.7] text-slate max-w-[560px] mb-5">Masy Consulting started the way most real businesses do, by solving one problem for one client, then staying because the work kept growing. A single hire turned into a team. A one-off request turned into an ongoing relationship. That pattern is now the whole business.</p>
         <p class="text-[17px] leading-[1.7] text-slate max-w-[560px]">We're not a large firm pretending to be small, or a solo consultant pretending to be a firm. We're a hands-on team that shows up in the actual weekly work, hiring, monitoring, paying staff, writing what needs to go out the door, not just advising from a distance.</p>
       </div>
@@ -317,7 +331,13 @@ const faqs = [
     <div class="max-w-content mx-auto px-5 sm:px-8">
       <div class="max-w-[640px] mx-auto mb-9 text-center">
         <span class="block text-orange text-[12.5px] tracking-[0.08em] uppercase font-extrabold mb-3.5">Not hypothetical, already happening</span>
-        <h2 id="examplesHead" class="font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink min-h-[1.15em]"><span id="typeContent5"></span><span class="type-cursor" id="typeCursor5"></span></h2>
+        <h2 class="word-rise-heading font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink">
+          {words("Two businesses we're running the operations for right now.").map((word, i) => (
+            <>
+              <span class="word"><span style={`--i:${i}`}>{word}</span></span>{' '}
+            </>
+          ))}
+        </h2>
       </div>
       <div class="grid md:grid-cols-2 gap-5">
         {caseStudies.map((c) => (
@@ -343,7 +363,13 @@ const faqs = [
     <div class="max-w-content mx-auto px-5 sm:px-8">
       <div class="max-w-[520px] mb-10">
         <span class="block text-orange text-[12.5px] tracking-[0.08em] uppercase font-extrabold mb-3.5">How it works</span>
-        <h2 id="processHead" class="font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink min-h-[1.15em]"><span id="typeContent6"></span><span class="type-cursor" id="typeCursor6"></span></h2>
+        <h2 class="word-rise-heading font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink">
+          {words('Three steps, no fluff.').map((word, i) => (
+            <>
+              <span class="word"><span style={`--i:${i}`}>{word}</span></span>{' '}
+            </>
+          ))}
+        </h2>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
         {processSteps.map((step, i) => (
@@ -361,7 +387,13 @@ const faqs = [
     <div class="max-w-content mx-auto px-5 sm:px-8">
       <div class="max-w-[640px] mx-auto mb-9 text-center">
         <span class="block text-orange text-[12.5px] tracking-[0.08em] uppercase font-extrabold mb-3.5">Questions worth asking</span>
-        <h2 id="faqHead" class="font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink min-h-[1.15em]"><span id="typeContent7"></span><span class="type-cursor" id="typeCursor7"></span></h2>
+        <h2 class="word-rise-heading font-extrabold text-[clamp(1.75rem,3.8vw,2.9rem)] tracking-[-0.02em] leading-[1.15] text-ink">
+          {words('Before you book the call.').map((word, i) => (
+            <>
+              <span class="word"><span style={`--i:${i}`}>{word}</span></span>{' '}
+            </>
+          ))}
+        </h2>
       </div>
       <div class="max-w-[720px] mx-auto flex flex-col gap-3" data-reveal>
         {faqs.map((f) => (
@@ -390,7 +422,13 @@ const faqs = [
 
   <section class="closing py-16 sm:py-20 text-center bg-indigo" id="book">
     <div class="max-w-content mx-auto px-5 sm:px-8">
-      <h2 id="closingHead" class="text-white font-extrabold text-[clamp(1.9rem,4.4vw,3.2rem)] tracking-[-0.02em] leading-[1.12] mb-4.5 max-w-[800px] mx-auto min-h-[1.12em]"><span id="typeContent8"></span><span class="type-cursor" id="typeCursor8"></span></h2>
+      <h2 class="word-rise-heading text-white font-extrabold text-[clamp(1.9rem,4.4vw,3.2rem)] tracking-[-0.02em] leading-[1.12] mb-4.5 max-w-[800px] mx-auto">
+        {words('Stop being your own operations department.').map((word, i) => (
+          <>
+            <span class="word"><span style={`--i:${i}`}>{word}</span></span>{' '}
+          </>
+        ))}
+      </h2>
       <p class="text-white/75 text-[17px] font-medium mb-9">One free discovery call, no obligation, no pitch deck.</p>
       <Button href={siteMeta.whatsappUrl} variant="primary" size="lg" pill={false} newTab>Book a discovery call</Button>
     </div>
@@ -589,6 +627,36 @@ const faqs = [
       transition: none;
     }
   }
+
+  /* ---------- Section headings: word-by-word rise ----------
+     Words are already laid out in their final wrapped position (only
+     opacity/translateY animate), so unlike a character typewriter on
+     centered multi-line text, nothing re-centers mid-animation. */
+  .word-rise-heading .word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+  .word-rise-heading .word > span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(115%);
+    transition:
+      opacity 0.5s ease,
+      transform 0.7s var(--ease-out-expo);
+    transition-delay: calc(var(--i) * 55ms);
+  }
+  .word-rise-heading.is-inview .word > span {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .word-rise-heading .word > span {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
 </style>
 
 <script>
@@ -782,35 +850,23 @@ const faqs = [
       observer.observe(head);
     })();
 
-    // ---------- Section headings: type on scroll into view ----------
-    function typeOnScroll(headId: string, contentId: string, cursorId: string, text: string) {
-      const head = document.getElementById(headId);
-      const target = document.getElementById(contentId);
-      const cursor = document.getElementById(cursorId);
-      if (!head || !target || !cursor) return;
-
-      let started = false;
+    // ---------- Section headings: word-by-word rise on scroll into view ----------
+    (() => {
+      const headings = document.querySelectorAll('.word-rise-heading');
+      if (!headings.length) return;
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting && !started) {
-              started = true;
-              runTypewriter(target, cursor, [{ text, em: false }]);
-              observer.disconnect();
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-inview');
+              observer.unobserve(entry.target);
             }
           });
         },
         { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
       );
-      observer.observe(head);
-    }
-
-    typeOnScroll('groupsHead', 'typeContent3', 'typeCursor3', 'Two things stop landing on your desk.');
-    typeOnScroll('aboutHead', 'typeContent4', 'typeCursor4', "We didn't set out to build a service menu.");
-    typeOnScroll('examplesHead', 'typeContent5', 'typeCursor5', "Two businesses we're running the operations for right now.");
-    typeOnScroll('processHead', 'typeContent6', 'typeCursor6', 'Three steps, no fluff.');
-    typeOnScroll('faqHead', 'typeContent7', 'typeCursor7', 'Before you book the call.');
-    typeOnScroll('closingHead', 'typeContent8', 'typeCursor8', 'Stop being your own operations department.');
+      headings.forEach((h) => observer.observe(h));
+    })();
 
     // ---------- Trait cards: click to check + live counter ----------
     (() => {
