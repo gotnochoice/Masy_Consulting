@@ -1,7 +1,7 @@
 ---
 title: "The WhatsApp Group Is Not an HR Department"
 dek: "If your entire people function lives in a chat thread, you don't have a management problem. You have a structure problem, and it's fixable in a specific order."
-pillar: "Fractional HR"
+pillar: "Team Management"
 date: 2026-06-02
 readMinutes: 5
 image: "/two.jpg"

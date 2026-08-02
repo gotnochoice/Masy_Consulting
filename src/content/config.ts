@@ -5,7 +5,7 @@ const insights = defineCollection({
   schema: z.object({
     title: z.string(),
     dek: z.string(),
-    pillar: z.enum(['Fractional HR', 'Business Writing', 'Industry Analysis']),
+    pillar: z.enum(['Team Management', 'Business Writing', 'Industry Analysis']),
     date: z.date(),
     readMinutes: z.number(),
     image: z.string(),
