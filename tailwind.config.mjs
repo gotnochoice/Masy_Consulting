@@ -34,6 +34,10 @@ export default {
         // pages) still render their existing font-mono labels correctly.
         // The new homepage never uses font-mono — see .mono-label utility instead.
         mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+        // Editorial serif, scoped to the Insights section only (headlines,
+        // never body copy). Everywhere else on the site stays Plus Jakarta
+        // Sans, this is a deliberate one-off, not a site-wide font change.
+        editorial: ['"Source Serif 4 Variable"', 'ui-serif', 'Georgia', 'serif'],
       },
       maxWidth: {
         content: '1320px',
