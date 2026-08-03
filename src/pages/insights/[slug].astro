@@ -79,12 +79,8 @@ const postUrl = new URL(`/insights/${post.slug}/`, siteMeta.url).toString();
       </p>
     </header>
 
-    <div class="mt-10 rounded-xl overflow-hidden aspect-[16/9] max-w-3xl">
-      <img src={post.data.image} alt={post.data.imageAlt} class="w-full h-full object-cover" loading="eager" decoding="async" />
-    </div>
-
     <div
-      class="prose prose-lg mt-14 max-w-[42rem]
+      class="prose prose-lg mt-12 max-w-[42rem]
         prose-headings:font-display prose-headings:font-medium prose-headings:text-ink prose-headings:tracking-tight
         prose-h2:text-[27px] prose-h2:mt-14 prose-h2:mb-4 prose-h2:leading-snug
         prose-p:text-slate prose-p:leading-[1.8]

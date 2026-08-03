@@ -407,15 +407,17 @@ const faqs = [
         ))}
       </div>
       {insightPosts.length > 0 && (
-        <p class="max-w-[720px] mx-auto mt-7 text-center text-[13.5px] text-slate">
-          Further reading:{' '}
-          {insightPosts.map((post, i) => (
-            <>
-              <a href={`/insights/${post.slug}/`} class="text-indigo font-semibold hover:text-orange-deep transition-colors">{post.data.title}</a>
-              {i < insightPosts.length - 1 && <span class="mx-1.5">·</span>}
-            </>
-          ))}
-        </p>
+        <div class="max-w-[560px] mx-auto mt-10 pt-8 border-t border-line text-center">
+          <p class="text-[11px] font-extrabold uppercase tracking-[0.12em] text-orange mb-3.5">Further reading</p>
+          <div class="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1.5">
+            {insightPosts.map((post, i) => (
+              <>
+                <a href={`/insights/${post.slug}/`} class="text-[13.5px] font-semibold text-indigo hover:text-orange-deep transition-colors">{post.data.title}</a>
+                {i < insightPosts.length - 1 && <span class="text-slate/30" aria-hidden="true">·</span>}
+              </>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   </section>
