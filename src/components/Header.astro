@@ -9,35 +9,41 @@ const currentPath = Astro.url.pathname;
   <div class="max-w-content mx-auto px-5 sm:px-8 flex items-center justify-between h-[84px]">
     <Logo size="md" />
 
-    <nav class="hidden lg:flex items-center gap-9" aria-label="Primary">
-      {navLinks.map((link) => {
-        const active = currentPath === link.href;
-        return (
-          <a
-            href={link.href}
-            class:list={[
-              'link-underline text-[14px] font-semibold tracking-wide py-1.5 transition-colors duration-200',
-              active ? 'text-indigo' : 'text-slate hover:text-indigo',
-            ]}
-            aria-current={active ? 'page' : undefined}
-          >
-            {link.label}
-          </a>
-        );
-      })}
-    </nav>
+    <div class="hidden lg:flex items-center gap-8">
+      <nav class="flex items-center gap-9" aria-label="Primary">
+        {navLinks.map((link) => {
+          const active = currentPath === link.href;
+          return (
+            <a
+              href={link.href}
+              class:list={[
+                'nav-quill relative inline-block text-[14px] font-semibold tracking-wide py-1.5 transition-colors duration-200',
+                active ? 'text-indigo is-active' : 'text-slate hover:text-indigo',
+              ]}
+              aria-current={active ? 'page' : undefined}
+            >
+              {link.label}
+              <svg class="nav-quill-underline" viewBox="0 0 140 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2,10 C30,2 90,14 138,4" /></svg>
+            </a>
+          );
+        })}
+      </nav>
 
-    <div class="hidden lg:flex items-center gap-6">
-      <a
-        href={siteMeta.clientPortalUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="link-underline inline-flex items-center gap-1.5 text-[14px] font-semibold text-slate hover:text-indigo transition-colors duration-200"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-        Client Portal
-      </a>
-      <Button href="/#book" variant="indigo" size="sm" pill={false}>Book a discovery call</Button>
+      <span class="w-px h-5 bg-line" aria-hidden="true"></span>
+
+      <div class="flex items-center gap-6">
+        <a
+          href={siteMeta.clientPortalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-quill relative inline-flex items-center gap-1.5 text-[14px] font-semibold text-slate hover:text-indigo transition-colors duration-200"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Client Portal
+          <svg class="nav-quill-underline" viewBox="0 0 140 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2,10 C30,2 90,14 138,4" /></svg>
+        </a>
+        <Button href="/#book" variant="indigo" size="sm" pill={false}>Book a discovery call</Button>
+      </div>
     </div>
 
     <button
@@ -137,6 +143,36 @@ const currentPath = Astro.url.pathname;
     to {
       opacity: 1;
       transform: none;
+    }
+  }
+
+  /* ---------- Nav links: the site's quill-stroke signature, on hover ---------- */
+  .nav-quill-underline {
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 8px;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .nav-quill-underline path {
+    fill: none;
+    stroke: #ff6600;
+    stroke-width: 2.25;
+    stroke-linecap: round;
+    stroke-dasharray: 180;
+    stroke-dashoffset: 180;
+    transition: stroke-dashoffset 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .nav-quill:hover .nav-quill-underline path,
+  .nav-quill:focus-visible .nav-quill-underline path,
+  .nav-quill.is-active .nav-quill-underline path {
+    stroke-dashoffset: 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-quill-underline path {
+      transition: none;
     }
   }
 </style>
