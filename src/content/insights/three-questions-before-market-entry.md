@@ -4,8 +4,8 @@ dek: "Most market-entry mistakes aren't caused by bad luck. They're caused by sk
 pillar: "Industry Analysis"
 date: 2026-06-30
 readMinutes: 5
-image: "/three.jpg"
-imageAlt: "A consultant reviewing and stamping documents at a conference table"
+image: "/insights-market-research.jpg"
+imageAlt: "A consultant reviewing printed market data and charts spread across her desk"
 ---
 
 Market entry decisions rarely fail for dramatic reasons. They fail quietly, because a founder or investor answered a hard question with an easy assumption, and the assumption turned out to be a guess wearing the clothes of a fact. Before any serious commitment of money or time to a new market, city, or customer segment, three questions are worth answering properly instead of intuitively.

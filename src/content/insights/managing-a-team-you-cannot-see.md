@@ -4,8 +4,8 @@ dek: "If your entire people function lives in a chat thread, you don't have a ma
 pillar: "Team Management"
 date: 2026-06-02
 readMinutes: 5
-image: "/two.jpg"
-imageAlt: "An HR manager reviewing and annotating a staff schedule at his desk"
+image: "/insights-team-management.jpg"
+imageAlt: "A manager fielding a work call at his desk, surrounded by papers"
 ---
 
 Most diaspora business owners we talk to don't think of themselves as having an HR problem. They think of themselves as having a "staff issue," singular, usually attached to one person's name. The delivery lead who keeps missing targets. The office manager who's brilliant but impossible to reach on Fridays. The hire from eight months ago nobody's checked in on since onboarding.

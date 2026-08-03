@@ -37,28 +37,39 @@ const cardShadowHover = 'hover:shadow-[0_4px_14px_rgba(15,15,15,0.06),0_24px_44p
     {featured && (
       <a
         href={`/insights/${featured.slug}/`}
-        class:list={['group block bg-white rounded-xl border border-ink/[0.06] p-8 sm:p-11 mb-5 transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:border-ink/[0.12]', cardShadow, cardShadowHover]}
+        class:list={['group flex flex-col md:flex-row bg-white rounded-xl border border-ink/[0.06] overflow-hidden mb-5 transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:border-ink/[0.12]', cardShadow, cardShadowHover]}
         data-reveal
       >
-        <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mb-6">
-          <span class="font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-orange-deep">
-            {featured.data.pillar}
-          </span>
-          <span class="text-slate/25" aria-hidden="true">·</span>
-          <span class="text-[12.5px] text-slate/60">{fmt(featured.data.date)} · {featured.data.readMinutes} min read</span>
+        <div class="md:w-[42%] aspect-[4/3] md:aspect-square shrink-0 overflow-hidden bg-ink/5">
+          <img
+            src={featured.data.image}
+            alt={featured.data.imageAlt}
+            class="w-full h-full object-cover object-top transition-transform duration-500 ease-out-quart group-hover:scale-[1.04]"
+            loading="eager"
+            decoding="async"
+          />
         </div>
-        <h2 class="font-editorial font-medium text-[clamp(1.6rem,3.2vw,2.4rem)] leading-[1.2] tracking-[-0.005em] text-ink group-hover:text-indigo transition-colors duration-300 mb-3.5 max-w-2xl text-balance">
-          {featured.data.title}
-        </h2>
-        <p class="text-[15.5px] text-slate leading-relaxed max-w-xl mb-7 text-pretty">
-          {featured.data.dek}
-        </p>
-        <span class="inline-flex items-center gap-2 text-[12.5px] font-extrabold uppercase tracking-[0.06em] text-indigo">
-          Read the piece
-          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300 ease-out-quart" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 12H20M20 12L13.5 5.5M20 12L13.5 18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </span>
+        <div class="flex-1 p-8 sm:p-11 flex flex-col justify-center min-w-0">
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mb-6">
+            <span class="font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-orange-deep">
+              {featured.data.pillar}
+            </span>
+            <span class="text-slate/25" aria-hidden="true">·</span>
+            <span class="text-[12.5px] text-slate/60">{fmt(featured.data.date)} · {featured.data.readMinutes} min read</span>
+          </div>
+          <h2 class="font-editorial font-medium text-[clamp(1.6rem,3vw,2.2rem)] leading-[1.2] tracking-[-0.005em] text-ink group-hover:text-indigo transition-colors duration-300 mb-3.5 text-balance">
+            {featured.data.title}
+          </h2>
+          <p class="text-[15.5px] text-slate leading-relaxed mb-7 text-pretty">
+            {featured.data.dek}
+          </p>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-extrabold uppercase tracking-[0.06em] text-indigo">
+            Read the piece
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300 ease-out-quart" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 12H20M20 12L13.5 5.5M20 12L13.5 18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </div>
       </a>
     )}
 
@@ -67,22 +78,33 @@ const cardShadowHover = 'hover:shadow-[0_4px_14px_rgba(15,15,15,0.06),0_24px_44p
         {rest.map((post) => (
           <a
             href={`/insights/${post.slug}/`}
-            class:list={['group flex flex-col bg-white rounded-xl border border-ink/[0.06] p-7 transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:border-ink/[0.12]', cardShadow, cardShadowHover]}
+            class:list={['group flex flex-col bg-white rounded-xl border border-ink/[0.06] overflow-hidden transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:border-ink/[0.12]', cardShadow, cardShadowHover]}
           >
-            <span class="font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-orange-deep mb-3.5">
-              {post.data.pillar}
-            </span>
-            <h3 class="font-editorial font-medium text-[20px] leading-[1.32] tracking-[-0.002em] text-ink group-hover:text-indigo transition-colors duration-300 mb-2.5 text-balance">
-              {post.data.title}
-            </h3>
-            <p class="text-[14px] text-slate leading-relaxed mb-5 flex-1 text-pretty">
-              {post.data.dek}
-            </p>
-            <div class="flex items-center justify-between gap-3 pt-4 border-t border-line text-[12px] text-slate/60">
-              <span>{fmt(post.data.date)} · {post.data.readMinutes} min read</span>
-              <svg class="w-4 h-4 text-ink shrink-0 group-hover:translate-x-1 transition-transform duration-300 ease-out-quart" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M4 12H20M20 12L13.5 5.5M20 12L13.5 18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
+            <div class="aspect-[16/11] overflow-hidden bg-ink/5">
+              <img
+                src={post.data.image}
+                alt={post.data.imageAlt}
+                class="w-full h-full object-cover object-top transition-transform duration-500 ease-out-quart group-hover:scale-[1.04]"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="p-7 flex flex-col flex-1">
+              <span class="font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] text-orange-deep mb-3">
+                {post.data.pillar}
+              </span>
+              <h3 class="font-editorial font-medium text-[20px] leading-[1.32] tracking-[-0.002em] text-ink group-hover:text-indigo transition-colors duration-300 mb-2.5 text-balance">
+                {post.data.title}
+              </h3>
+              <p class="text-[14px] text-slate leading-relaxed mb-5 flex-1 text-pretty">
+                {post.data.dek}
+              </p>
+              <div class="flex items-center justify-between gap-3 pt-4 border-t border-line text-[12px] text-slate/60">
+                <span>{fmt(post.data.date)} · {post.data.readMinutes} min read</span>
+                <svg class="w-4 h-4 text-ink shrink-0 group-hover:translate-x-1 transition-transform duration-300 ease-out-quart" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M4 12H20M20 12L13.5 5.5M20 12L13.5 18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
             </div>
           </a>
         ))}
