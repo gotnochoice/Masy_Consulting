@@ -24,12 +24,12 @@ const cardShadowHover = 'hover:shadow-[0_4px_14px_rgba(15,15,15,0.06),0_24px_44p
     <div class="flex flex-wrap items-end justify-between gap-x-8 gap-y-4 border-b border-line pb-6">
       <div>
         <Eyebrow>Insights</Eyebrow>
-        <h1 class="mt-3 font-editorial font-medium text-[clamp(1.8rem,3.2vw,2.6rem)] leading-[1.15] tracking-[-0.01em] text-ink text-balance">
-          Things worth knowing <span class="text-indigo italic">before you call us.</span>
+        <h1 class="mt-3 font-editorial font-medium text-[clamp(1.8rem,3.2vw,2.6rem)] leading-[1.15] tracking-[-0.01em] text-ink min-h-[1.15em] text-balance">
+          <span id="insightsTypeContent"></span><span class="type-cursor" id="insightsTypeCursor"></span>
         </h1>
       </div>
       <p class="text-[14px] text-slate leading-relaxed max-w-sm text-pretty">
-        Every piece here has to clear one bar: would it teach a business owner something real, even if they never book a call?
+        Every piece here has to teach you something real, whether or not you ever call us.
       </p>
     </div>
   </section>
@@ -118,3 +118,134 @@ const cardShadowHover = 'hover:shadow-[0_4px_14px_rgba(15,15,15,0.06),0_24px_44p
     body="No pressure, no funnel. Insight first, always. The door's open when you're ready."
   />
 </BaseLayout>
+
+<style>
+  .type-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 0.85em;
+    background: #4d148c;
+    margin-left: 3px;
+    vertical-align: -0.1em;
+    animation: blink 0.85s steps(1) infinite;
+  }
+  .type-cursor.done {
+    opacity: 0;
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  :global(.insights-quill-wrap) {
+    position: relative;
+    display: inline-block;
+    font-style: italic;
+    color: #4d148c;
+    font-weight: 500;
+  }
+  :global(.insights-quill-underline) {
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 12px;
+    overflow: visible;
+    pointer-events: none;
+  }
+  :global(.insights-quill-underline path) {
+    fill: none;
+    stroke: #4d148c;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 180;
+    stroke-dashoffset: 180;
+    transition: stroke-dashoffset 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  :global(.insights-quill-underline.draw path) {
+    stroke-dashoffset: 0;
+  }
+</style>
+
+<script>
+  type TypeSegment = { text: string; em: boolean };
+
+  function runTypewriter(target: HTMLElement, cursor: HTMLElement, segments: TypeSegment[]) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduceMotion) {
+      segments.forEach((seg) => {
+        if (seg.em) {
+          const wrap = document.createElement('span');
+          wrap.className = 'insights-quill-wrap';
+          wrap.textContent = seg.text;
+          target.appendChild(wrap);
+        } else {
+          target.appendChild(document.createTextNode(seg.text));
+        }
+      });
+      cursor.classList.add('done');
+      return;
+    }
+
+    let segIdx = 0;
+    let charIdx = 0;
+    let currentEl: HTMLElement | null = null;
+    let emTarget: HTMLElement | null = null;
+
+    function step() {
+      if (segIdx >= segments.length) {
+        cursor.classList.add('done');
+        const quillWrap = target.querySelector<HTMLElement>('.insights-quill-wrap');
+        if (quillWrap) {
+          const ns = 'http://www.w3.org/2000/svg';
+          const svg = document.createElementNS(ns, 'svg');
+          svg.setAttribute('class', 'insights-quill-underline');
+          svg.setAttribute('viewBox', '0 0 140 14');
+          svg.setAttribute('preserveAspectRatio', 'none');
+          const path = document.createElementNS(ns, 'path');
+          path.setAttribute('d', 'M2,10 C30,2 90,14 138,4');
+          svg.appendChild(path);
+          quillWrap.appendChild(svg);
+          setTimeout(() => svg.classList.add('draw'), 150);
+        }
+        return;
+      }
+      const seg = segments[segIdx];
+      if (charIdx === 0) {
+        currentEl = document.createElement('span');
+        if (seg.em) {
+          currentEl.className = 'insights-quill-wrap';
+          const inner = document.createElement('em');
+          inner.style.fontStyle = 'italic';
+          currentEl.appendChild(inner);
+          emTarget = inner;
+        }
+        target.appendChild(currentEl);
+      }
+      if (seg.em && emTarget) {
+        emTarget.textContent += seg.text[charIdx];
+      } else if (currentEl) {
+        currentEl.textContent += seg.text[charIdx];
+      }
+      charIdx++;
+      if (charIdx >= seg.text.length) {
+        segIdx++;
+        charIdx = 0;
+      }
+      setTimeout(step, 28 + Math.random() * 30);
+    }
+    setTimeout(step, 300);
+  }
+
+  (() => {
+    const target = document.getElementById('insightsTypeContent');
+    const cursor = document.getElementById('insightsTypeCursor');
+    if (!target || !cursor) return;
+
+    runTypewriter(target, cursor, [
+      { text: 'Real lessons. ', em: false },
+      { text: 'Not a sales pitch.', em: true },
+    ]);
+  })();
+</script>
