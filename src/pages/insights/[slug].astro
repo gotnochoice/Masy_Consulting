@@ -55,44 +55,46 @@ const postUrl = new URL(`/insights/${post.slug}/`, siteMeta.url).toString();
     ],
   })} />
   <article class="max-w-content mx-auto px-5 sm:px-8 pt-10 sm:pt-16 pb-20 sm:pb-28">
-    <a href="/insights/" class="inline-flex items-center gap-2 text-[13.5px] font-medium text-slate hover:text-ink transition-colors">
-      <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <path d="M13 8H3M3 8L7.2 3.8M3 8L7.2 12.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-      All insights
-    </a>
+    <div class="max-w-3xl mx-auto">
+      <a href="/insights/" class="inline-flex items-center gap-2 text-[13.5px] font-medium text-slate hover:text-ink transition-colors">
+        <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M13 8H3M3 8L7.2 3.8M3 8L7.2 12.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        All insights
+      </a>
 
-    <header class="mt-10 max-w-3xl">
-      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[10.5px] font-medium uppercase tracking-[0.16em]">
-        <a href={pillarHref[post.data.pillar]} class="text-orange-deep hover:text-ink transition-colors">
-          {post.data.pillar}
-        </a>
-        <span class="text-slate/30" aria-hidden="true">·</span>
-        <span class="text-slate/60">{dateStr}</span>
-        <span class="text-slate/30" aria-hidden="true">·</span>
-        <span class="text-slate/60">{post.data.readMinutes} min read</span>
+      <header class="mt-10">
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[10.5px] font-medium uppercase tracking-[0.16em]">
+          <a href={pillarHref[post.data.pillar]} class="text-orange-deep hover:text-ink transition-colors">
+            {post.data.pillar}
+          </a>
+          <span class="text-slate/30" aria-hidden="true">·</span>
+          <span class="text-slate/60">{dateStr}</span>
+          <span class="text-slate/30" aria-hidden="true">·</span>
+          <span class="text-slate/60">{post.data.readMinutes} min read</span>
+        </div>
+        <h1 class="mt-6 font-editorial font-medium text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.14] tracking-[-0.005em] text-ink text-balance">
+          {post.data.title}
+        </h1>
+      </header>
+
+      <div class="mt-9 w-full max-w-xl rounded-xl overflow-hidden aspect-[4/5]">
+        <img src={post.data.image} alt={post.data.imageAlt} class="w-full h-full object-cover object-top" loading="eager" decoding="async" />
       </div>
-      <h1 class="mt-6 font-editorial font-medium text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.14] tracking-[-0.005em] text-ink text-balance">
-        {post.data.title}
-      </h1>
-    </header>
+      <p class="mt-4 max-w-xl font-editorial italic text-[15px] text-slate/70 leading-[1.5] text-pretty">
+        {post.data.dek}
+      </p>
 
-    <div class="mt-9 w-full max-w-xl rounded-xl overflow-hidden aspect-[4/5]">
-      <img src={post.data.image} alt={post.data.imageAlt} class="w-full h-full object-cover object-top" loading="eager" decoding="async" />
-    </div>
-    <p class="mt-4 max-w-xl font-editorial italic text-[15px] text-slate/70 leading-[1.5] text-pretty">
-      {post.data.dek}
-    </p>
-
-    <div
-      class="prose prose-lg mt-10 max-w-[42rem]
-        prose-headings:font-editorial prose-headings:font-medium prose-headings:text-ink prose-headings:tracking-tight
-        prose-h2:text-[28px] prose-h2:mt-14 prose-h2:mb-4 prose-h2:leading-snug
-        prose-p:text-slate prose-p:leading-[1.8]
-        prose-strong:text-ink prose-strong:font-semibold
-        prose-a:text-ink prose-a:underline prose-a:decoration-orange prose-a:decoration-2 prose-a:underline-offset-[3px] hover:prose-a:text-orange-deep"
-    >
-      <Content />
+      <div
+        class="prose prose-lg mt-10 max-w-[42rem]
+          prose-headings:font-editorial prose-headings:font-medium prose-headings:text-ink prose-headings:tracking-tight
+          prose-h2:text-[28px] prose-h2:mt-14 prose-h2:mb-4 prose-h2:leading-snug
+          prose-p:text-slate prose-p:leading-[1.8]
+          prose-strong:text-ink prose-strong:font-semibold
+          prose-a:text-ink prose-a:underline prose-a:decoration-orange prose-a:decoration-2 prose-a:underline-offset-[3px] hover:prose-a:text-orange-deep"
+      >
+        <Content />
+      </div>
     </div>
   </article>
 
