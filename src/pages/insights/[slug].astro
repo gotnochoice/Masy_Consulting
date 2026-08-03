@@ -75,17 +75,17 @@ const postUrl = new URL(`/insights/${post.slug}/`, siteMeta.url).toString();
       <h1 class="mt-6 font-editorial font-medium text-[clamp(2rem,4.6vw,3.4rem)] leading-[1.14] tracking-[-0.005em] text-ink text-balance">
         {post.data.title}
       </h1>
-      <p class="mt-7 font-editorial italic text-[19px] sm:text-[21px] text-indigo leading-[1.45] text-pretty border-l-[3px] border-orange pl-6">
-        {post.data.dek}
-      </p>
     </header>
 
-    <div class="mt-10 w-full max-w-sm rounded-xl overflow-hidden aspect-[4/5]">
+    <div class="mt-9 w-full max-w-xl rounded-xl overflow-hidden aspect-[4/5]">
       <img src={post.data.image} alt={post.data.imageAlt} class="w-full h-full object-cover object-top" loading="eager" decoding="async" />
     </div>
+    <p class="mt-4 max-w-xl font-editorial italic text-[15px] text-slate/70 leading-[1.5] text-pretty">
+      {post.data.dek}
+    </p>
 
     <div
-      class="prose prose-lg mt-12 max-w-[42rem]
+      class="prose prose-lg mt-10 max-w-[42rem]
         prose-headings:font-editorial prose-headings:font-medium prose-headings:text-ink prose-headings:tracking-tight
         prose-h2:text-[28px] prose-h2:mt-14 prose-h2:mb-4 prose-h2:leading-snug
         prose-p:text-slate prose-p:leading-[1.8]
@@ -97,9 +97,7 @@ const postUrl = new URL(`/insights/${post.slug}/`, siteMeta.url).toString();
   </article>
 
   <CTASection
-    heading="If this is the kind of thinking you want on your side, let's talk."
-    body="Thirty minutes, no obligation. We'll tell you plainly whether Masy is the right fit."
-    secondaryLabel="More insights"
-    secondaryHref="/insights/"
+    heading="Want this kind of thinking working for your business?"
+    body="Book a free discovery call. Thirty minutes, no pitch deck, no obligation, just a straight answer on whether we're the right fit."
   />
 </BaseLayout>
