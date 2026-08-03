@@ -9,12 +9,17 @@ const posts = (await getCollection('insights')).sort(
 );
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
+const [featured, ...rest] = posts;
+
+const cardShadow = 'shadow-[0_2px_8px_rgba(15,15,15,0.04),0_12px_32px_-16px_rgba(15,15,15,0.12)]';
+const cardShadowHover = 'hover:shadow-[0_4px_14px_rgba(15,15,15,0.06),0_24px_44px_-18px_rgba(15,15,15,0.18)]';
 ---
 <BaseLayout
   title="Insights"
   description="Sharp, insight-first thinking on team management, business writing, and market intelligence for African businesses and diaspora entrepreneurs. Real lessons, never a sales pitch."
 >
-  <section class="max-w-content mx-auto px-5 sm:px-8 pt-12 sm:pt-20 pb-14 sm:pb-20">
+  <section class="max-w-content mx-auto px-5 sm:px-8 pt-12 sm:pt-20 pb-14 sm:pb-16">
     <Eyebrow>Insights</Eyebrow>
     <h1 class="mt-7 font-display font-bold text-[clamp(2.4rem,5.8vw,4.5rem)] leading-[1.02] tracking-[-0.02em] text-ink max-w-4xl text-balance">
       Things worth knowing
@@ -27,35 +32,60 @@ const fmt = (d: Date) =>
     </p>
   </section>
 
-  <section class="max-w-content mx-auto px-5 sm:px-8 pb-24 sm:pb-32">
-    <div class="border-t border-ink/12" data-reveal-stagger>
-      {posts.map((post, i) => (
-        <a
-          href={`/insights/${post.slug}/`}
-          class="group grid lg:grid-cols-[130px_minmax(0,1fr)_minmax(0,380px)_60px] items-baseline lg:items-center gap-x-8 gap-y-3 py-9 sm:py-11 border-b border-ink/12"
-        >
-          <div class="font-sans font-bold text-[11.5px] uppercase tracking-[0.14em] text-slate/60 leading-relaxed">
-            <p class="text-orange-deep">{post.data.pillar}</p>
-            <p class="mt-1">{fmt(post.data.date)}</p>
-            <p>{post.data.readMinutes} min read</p>
-          </div>
-          <h2 class:list={[
-            'font-display font-bold leading-[1.12] tracking-[-0.015em] text-ink group-hover:text-indigo transition-colors duration-300 text-balance',
-            i === 0 ? 'text-[clamp(1.7rem,3.6vw,2.7rem)]' : 'text-[clamp(1.4rem,2.8vw,2rem)]',
-          ]}>
-            {post.data.title}
-          </h2>
-          <p class="text-[14.5px] text-slate leading-relaxed text-pretty">
-            {post.data.dek}
-          </p>
-          <span class="hidden lg:flex justify-end text-ink">
-            <svg class="w-6 h-6 -rotate-45 group-hover:rotate-0 transition-transform duration-500 ease-out-quart" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4 12H20M20 12L13.5 5.5M20 12L13.5 18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+  <section class="max-w-content mx-auto px-5 sm:px-8 pb-20 sm:pb-28">
+    {featured && (
+      <a
+        href={`/insights/${featured.slug}/`}
+        class:list={['group block bg-white rounded-xl border border-ink/[0.06] p-8 sm:p-11 mb-5 transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:border-ink/[0.12]', cardShadow, cardShadowHover]}
+        data-reveal
+      >
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mb-5">
+          <span class="text-[11px] font-extrabold uppercase tracking-[0.12em] text-orange-deep bg-orange-soft px-2.5 py-1 rounded-full">
+            {featured.data.pillar}
           </span>
-        </a>
-      ))}
-    </div>
+          <span class="text-[12.5px] text-slate/60">{fmt(featured.data.date)} · {featured.data.readMinutes} min read</span>
+        </div>
+        <h2 class="font-display font-bold text-[clamp(1.6rem,3.4vw,2.5rem)] leading-[1.15] tracking-[-0.02em] text-ink group-hover:text-indigo transition-colors duration-300 mb-3.5 max-w-2xl text-balance">
+          {featured.data.title}
+        </h2>
+        <p class="text-[15.5px] text-slate leading-relaxed max-w-xl mb-7 text-pretty">
+          {featured.data.dek}
+        </p>
+        <span class="inline-flex items-center gap-2 text-[12.5px] font-extrabold uppercase tracking-[0.06em] text-indigo">
+          Read the piece
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300 ease-out-quart" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 12H20M20 12L13.5 5.5M20 12L13.5 18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+      </a>
+    )}
+
+    {rest.length > 0 && (
+      <div class="grid sm:grid-cols-2 gap-5" data-reveal-stagger>
+        {rest.map((post) => (
+          <a
+            href={`/insights/${post.slug}/`}
+            class:list={['group flex flex-col bg-white rounded-xl border border-ink/[0.06] p-7 transition-all duration-300 ease-out-quart hover:-translate-y-1 hover:border-ink/[0.12]', cardShadow, cardShadowHover]}
+          >
+            <span class="text-[11px] font-extrabold uppercase tracking-[0.12em] text-orange-deep mb-3">
+              {post.data.pillar}
+            </span>
+            <h3 class="font-display font-bold text-[19px] leading-[1.28] tracking-[-0.01em] text-ink group-hover:text-indigo transition-colors duration-300 mb-2.5 text-balance">
+              {post.data.title}
+            </h3>
+            <p class="text-[14px] text-slate leading-relaxed mb-5 flex-1 text-pretty">
+              {post.data.dek}
+            </p>
+            <div class="flex items-center justify-between gap-3 pt-4 border-t border-line text-[12px] text-slate/60">
+              <span>{fmt(post.data.date)} · {post.data.readMinutes} min read</span>
+              <svg class="w-4 h-4 text-ink shrink-0 group-hover:translate-x-1 transition-transform duration-300 ease-out-quart" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 12H20M20 12L13.5 5.5M20 12L13.5 18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
   </section>
 
   <CTASection
