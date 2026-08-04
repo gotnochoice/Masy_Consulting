@@ -7,7 +7,7 @@ export const siteMeta = {
   description:
     'Masy Consulting hires and manages your team, and writes and builds the proposals, research, projections, and decks that go out the door, so you can focus on the business instead of running it.',
   url: 'https://www.masyconsulting.com',
-  linkedin: 'https://www.linkedin.com/company/masy-consulting',
+  linkedin: 'https://www.linkedin.com/company/masyconsulting/',
   facebook: 'https://www.facebook.com/share/1DGzBLwRjZ/',
   instagram: 'https://www.instagram.com/masy_consulting',
   tiktok: 'https://www.tiktok.com/@masy_consulting',
