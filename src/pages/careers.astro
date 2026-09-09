@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Button from '../components/Button.astro';
+import { siteMeta } from '../data/site';
+---
+<BaseLayout
+  title="Careers"
+  description="Open roles at the businesses Masy Consulting runs hiring for. See current openings and apply directly."
+>
+  <section class="max-w-content mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-20 sm:pb-32">
+    <div class="max-w-2xl">
+      <Eyebrow>Careers</Eyebrow>
+      <h1 class="mt-7 font-display font-bold text-[clamp(2.3rem,5.2vw,3.9rem)] leading-[1.04] tracking-[-0.02em] text-ink text-balance">
+        Open roles at the businesses <span class="text-indigo">we run for.</span>
+      </h1>
+      <p class="mt-7 text-[16.5px] text-slate leading-relaxed max-w-lg text-pretty">
+        Hiring and recruitment is one of the things we do for our clients, so
+        the roles they're currently hiring for live on our HR platform, not
+        here. Current openings, and how to apply, are all listed there.
+      </p>
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <Button href={siteMeta.careersUrl} variant="primary" size="lg" pill={false} newTab>
+          See open roles
+        </Button>
+      </div>
+
+      <div class="mt-16 pt-10 border-t border-line">
+        <p class="text-[14.5px] text-slate leading-relaxed max-w-lg">
+          Hiring for your own team and want it handled the same way?
+          <a href="/#book" class="link-underline font-semibold text-ink">Book a discovery call</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

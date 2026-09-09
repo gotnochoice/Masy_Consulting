@@ -15,6 +15,7 @@ export const siteMeta = {
   whatsappDisplay: '+234 803 517 6379',
   whatsappUrl: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
   clientPortalUrl: 'https://hr.masyconsulting.com',
+  careersUrl: 'https://hr.masyconsulting.com/careers',
 };
 
 export const navLinks = [
