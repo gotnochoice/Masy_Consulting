@@ -13,6 +13,8 @@
     { "source": "/quote", "destination": "/#book", "permanent": true },
     { "source": "/quote/", "destination": "/#book", "permanent": true },
     { "source": "/tutoring", "destination": "https://www.masyacademy.com/", "permanent": true },
-    { "source": "/tutoring/", "destination": "https://www.masyacademy.com/", "permanent": true }
+    { "source": "/tutoring/", "destination": "https://www.masyacademy.com/", "permanent": true },
+    { "source": "/careers", "destination": "https://hr.masyconsulting.com/careers", "permanent": true },
+    { "source": "/careers/", "destination": "https://hr.masyconsulting.com/careers", "permanent": true }
   ]
 }
